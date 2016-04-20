@@ -254,6 +254,8 @@ public interface AriaBillingIntegration {
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
+    *   starting_record - Type: javax.xml.ws.Holder<br>
+    *   total_records - Type: javax.xml.ws.Holder<br>
     *   plan_instance_details - Type: ArrayList&#60;PlanInstanceDetailsReturnElement&#62;<br>
     */
     abstract Map<String,Object> getPlanInstanceInformationM(Long client_no, String auth_key, String query_string, Long limit, Long offset);

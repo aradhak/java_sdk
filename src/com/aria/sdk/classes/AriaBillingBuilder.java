@@ -1,52 +1,60 @@
 package com.aria.sdk.classes;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 public class AriaBillingBuilder {
 
-	private static AriaBillingCompleteRest ariaBillingCompleteRest = null;
+  private static final AtomicReference<AriaBillingCompleteRest> ariaBillingCompleteRest = new AtomicReference<AriaBillingCompleteRest>(null);
 
-	private static AriaBillingCompleteSoap ariaBillingCompleteSoap = null;
-	
-	private static AriaBillingAdministrationRest ariaBillingAdministrationRest = null;
+  private static final AtomicReference<AriaBillingAdministrationRest> ariaBillingAdministrationRest = new AtomicReference<AriaBillingAdministrationRest>(null);
 
-	private static AriaBillingIntegrationRest ariaBillingIntegrationRest = null;
+  private static final AtomicReference<AriaBillingIntegrationRest> ariaBillingIntegrationRest = new AtomicReference<AriaBillingIntegrationRest>(null);
 
-	private static AriaBillingIntegrationSoap ariaBillingIntegrationSoap = null;
-	
-	private AriaBillingBuilder(){}
+  private AriaBillingBuilder(){}
 
-	public static AriaBillingComplete getAriaSDK(BaseAriaBillingDTO baseAriaBillingDTO) throws Exception{
-		if(baseAriaBillingDTO.getCallType().equals(CallType.REST)) {
-			if(ariaBillingCompleteRest == null) {
-				ariaBillingCompleteRest = new AriaBillingCompleteRest(baseAriaBillingDTO);
-			}
-			return ariaBillingCompleteRest;
-		} else {
-			if(ariaBillingCompleteSoap == null) {
-				ariaBillingCompleteSoap = new AriaBillingCompleteSoap(baseAriaBillingDTO);
-			}
-			return ariaBillingCompleteSoap;
-		}
-	}
+  /**
+   *  On first call constructs the Aria SDK.
+   *  Subsequent calls return the same object; the arguments are ignored.
+   *
+   *  The instance returned is threadsafe.
+   *
+   *  @deprecated use the {@link AriaBillingCompleteRest} constructor directly and reuse a single instance.
+   */
+  synchronized public static AriaBillingComplete getAriaSDK(BaseAriaBillingDTO baseAriaBillingDTO) throws Exception{
+    if(ariaBillingCompleteRest.get() == null) {
+      ariaBillingCompleteRest.set(new AriaBillingCompleteRest(baseAriaBillingDTO));
+    }
+    return ariaBillingCompleteRest.get();
+  }
 
-	public static AriaBillingAdministration getAriaAdminSDK(BaseAriaBillingDTO baseAriaBillingDTO) throws Exception{
-		if(ariaBillingAdministrationRest == null) {
-			ariaBillingAdministrationRest = new AriaBillingAdministrationRest(baseAriaBillingDTO);
-		}
-		return ariaBillingAdministrationRest;
-	}
+  /**
+   *  On first call constructs the Aria SDK.
+   *  Subsequent calls return the same object; the arguments are ignored.
+   *
+   *  The instance returned is threadsafe.
+   *
+   *  @deprecated use the {@link AriaBillingAdministrationRest} constructor directly and reuse a single instance.
+   */
+  synchronized public static AriaBillingAdministration getAriaAdminSDK(BaseAriaBillingDTO baseAriaBillingDTO) throws Exception{
+    if(ariaBillingAdministrationRest.get() == null) {
+      ariaBillingAdministrationRest.set(new AriaBillingAdministrationRest(baseAriaBillingDTO));
+    }
+    return ariaBillingAdministrationRest.get();
+  }
 
-	public static AriaBillingIntegration getAriaObjectSDK(BaseAriaBillingDTO baseAriaBillingDTO) throws Exception{
-		if(baseAriaBillingDTO.getCallType().equals(CallType.REST)) {
-			if(ariaBillingIntegrationRest == null) {
-				ariaBillingIntegrationRest = new AriaBillingIntegrationRest(baseAriaBillingDTO);
-			}
-			return ariaBillingIntegrationRest;
-		} else {
-			if(ariaBillingIntegrationSoap == null) {
-				ariaBillingIntegrationSoap = new AriaBillingIntegrationSoap(baseAriaBillingDTO);
-			}
-			return ariaBillingIntegrationSoap;
-		}
-	}
+  /**
+   *  On first call constructs the Aria SDK.
+   *  Subsequent calls return the same object; the arguments are ignored.
+   *
+   *  The instance returned is threadsafe.
+   *
+   * @deprecated use the {@link AriaBillingIntegrationRest} constructor directly and reuse a single instance.
+   */
+  synchronized public static AriaBillingIntegration getAriaObjectSDK(BaseAriaBillingDTO baseAriaBillingDTO) throws Exception{
+    if(ariaBillingIntegrationRest.get() == null) {
+      ariaBillingIntegrationRest.set(new AriaBillingIntegrationRest(baseAriaBillingDTO));
+    }
+    return ariaBillingIntegrationRest.get();
+  }
 
 }

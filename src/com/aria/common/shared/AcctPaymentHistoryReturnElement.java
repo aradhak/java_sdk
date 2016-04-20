@@ -34,7 +34,7 @@ public class AcctPaymentHistoryReturnElement {
     @XmlElement(name = "voidable_flag")
     protected Long voidableFlag;
     @XmlElement(name = "cc_suffix")
-    protected Long ccSuffix;
+    protected String ccSuffix;
     @XmlElement(name = "cc_string")
     protected String ccString;
     @XmlElement(name = "pay_method_type")
@@ -138,11 +138,11 @@ public class AcctPaymentHistoryReturnElement {
         this.voidableFlag = value;
     }
 
-    public Long getCcSuffix() {
+    public String getCcSuffix() {
         return ccSuffix;
     }
 
-    public void setCcSuffix(Long value) {
+    public void setCcSuffix(String value) {
         this.ccSuffix = value;
     }
 

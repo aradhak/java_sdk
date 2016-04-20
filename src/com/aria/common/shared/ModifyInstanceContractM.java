@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "clientNo",
-    "authKey",    "acctNo",    "clientAcctId",    "contractNo",    "clientContractId",    "typeNo",    "lengthMonths",    "updateComments",    "cancelFee",    "modifyDirective",    "startDate",    "endDate",    "cascadeAction",    "contractPlanInstancesUpdate",    "contractRolloverCustomRates"})
+    "authKey",    "acctNo",    "clientAcctId",    "contractNo",    "clientContractId",    "newClientContractId",    "typeNo",    "lengthMonths",    "updateComments",    "cancelFee",    "modifyDirective",    "startDate",    "endDate",    "cascadeAction",    "contractPlanInstancesUpdate",    "contractRolloverCustomRates"})
 @XmlRootElement(name = "modify_instance_contract_m")
 public class ModifyInstanceContractM {
 
@@ -26,6 +26,8 @@ public class ModifyInstanceContractM {
     protected Long contractNo;
         @XmlElement(name = "client_contract_id")
     protected String clientContractId;
+        @XmlElement(name = "new_client_contract_id")
+    protected String newClientContractId;
         @XmlElement(name = "type_no")
     protected Long typeNo;
         @XmlElement(name = "length_months")
@@ -90,6 +92,13 @@ public class ModifyInstanceContractM {
 
     public void setClientContractId(String value) {
         this.clientContractId = value;
+    }
+            public String getNewClientContractId() {
+        return newClientContractId;
+    }
+
+    public void setNewClientContractId(String value) {
+        this.newClientContractId = value;
     }
             public Long getTypeNo() {
         return typeNo;

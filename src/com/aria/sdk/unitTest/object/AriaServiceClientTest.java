@@ -35,8 +35,6 @@ public class AriaServiceClientTest {
     /**************************** GETTERS ***********************/
     public AriaBillingIntegration getBaseAriaBilling() throws Exception {
         if (ariaBillingIntegration == null){
-            /*SOAP CALL*/
-            //BaseAriaBillingDTO baseAriaBillingDTO = new BaseAriaBillingDTO(dispatcher,"logger",false/*Debug*/,CallType.SOAP,null,LibraryType.OBJECT_QUERY);
             /*REST CALL*/
             BaseAriaBillingDTO baseAriaBillingDTO = new BaseAriaBillingDTO(dispatcher,"logger",false/*Debug*/,CallType.REST,OutPutFormat.OUTPUT_JSON,LibraryType.OBJECT_QUERY);
             ariaBillingIntegration = AriaBillingBuilder.getAriaObjectSDK(baseAriaBillingDTO);

@@ -22,7 +22,7 @@ public class PlanServicesReturnElement {
     @XmlElement(name = "is_usage_based_ind")
     protected Long isUsageBasedInd;
     @XmlElement(name = "usage_type")
-    protected String usageType;
+    protected Long usageType;
     @XmlElement(name = "taxable_ind")
     protected Long taxableInd;
     @XmlElement(name = "is_tax_ind")
@@ -106,11 +106,11 @@ public class PlanServicesReturnElement {
         this.isUsageBasedInd = value;
     }
 
-    public String getUsageType() {
+    public Long getUsageType() {
         return usageType;
     }
 
-    public void setUsageType(String value) {
+    public void setUsageType(Long value) {
         this.usageType = value;
     }
 

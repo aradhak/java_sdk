@@ -413,6 +413,10 @@ public interface IntegrationServicesPort {
         javax.xml.ws.Holder<Long> errorCode,
         @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.46:aria_complete_api")
         javax.xml.ws.Holder<String> errorMsg,
+        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.46:aria_complete_api")
+        javax.xml.ws.Holder<Long> startingRecord,
+        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.46:aria_complete_api")
+        javax.xml.ws.Holder<Long> totalRecords,
         @WebParam(mode = WebParam.Mode.OUT, name = "plan_instance_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.46:aria_integration_services_api")
         javax.xml.ws.Holder<java.util.List<com.aria.common.shared.object.PlanInstanceDetailsReturnElement>> planInstanceDetails
     );
