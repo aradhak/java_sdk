@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "clientNo",
-    "authKey",    "accountNumber",    "planNoToRemove",    "removeAllQueuedPlanNo",    "removeTerminatePending"})
+    "authKey",    "accountNumber",    "planNoToRemove",    "removeAllQueuedPlanNo",    "removeTerminatePending",    "reactivateTerminatePending"})
 @XmlRootElement(name = "cancel_queued_service_plan")
 public class CancelQueuedServicePlan {
 
@@ -26,6 +26,8 @@ public class CancelQueuedServicePlan {
     protected String removeAllQueuedPlanNo;
         @XmlElement(name = "remove_terminate_pending")
     protected String removeTerminatePending;
+        @XmlElement(name = "reactivate_terminate_pending")
+    protected String reactivateTerminatePending;
     
     public long getClientNo() {
         return clientNo;
@@ -70,6 +72,13 @@ public class CancelQueuedServicePlan {
 
     public void setRemoveTerminatePending(String value) {
         this.removeTerminatePending = value;
+    }
+            public String getReactivateTerminatePending() {
+        return reactivateTerminatePending;
+    }
+
+    public void setReactivateTerminatePending(String value) {
+        this.reactivateTerminatePending = value;
     }
             
 }

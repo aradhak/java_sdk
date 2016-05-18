@@ -129,7 +129,7 @@ public class RestUtilities {
     /* ****************** END - RETURN ELEMENT BASE METHOD ********************************* */
 
     /* ****************** SPECIFIC METHODS FOR EACH RETURN ELEMENT (build<#name#>) ********************************************** */
-    public static ArrayList<PromoPlanSetReturnElement> buildPromoPlanSetReturnElement(JSONArray jsonArray) {
+        public static ArrayList<PromoPlanSetReturnElement> buildPromoPlanSetReturnElement(JSONArray jsonArray) {
         ArrayList<PromoPlanSetReturnElement> returnElement = new ArrayList<PromoPlanSetReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -179,7 +179,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<PlanReturnElement> buildPlanReturnElement(JSONArray jsonArray) {
+        public static ArrayList<PlanReturnElement> buildPlanReturnElement(JSONArray jsonArray) {
         ArrayList<PlanReturnElement> returnElement = new ArrayList<PlanReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -229,7 +229,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<PromoPlanSetTranslationInfoReturnElement> buildPromoPlanSetTranslationInfoReturnElement(JSONArray jsonArray) {
+        public static ArrayList<PromoPlanSetTranslationInfoReturnElement> buildPromoPlanSetTranslationInfoReturnElement(JSONArray jsonArray) {
         ArrayList<PromoPlanSetTranslationInfoReturnElement> returnElement = new ArrayList<PromoPlanSetTranslationInfoReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -238,6 +238,7 @@ public class RestUtilities {
             if (jsonArray.get(i) instanceof JSONObject){
             jsonObject = (JSONObject)jsonArray.get(i);
             entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
+            entity.setLocaleNo(getLongValue(jsonObject,"locale_no"));
                         ArrayList<PlanTReturnElement> arrayListPlanTReturnElement = buildPlanTReturnElement((JSONArray)jsonObject.get("plan_t"));
             for (PlanTReturnElement element : arrayListPlanTReturnElement){
                 entity.getPlanT().add(element);
@@ -250,12 +251,23 @@ public class RestUtilities {
                 } else {
                     entity.setLocaleName(jsonArray.get(i).toString());
                 }
+            try {
+                if (jsonArray.get(i) instanceof JSONArray){
+                    if(((JSONArray)jsonArray.get(i)).size() > 0){
+                        entity.setLocaleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                    }
+                } else {
+                    entity.setLocaleNo(Long.parseLong(jsonArray.get(i).toString()));
+                }
+            } catch (NumberFormatException e) {
+                entity.setLocaleNo(null);
+            }
             }
             returnElement.add(entity);
         }
         return returnElement;
     }
-    public static ArrayList<PlanTReturnElement> buildPlanTReturnElement(JSONArray jsonArray) {
+        public static ArrayList<PlanTReturnElement> buildPlanTReturnElement(JSONArray jsonArray) {
         ArrayList<PlanTReturnElement> returnElement = new ArrayList<PlanTReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -297,7 +309,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ClientReturnElement> buildClientReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ClientReturnElement> buildClientReturnElement(JSONArray jsonArray) {
         ArrayList<ClientReturnElement> returnElement = new ArrayList<ClientReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -338,6 +350,7 @@ public class RestUtilities {
             entity.setBatchJobAlertContact(getStringValue(jsonObject,"batch_job_alert_contact"));
             entity.setBatchJobAlertEmail(getStringValue(jsonObject,"batch_job_alert_email"));
             entity.setClientLocaleName(getStringValue(jsonObject,"client_locale_name"));
+            entity.setLocaleNo(getLongValue(jsonObject,"locale_no"));
             entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
             } else {
             if (jsonArray.get(i) instanceof JSONArray){
@@ -571,6 +584,17 @@ public class RestUtilities {
                 } else {
                     entity.setClientLocaleName(jsonArray.get(i).toString());
                 }
+            try {
+                if (jsonArray.get(i) instanceof JSONArray){
+                    if(((JSONArray)jsonArray.get(i)).size() > 0){
+                        entity.setLocaleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                    }
+                } else {
+                    entity.setLocaleNo(Long.parseLong(jsonArray.get(i).toString()));
+                }
+            } catch (NumberFormatException e) {
+                entity.setLocaleNo(null);
+            }
             if (jsonArray.get(i) instanceof JSONArray){
                     if(((JSONArray)jsonArray.get(i)).size() > 0){
                         entity.setLocaleName(((JSONArray)jsonArray.get(i)).get(0).toString());
@@ -583,7 +607,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<InventoryItemsReturnElement> buildInventoryItemsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<InventoryItemsReturnElement> buildInventoryItemsReturnElement(JSONArray jsonArray) {
         ArrayList<InventoryItemsReturnElement> returnElement = new ArrayList<InventoryItemsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -598,11 +622,6 @@ public class RestUtilities {
             entity.setActiveInd(getLongValue(jsonObject,"active_ind"));
             entity.setStockLevel(getDoubleValue(jsonObject,"stock_level"));
             entity.setClientItemId(getStringValue(jsonObject,"client_item_id"));
-            entity.setPurchaseScope(getLongValue(jsonObject,"purchase_scope"));
-                        ArrayList<ItemTranslationsReturnElement> arrayListItemTranslationsReturnElement = buildItemTranslationsReturnElement((JSONArray)jsonObject.get("item_translations"));
-            for (ItemTranslationsReturnElement element : arrayListItemTranslationsReturnElement){
-                entity.getItemTranslations().add(element);
-            }
             } else {
             try {
                 if (jsonArray.get(i) instanceof JSONArray){
@@ -669,23 +688,12 @@ public class RestUtilities {
                 } else {
                     entity.setClientItemId(jsonArray.get(i).toString());
                 }
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setPurchaseScope(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setPurchaseScope(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setPurchaseScope(null);
-            }
             }
             returnElement.add(entity);
         }
         return returnElement;
     }
-    public static ArrayList<ResourcesReturnElement> buildResourcesReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ResourcesReturnElement> buildResourcesReturnElement(JSONArray jsonArray) {
         ArrayList<ResourcesReturnElement> returnElement = new ArrayList<ResourcesReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -791,7 +799,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<PricingReturnElement> buildPricingReturnElement(JSONArray jsonArray) {
+        public static ArrayList<PricingReturnElement> buildPricingReturnElement(JSONArray jsonArray) {
         ArrayList<PricingReturnElement> returnElement = new ArrayList<PricingReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -837,7 +845,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ImageReturnElement> buildImageReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ImageReturnElement> buildImageReturnElement(JSONArray jsonArray) {
         ArrayList<ImageReturnElement> returnElement = new ArrayList<ImageReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -911,7 +919,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<SupplementalObjFieldsReturnElement> buildSupplementalObjFieldsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<SupplementalObjFieldsReturnElement> buildSupplementalObjFieldsReturnElement(JSONArray jsonArray) {
         ArrayList<SupplementalObjFieldsReturnElement> returnElement = new ArrayList<SupplementalObjFieldsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -961,7 +969,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ScheduleReturnElement> buildScheduleReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ScheduleReturnElement> buildScheduleReturnElement(JSONArray jsonArray) {
         ArrayList<ScheduleReturnElement> returnElement = new ArrayList<ScheduleReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1027,7 +1035,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<TierReturnElement> buildTierReturnElement(JSONArray jsonArray) {
+        public static ArrayList<TierReturnElement> buildTierReturnElement(JSONArray jsonArray) {
         ArrayList<TierReturnElement> returnElement = new ArrayList<TierReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1085,7 +1093,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ServiceTypesReturnElement> buildServiceTypesReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ServiceTypesReturnElement> buildServiceTypesReturnElement(JSONArray jsonArray) {
         ArrayList<ServiceTypesReturnElement> returnElement = new ArrayList<ServiceTypesReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1123,7 +1131,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ServicesReturnElement> buildServicesReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ServicesReturnElement> buildServicesReturnElement(JSONArray jsonArray) {
         ArrayList<ServicesReturnElement> returnElement = new ArrayList<ServicesReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1177,7 +1185,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ServiceTranslationsReturnElement> buildServiceTranslationsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ServiceTranslationsReturnElement> buildServiceTranslationsReturnElement(JSONArray jsonArray) {
         ArrayList<ServiceTranslationsReturnElement> returnElement = new ArrayList<ServiceTranslationsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1186,6 +1194,7 @@ public class RestUtilities {
             if (jsonArray.get(i) instanceof JSONObject){
             jsonObject = (JSONObject)jsonArray.get(i);
             entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
+            entity.setLocaleNo(getLongValue(jsonObject,"locale_no"));
             entity.setServiceNo(getLongValue(jsonObject,"service_no"));
             entity.setServiceName(getStringValue(jsonObject,"service_name"));
             } else {
@@ -1196,6 +1205,17 @@ public class RestUtilities {
                 } else {
                     entity.setLocaleName(jsonArray.get(i).toString());
                 }
+            try {
+                if (jsonArray.get(i) instanceof JSONArray){
+                    if(((JSONArray)jsonArray.get(i)).size() > 0){
+                        entity.setLocaleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                    }
+                } else {
+                    entity.setLocaleNo(Long.parseLong(jsonArray.get(i).toString()));
+                }
+            } catch (NumberFormatException e) {
+                entity.setLocaleNo(null);
+            }
             try {
                 if (jsonArray.get(i) instanceof JSONArray){
                     if(((JSONArray)jsonArray.get(i)).size() > 0){
@@ -1219,7 +1239,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ServiceTranslationInfoReturnElement> buildServiceTranslationInfoReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ServiceTranslationInfoReturnElement> buildServiceTranslationInfoReturnElement(JSONArray jsonArray) {
         ArrayList<ServiceTranslationInfoReturnElement> returnElement = new ArrayList<ServiceTranslationInfoReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1228,6 +1248,7 @@ public class RestUtilities {
             if (jsonArray.get(i) instanceof JSONObject){
             jsonObject = (JSONObject)jsonArray.get(i);
             entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
+            entity.setLocaleNo(getLongValue(jsonObject,"locale_no"));
             entity.setServiceNo(getLongValue(jsonObject,"service_no"));
             entity.setServiceName(getStringValue(jsonObject,"service_name"));
             } else {
@@ -1238,6 +1259,17 @@ public class RestUtilities {
                 } else {
                     entity.setLocaleName(jsonArray.get(i).toString());
                 }
+            try {
+                if (jsonArray.get(i) instanceof JSONArray){
+                    if(((JSONArray)jsonArray.get(i)).size() > 0){
+                        entity.setLocaleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                    }
+                } else {
+                    entity.setLocaleNo(Long.parseLong(jsonArray.get(i).toString()));
+                }
+            } catch (NumberFormatException e) {
+                entity.setLocaleNo(null);
+            }
             try {
                 if (jsonArray.get(i) instanceof JSONArray){
                     if(((JSONArray)jsonArray.get(i)).size() > 0){
@@ -1261,7 +1293,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<RateSchedulesReturnElement> buildRateSchedulesReturnElement(JSONArray jsonArray) {
+        public static ArrayList<RateSchedulesReturnElement> buildRateSchedulesReturnElement(JSONArray jsonArray) {
         ArrayList<RateSchedulesReturnElement> returnElement = new ArrayList<RateSchedulesReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1299,7 +1331,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<RateInfoReturnElement> buildRateInfoReturnElement(JSONArray jsonArray) {
+        public static ArrayList<RateInfoReturnElement> buildRateInfoReturnElement(JSONArray jsonArray) {
         ArrayList<RateInfoReturnElement> returnElement = new ArrayList<RateInfoReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1385,7 +1417,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ParentPlansReturnElement> buildParentPlansReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ParentPlansReturnElement> buildParentPlansReturnElement(JSONArray jsonArray) {
         ArrayList<ParentPlansReturnElement> returnElement = new ArrayList<ParentPlansReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1411,7 +1443,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ParentPlanIdsReturnElement> buildParentPlanIdsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ParentPlanIdsReturnElement> buildParentPlanIdsReturnElement(JSONArray jsonArray) {
         ArrayList<ParentPlanIdsReturnElement> returnElement = new ArrayList<ParentPlanIdsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1433,7 +1465,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ExclusionPlansReturnElement> buildExclusionPlansReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ExclusionPlansReturnElement> buildExclusionPlansReturnElement(JSONArray jsonArray) {
         ArrayList<ExclusionPlansReturnElement> returnElement = new ArrayList<ExclusionPlansReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1459,7 +1491,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ServiceTranslationDetailsReturnElement> buildServiceTranslationDetailsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ServiceTranslationDetailsReturnElement> buildServiceTranslationDetailsReturnElement(JSONArray jsonArray) {
         ArrayList<ServiceTranslationDetailsReturnElement> returnElement = new ArrayList<ServiceTranslationDetailsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1468,6 +1500,7 @@ public class RestUtilities {
             if (jsonArray.get(i) instanceof JSONObject){
             jsonObject = (JSONObject)jsonArray.get(i);
             entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
+            entity.setLocaleNo(getLongValue(jsonObject,"locale_no"));
             entity.setServiceNo(getStringValue(jsonObject,"service_no"));
             entity.setServiceName(getStringValue(jsonObject,"service_name"));
                         ArrayList<RateSchedulesTReturnElement> arrayListRateSchedulesTReturnElement = buildRateSchedulesTReturnElement((JSONArray)jsonObject.get("rate_schedules_t"));
@@ -1482,6 +1515,17 @@ public class RestUtilities {
                 } else {
                     entity.setLocaleName(jsonArray.get(i).toString());
                 }
+            try {
+                if (jsonArray.get(i) instanceof JSONArray){
+                    if(((JSONArray)jsonArray.get(i)).size() > 0){
+                        entity.setLocaleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                    }
+                } else {
+                    entity.setLocaleNo(Long.parseLong(jsonArray.get(i).toString()));
+                }
+            } catch (NumberFormatException e) {
+                entity.setLocaleNo(null);
+            }
             if (jsonArray.get(i) instanceof JSONArray){
                     if(((JSONArray)jsonArray.get(i)).size() > 0){
                         entity.setServiceNo(((JSONArray)jsonArray.get(i)).get(0).toString());
@@ -1501,7 +1545,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<RateSchedulesTReturnElement> buildRateSchedulesTReturnElement(JSONArray jsonArray) {
+        public static ArrayList<RateSchedulesTReturnElement> buildRateSchedulesTReturnElement(JSONArray jsonArray) {
         ArrayList<RateSchedulesTReturnElement> returnElement = new ArrayList<RateSchedulesTReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1519,7 +1563,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<SuppFieldsReturnElement> buildSuppFieldsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<SuppFieldsReturnElement> buildSuppFieldsReturnElement(JSONArray jsonArray) {
         ArrayList<SuppFieldsReturnElement> returnElement = new ArrayList<SuppFieldsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1561,7 +1605,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<SelOptionsReturnElement> buildSelOptionsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<SelOptionsReturnElement> buildSelOptionsReturnElement(JSONArray jsonArray) {
         ArrayList<SelOptionsReturnElement> returnElement = new ArrayList<SelOptionsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1603,7 +1647,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<CouponsReturnElement> buildCouponsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<CouponsReturnElement> buildCouponsReturnElement(JSONArray jsonArray) {
         ArrayList<CouponsReturnElement> returnElement = new ArrayList<CouponsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1717,7 +1761,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<CouponTranslationsReturnElement> buildCouponTranslationsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<CouponTranslationsReturnElement> buildCouponTranslationsReturnElement(JSONArray jsonArray) {
         ArrayList<CouponTranslationsReturnElement> returnElement = new ArrayList<CouponTranslationsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1726,6 +1770,7 @@ public class RestUtilities {
             if (jsonArray.get(i) instanceof JSONObject){
             jsonObject = (JSONObject)jsonArray.get(i);
             entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
+            entity.setLocaleNo(getLongValue(jsonObject,"locale_no"));
             entity.setCouponDesc(getStringValue(jsonObject,"coupon_desc"));
             } else {
             if (jsonArray.get(i) instanceof JSONArray){
@@ -1735,6 +1780,17 @@ public class RestUtilities {
                 } else {
                     entity.setLocaleName(jsonArray.get(i).toString());
                 }
+            try {
+                if (jsonArray.get(i) instanceof JSONArray){
+                    if(((JSONArray)jsonArray.get(i)).size() > 0){
+                        entity.setLocaleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                    }
+                } else {
+                    entity.setLocaleNo(Long.parseLong(jsonArray.get(i).toString()));
+                }
+            } catch (NumberFormatException e) {
+                entity.setLocaleNo(null);
+            }
             if (jsonArray.get(i) instanceof JSONArray){
                     if(((JSONArray)jsonArray.get(i)).size() > 0){
                         entity.setCouponDesc(((JSONArray)jsonArray.get(i)).get(0).toString());
@@ -1747,7 +1803,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<EligibleServiceTypesReturnElement> buildEligibleServiceTypesReturnElement(JSONArray jsonArray) {
+        public static ArrayList<EligibleServiceTypesReturnElement> buildEligibleServiceTypesReturnElement(JSONArray jsonArray) {
         ArrayList<EligibleServiceTypesReturnElement> returnElement = new ArrayList<EligibleServiceTypesReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1769,7 +1825,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<CreditTemplateReturnElement> buildCreditTemplateReturnElement(JSONArray jsonArray) {
+        public static ArrayList<CreditTemplateReturnElement> buildCreditTemplateReturnElement(JSONArray jsonArray) {
         ArrayList<CreditTemplateReturnElement> returnElement = new ArrayList<CreditTemplateReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -1971,7 +2027,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<DiscountRuleReturnElement> buildDiscountRuleReturnElement(JSONArray jsonArray) {
+        public static ArrayList<DiscountRuleReturnElement> buildDiscountRuleReturnElement(JSONArray jsonArray) {
         ArrayList<DiscountRuleReturnElement> returnElement = new ArrayList<DiscountRuleReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2189,7 +2245,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<PlanNoReturnElement> buildPlanNoReturnElement(JSONArray jsonArray) {
+        public static ArrayList<PlanNoReturnElement> buildPlanNoReturnElement(JSONArray jsonArray) {
         ArrayList<PlanNoReturnElement> returnElement = new ArrayList<PlanNoReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2215,7 +2271,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ClientPlanIdReturnElement> buildClientPlanIdReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ClientPlanIdReturnElement> buildClientPlanIdReturnElement(JSONArray jsonArray) {
         ArrayList<ClientPlanIdReturnElement> returnElement = new ArrayList<ClientPlanIdReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2245,7 +2301,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ServiceNoReturnElement> buildServiceNoReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ServiceNoReturnElement> buildServiceNoReturnElement(JSONArray jsonArray) {
         ArrayList<ServiceNoReturnElement> returnElement = new ArrayList<ServiceNoReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2271,7 +2327,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ClientServiceIdReturnElement> buildClientServiceIdReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ClientServiceIdReturnElement> buildClientServiceIdReturnElement(JSONArray jsonArray) {
         ArrayList<ClientServiceIdReturnElement> returnElement = new ArrayList<ClientServiceIdReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2301,7 +2357,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ItemNoReturnElement> buildItemNoReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ItemNoReturnElement> buildItemNoReturnElement(JSONArray jsonArray) {
         ArrayList<ItemNoReturnElement> returnElement = new ArrayList<ItemNoReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2327,7 +2383,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ClientItemIdReturnElement> buildClientItemIdReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ClientItemIdReturnElement> buildClientItemIdReturnElement(JSONArray jsonArray) {
         ArrayList<ClientItemIdReturnElement> returnElement = new ArrayList<ClientItemIdReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2357,7 +2413,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<RuleApplicationReturnElement> buildRuleApplicationReturnElement(JSONArray jsonArray) {
+        public static ArrayList<RuleApplicationReturnElement> buildRuleApplicationReturnElement(JSONArray jsonArray) {
         ArrayList<RuleApplicationReturnElement> returnElement = new ArrayList<RuleApplicationReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2399,7 +2455,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<PlanServiceReturnElement> buildPlanServiceReturnElement(JSONArray jsonArray) {
+        public static ArrayList<PlanServiceReturnElement> buildPlanServiceReturnElement(JSONArray jsonArray) {
         ArrayList<PlanServiceReturnElement> returnElement = new ArrayList<PlanServiceReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2445,7 +2501,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<DiscountBundleReturnElement> buildDiscountBundleReturnElement(JSONArray jsonArray) {
+        public static ArrayList<DiscountBundleReturnElement> buildDiscountBundleReturnElement(JSONArray jsonArray) {
         ArrayList<DiscountBundleReturnElement> returnElement = new ArrayList<DiscountBundleReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2511,7 +2567,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<RulesReturnElement> buildRulesReturnElement(JSONArray jsonArray) {
+        public static ArrayList<RulesReturnElement> buildRulesReturnElement(JSONArray jsonArray) {
         ArrayList<RulesReturnElement> returnElement = new ArrayList<RulesReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2537,7 +2593,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<RuleIdsReturnElement> buildRuleIdsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<RuleIdsReturnElement> buildRuleIdsReturnElement(JSONArray jsonArray) {
         ArrayList<RuleIdsReturnElement> returnElement = new ArrayList<RuleIdsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2559,7 +2615,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<CouponTranslationDetailsReturnElement> buildCouponTranslationDetailsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<CouponTranslationDetailsReturnElement> buildCouponTranslationDetailsReturnElement(JSONArray jsonArray) {
         ArrayList<CouponTranslationDetailsReturnElement> returnElement = new ArrayList<CouponTranslationDetailsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2568,6 +2624,7 @@ public class RestUtilities {
             if (jsonArray.get(i) instanceof JSONObject){
             jsonObject = (JSONObject)jsonArray.get(i);
             entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
+            entity.setLocaleNo(getLongValue(jsonObject,"locale_no"));
             entity.setCouponDesc(getStringValue(jsonObject,"coupon_desc"));
             entity.setCouponMsg(getStringValue(jsonObject,"coupon_msg"));
                         ArrayList<DiscountRuleTReturnElement> arrayListDiscountRuleTReturnElement = buildDiscountRuleTReturnElement((JSONArray)jsonObject.get("discount_rule_t"));
@@ -2582,6 +2639,17 @@ public class RestUtilities {
                 } else {
                     entity.setLocaleName(jsonArray.get(i).toString());
                 }
+            try {
+                if (jsonArray.get(i) instanceof JSONArray){
+                    if(((JSONArray)jsonArray.get(i)).size() > 0){
+                        entity.setLocaleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                    }
+                } else {
+                    entity.setLocaleNo(Long.parseLong(jsonArray.get(i).toString()));
+                }
+            } catch (NumberFormatException e) {
+                entity.setLocaleNo(null);
+            }
             if (jsonArray.get(i) instanceof JSONArray){
                     if(((JSONArray)jsonArray.get(i)).size() > 0){
                         entity.setCouponDesc(((JSONArray)jsonArray.get(i)).get(0).toString());
@@ -2601,7 +2669,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<DiscountRuleTReturnElement> buildDiscountRuleTReturnElement(JSONArray jsonArray) {
+        public static ArrayList<DiscountRuleTReturnElement> buildDiscountRuleTReturnElement(JSONArray jsonArray) {
         ArrayList<DiscountRuleTReturnElement> returnElement = new ArrayList<DiscountRuleTReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2651,7 +2719,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<CreditTemplatesReturnElement> buildCreditTemplatesReturnElement(JSONArray jsonArray) {
+        public static ArrayList<CreditTemplatesReturnElement> buildCreditTemplatesReturnElement(JSONArray jsonArray) {
         ArrayList<CreditTemplatesReturnElement> returnElement = new ArrayList<CreditTemplatesReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2693,7 +2761,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<DiscountBundlesReturnElement> buildDiscountBundlesReturnElement(JSONArray jsonArray) {
+        public static ArrayList<DiscountBundlesReturnElement> buildDiscountBundlesReturnElement(JSONArray jsonArray) {
         ArrayList<DiscountBundlesReturnElement> returnElement = new ArrayList<DiscountBundlesReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2759,7 +2827,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<DiscountRulesReturnElement> buildDiscountRulesReturnElement(JSONArray jsonArray) {
+        public static ArrayList<DiscountRulesReturnElement> buildDiscountRulesReturnElement(JSONArray jsonArray) {
         ArrayList<DiscountRulesReturnElement> returnElement = new ArrayList<DiscountRulesReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2985,7 +3053,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<DiscountRuleTranslationsReturnElement> buildDiscountRuleTranslationsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<DiscountRuleTranslationsReturnElement> buildDiscountRuleTranslationsReturnElement(JSONArray jsonArray) {
         ArrayList<DiscountRuleTranslationsReturnElement> returnElement = new ArrayList<DiscountRuleTranslationsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -2994,6 +3062,7 @@ public class RestUtilities {
             if (jsonArray.get(i) instanceof JSONObject){
             jsonObject = (JSONObject)jsonArray.get(i);
             entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
+            entity.setLocaleNo(getLongValue(jsonObject,"locale_no"));
             entity.setRuleNo(getLongValue(jsonObject,"rule_no"));
             entity.setDescription(getStringValue(jsonObject,"description"));
             entity.setExtDescription(getStringValue(jsonObject,"ext_description"));
@@ -3006,6 +3075,17 @@ public class RestUtilities {
                 } else {
                     entity.setLocaleName(jsonArray.get(i).toString());
                 }
+            try {
+                if (jsonArray.get(i) instanceof JSONArray){
+                    if(((JSONArray)jsonArray.get(i)).size() > 0){
+                        entity.setLocaleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                    }
+                } else {
+                    entity.setLocaleNo(Long.parseLong(jsonArray.get(i).toString()));
+                }
+            } catch (NumberFormatException e) {
+                entity.setLocaleNo(null);
+            }
             try {
                 if (jsonArray.get(i) instanceof JSONArray){
                     if(((JSONArray)jsonArray.get(i)).size() > 0){
@@ -3043,7 +3123,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<PlansReturnElement> buildPlansReturnElement(JSONArray jsonArray) {
+        public static ArrayList<PlansReturnElement> buildPlansReturnElement(JSONArray jsonArray) {
         ArrayList<PlansReturnElement> returnElement = new ArrayList<PlansReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3060,14 +3140,6 @@ public class RestUtilities {
             entity.setDescription(getStringValue(jsonObject,"description"));
             entity.setIsDeletable(getStringValue(jsonObject,"is_deletable"));
             entity.setPlanDesc(getStringValue(jsonObject,"plan_desc"));
-                        ArrayList<RateSchedReturnElement> arrayListRateSchedReturnElement = buildRateSchedReturnElement((JSONArray)jsonObject.get("rate_sched"));
-            for (RateSchedReturnElement element : arrayListRateSchedReturnElement){
-                entity.getRateSched().add(element);
-            }
-                        ArrayList<PlanTranslationInfoReturnElement> arrayListPlanTranslationInfoReturnElement = buildPlanTranslationInfoReturnElement((JSONArray)jsonObject.get("plan_translation_info"));
-            for (PlanTranslationInfoReturnElement element : arrayListPlanTranslationInfoReturnElement){
-                entity.getPlanTranslationInfo().add(element);
-            }
             } else {
             try {
                 if (jsonArray.get(i) instanceof JSONArray){
@@ -3153,7 +3225,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<PlanGroupsReturnElement> buildPlanGroupsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<PlanGroupsReturnElement> buildPlanGroupsReturnElement(JSONArray jsonArray) {
         ArrayList<PlanGroupsReturnElement> returnElement = new ArrayList<PlanGroupsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3235,7 +3307,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<PlanGroupIdsReturnElement> buildPlanGroupIdsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<PlanGroupIdsReturnElement> buildPlanGroupIdsReturnElement(JSONArray jsonArray) {
         ArrayList<PlanGroupIdsReturnElement> returnElement = new ArrayList<PlanGroupIdsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3257,7 +3329,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<SurchargesReturnElement> buildSurchargesReturnElement(JSONArray jsonArray) {
+        public static ArrayList<SurchargesReturnElement> buildSurchargesReturnElement(JSONArray jsonArray) {
         ArrayList<SurchargesReturnElement> returnElement = new ArrayList<SurchargesReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3335,7 +3407,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<SurchargeNoReturnElement> buildSurchargeNoReturnElement(JSONArray jsonArray) {
+        public static ArrayList<SurchargeNoReturnElement> buildSurchargeNoReturnElement(JSONArray jsonArray) {
         ArrayList<SurchargeNoReturnElement> returnElement = new ArrayList<SurchargeNoReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3361,7 +3433,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ClientSurchargeIdReturnElement> buildClientSurchargeIdReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ClientSurchargeIdReturnElement> buildClientSurchargeIdReturnElement(JSONArray jsonArray) {
         ArrayList<ClientSurchargeIdReturnElement> returnElement = new ArrayList<ClientSurchargeIdReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3383,7 +3455,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<PromotionsReturnElement> buildPromotionsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<PromotionsReturnElement> buildPromotionsReturnElement(JSONArray jsonArray) {
         ArrayList<PromotionsReturnElement> returnElement = new ArrayList<PromotionsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3425,7 +3497,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<PromotionTranslationsReturnElement> buildPromotionTranslationsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<PromotionTranslationsReturnElement> buildPromotionTranslationsReturnElement(JSONArray jsonArray) {
         ArrayList<PromotionTranslationsReturnElement> returnElement = new ArrayList<PromotionTranslationsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3434,6 +3506,7 @@ public class RestUtilities {
             if (jsonArray.get(i) instanceof JSONObject){
             jsonObject = (JSONObject)jsonArray.get(i);
             entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
+            entity.setLocaleNo(getLongValue(jsonObject,"locale_no"));
             entity.setPromoCd(getStringValue(jsonObject,"promo_cd"));
             entity.setPromoDesc(getStringValue(jsonObject,"promo_desc"));
             } else {
@@ -3444,6 +3517,17 @@ public class RestUtilities {
                 } else {
                     entity.setLocaleName(jsonArray.get(i).toString());
                 }
+            try {
+                if (jsonArray.get(i) instanceof JSONArray){
+                    if(((JSONArray)jsonArray.get(i)).size() > 0){
+                        entity.setLocaleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                    }
+                } else {
+                    entity.setLocaleNo(Long.parseLong(jsonArray.get(i).toString()));
+                }
+            } catch (NumberFormatException e) {
+                entity.setLocaleNo(null);
+            }
             if (jsonArray.get(i) instanceof JSONArray){
                     if(((JSONArray)jsonArray.get(i)).size() > 0){
                         entity.setPromoCd(((JSONArray)jsonArray.get(i)).get(0).toString());
@@ -3463,7 +3547,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<UsageTypesReturnElement> buildUsageTypesReturnElement(JSONArray jsonArray) {
+        public static ArrayList<UsageTypesReturnElement> buildUsageTypesReturnElement(JSONArray jsonArray) {
         ArrayList<UsageTypesReturnElement> returnElement = new ArrayList<UsageTypesReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3529,7 +3613,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<UsageTypeTranslationsReturnElement> buildUsageTypeTranslationsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<UsageTypeTranslationsReturnElement> buildUsageTypeTranslationsReturnElement(JSONArray jsonArray) {
         ArrayList<UsageTypeTranslationsReturnElement> returnElement = new ArrayList<UsageTypeTranslationsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3538,6 +3622,7 @@ public class RestUtilities {
             if (jsonArray.get(i) instanceof JSONObject){
             jsonObject = (JSONObject)jsonArray.get(i);
             entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
+            entity.setLocaleNo(getLongValue(jsonObject,"locale_no"));
             entity.setUsageTypeNo(getLongValue(jsonObject,"usage_type_no"));
             entity.setUsageTypeName(getStringValue(jsonObject,"usage_type_name"));
             entity.setUsageTypeDesc(getStringValue(jsonObject,"usage_type_desc"));
@@ -3549,6 +3634,17 @@ public class RestUtilities {
                 } else {
                     entity.setLocaleName(jsonArray.get(i).toString());
                 }
+            try {
+                if (jsonArray.get(i) instanceof JSONArray){
+                    if(((JSONArray)jsonArray.get(i)).size() > 0){
+                        entity.setLocaleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                    }
+                } else {
+                    entity.setLocaleNo(Long.parseLong(jsonArray.get(i).toString()));
+                }
+            } catch (NumberFormatException e) {
+                entity.setLocaleNo(null);
+            }
             try {
                 if (jsonArray.get(i) instanceof JSONArray){
                     if(((JSONArray)jsonArray.get(i)).size() > 0){
@@ -3579,7 +3675,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<UsageTypeTranslationDetailsReturnElement> buildUsageTypeTranslationDetailsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<UsageTypeTranslationDetailsReturnElement> buildUsageTypeTranslationDetailsReturnElement(JSONArray jsonArray) {
         ArrayList<UsageTypeTranslationDetailsReturnElement> returnElement = new ArrayList<UsageTypeTranslationDetailsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3588,6 +3684,7 @@ public class RestUtilities {
             if (jsonArray.get(i) instanceof JSONObject){
             jsonObject = (JSONObject)jsonArray.get(i);
             entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
+            entity.setLocaleNo(getLongValue(jsonObject,"locale_no"));
             entity.setUsageTypeNo(getLongValue(jsonObject,"usage_type_no"));
             entity.setUsageTypeName(getStringValue(jsonObject,"usage_type_name"));
             entity.setUsageTypeDesc(getStringValue(jsonObject,"usage_type_desc"));
@@ -3600,6 +3697,17 @@ public class RestUtilities {
                 } else {
                     entity.setLocaleName(jsonArray.get(i).toString());
                 }
+            try {
+                if (jsonArray.get(i) instanceof JSONArray){
+                    if(((JSONArray)jsonArray.get(i)).size() > 0){
+                        entity.setLocaleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                    }
+                } else {
+                    entity.setLocaleNo(Long.parseLong(jsonArray.get(i).toString()));
+                }
+            } catch (NumberFormatException e) {
+                entity.setLocaleNo(null);
+            }
             try {
                 if (jsonArray.get(i) instanceof JSONArray){
                     if(((JSONArray)jsonArray.get(i)).size() > 0){
@@ -3637,7 +3745,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<UsageUnitTypesReturnElement> buildUsageUnitTypesReturnElement(JSONArray jsonArray) {
+        public static ArrayList<UsageUnitTypesReturnElement> buildUsageUnitTypesReturnElement(JSONArray jsonArray) {
         ArrayList<UsageUnitTypesReturnElement> returnElement = new ArrayList<UsageUnitTypesReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3675,7 +3783,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<UsageUnitTypeTranslationsReturnElement> buildUsageUnitTypeTranslationsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<UsageUnitTypeTranslationsReturnElement> buildUsageUnitTypeTranslationsReturnElement(JSONArray jsonArray) {
         ArrayList<UsageUnitTypeTranslationsReturnElement> returnElement = new ArrayList<UsageUnitTypeTranslationsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3684,6 +3792,7 @@ public class RestUtilities {
             if (jsonArray.get(i) instanceof JSONObject){
             jsonObject = (JSONObject)jsonArray.get(i);
             entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
+            entity.setLocaleNo(getLongValue(jsonObject,"locale_no"));
             entity.setUsageUnitTypeNo(getLongValue(jsonObject,"usage_unit_type_no"));
             entity.setUsageUnitTypeDesc(getStringValue(jsonObject,"usage_unit_type_desc"));
             } else {
@@ -3694,6 +3803,17 @@ public class RestUtilities {
                 } else {
                     entity.setLocaleName(jsonArray.get(i).toString());
                 }
+            try {
+                if (jsonArray.get(i) instanceof JSONArray){
+                    if(((JSONArray)jsonArray.get(i)).size() > 0){
+                        entity.setLocaleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                    }
+                } else {
+                    entity.setLocaleNo(Long.parseLong(jsonArray.get(i).toString()));
+                }
+            } catch (NumberFormatException e) {
+                entity.setLocaleNo(null);
+            }
             try {
                 if (jsonArray.get(i) instanceof JSONArray){
                     if(((JSONArray)jsonArray.get(i)).size() > 0){
@@ -3717,7 +3837,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<AllowedValuesReturnElement> buildAllowedValuesReturnElement(JSONArray jsonArray) {
+        public static ArrayList<AllowedValuesReturnElement> buildAllowedValuesReturnElement(JSONArray jsonArray) {
         ArrayList<AllowedValuesReturnElement> returnElement = new ArrayList<AllowedValuesReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3739,7 +3859,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<AssociatedObjectsReturnElement> buildAssociatedObjectsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<AssociatedObjectsReturnElement> buildAssociatedObjectsReturnElement(JSONArray jsonArray) {
         ArrayList<AssociatedObjectsReturnElement> returnElement = new ArrayList<AssociatedObjectsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3761,7 +3881,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<FieldCategoriesReturnElement> buildFieldCategoriesReturnElement(JSONArray jsonArray) {
+        public static ArrayList<FieldCategoriesReturnElement> buildFieldCategoriesReturnElement(JSONArray jsonArray) {
         ArrayList<FieldCategoriesReturnElement> returnElement = new ArrayList<FieldCategoriesReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3795,7 +3915,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<SuppObjFieldTranslationsReturnElement> buildSuppObjFieldTranslationsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<SuppObjFieldTranslationsReturnElement> buildSuppObjFieldTranslationsReturnElement(JSONArray jsonArray) {
         ArrayList<SuppObjFieldTranslationsReturnElement> returnElement = new ArrayList<SuppObjFieldTranslationsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3804,6 +3924,7 @@ public class RestUtilities {
             if (jsonArray.get(i) instanceof JSONObject){
             jsonObject = (JSONObject)jsonArray.get(i);
             entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
+            entity.setLocaleNo(getLongValue(jsonObject,"locale_no"));
             entity.setFieldNo(getLongValue(jsonObject,"field_no"));
             entity.setFieldName(getStringValue(jsonObject,"field_name"));
             entity.setDescription(getStringValue(jsonObject,"description"));
@@ -3819,6 +3940,17 @@ public class RestUtilities {
                 } else {
                     entity.setLocaleName(jsonArray.get(i).toString());
                 }
+            try {
+                if (jsonArray.get(i) instanceof JSONArray){
+                    if(((JSONArray)jsonArray.get(i)).size() > 0){
+                        entity.setLocaleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                    }
+                } else {
+                    entity.setLocaleNo(Long.parseLong(jsonArray.get(i).toString()));
+                }
+            } catch (NumberFormatException e) {
+                entity.setLocaleNo(null);
+            }
             try {
                 if (jsonArray.get(i) instanceof JSONArray){
                     if(((JSONArray)jsonArray.get(i)).size() > 0){
@@ -3849,7 +3981,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<AllowedValuesTReturnElement> buildAllowedValuesTReturnElement(JSONArray jsonArray) {
+        public static ArrayList<AllowedValuesTReturnElement> buildAllowedValuesTReturnElement(JSONArray jsonArray) {
         ArrayList<AllowedValuesTReturnElement> returnElement = new ArrayList<AllowedValuesTReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3871,7 +4003,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<FieldDetailsReturnElement> buildFieldDetailsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<FieldDetailsReturnElement> buildFieldDetailsReturnElement(JSONArray jsonArray) {
         ArrayList<FieldDetailsReturnElement> returnElement = new ArrayList<FieldDetailsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -3997,7 +4129,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ObjectValuesReturnElement> buildObjectValuesReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ObjectValuesReturnElement> buildObjectValuesReturnElement(JSONArray jsonArray) {
         ArrayList<ObjectValuesReturnElement> returnElement = new ArrayList<ObjectValuesReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -4051,7 +4183,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<PlanGroupTranslationInfoReturnElement> buildPlanGroupTranslationInfoReturnElement(JSONArray jsonArray) {
+        public static ArrayList<PlanGroupTranslationInfoReturnElement> buildPlanGroupTranslationInfoReturnElement(JSONArray jsonArray) {
         ArrayList<PlanGroupTranslationInfoReturnElement> returnElement = new ArrayList<PlanGroupTranslationInfoReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -4060,6 +4192,7 @@ public class RestUtilities {
             if (jsonArray.get(i) instanceof JSONObject){
             jsonObject = (JSONObject)jsonArray.get(i);
             entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
+            entity.setLocaleNo(getLongValue(jsonObject,"locale_no"));
                         ArrayList<PlansTReturnElement> arrayListPlansTReturnElement = buildPlansTReturnElement((JSONArray)jsonObject.get("plans_t"));
             for (PlansTReturnElement element : arrayListPlansTReturnElement){
                 entity.getPlansT().add(element);
@@ -4072,12 +4205,23 @@ public class RestUtilities {
                 } else {
                     entity.setLocaleName(jsonArray.get(i).toString());
                 }
+            try {
+                if (jsonArray.get(i) instanceof JSONArray){
+                    if(((JSONArray)jsonArray.get(i)).size() > 0){
+                        entity.setLocaleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                    }
+                } else {
+                    entity.setLocaleNo(Long.parseLong(jsonArray.get(i).toString()));
+                }
+            } catch (NumberFormatException e) {
+                entity.setLocaleNo(null);
+            }
             }
             returnElement.add(entity);
         }
         return returnElement;
     }
-    public static ArrayList<PlansTReturnElement> buildPlansTReturnElement(JSONArray jsonArray) {
+        public static ArrayList<PlansTReturnElement> buildPlansTReturnElement(JSONArray jsonArray) {
         ArrayList<PlansTReturnElement> returnElement = new ArrayList<PlansTReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -4119,7 +4263,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<CoaListReturnElement> buildCoaListReturnElement(JSONArray jsonArray) {
+        public static ArrayList<CoaListReturnElement> buildCoaListReturnElement(JSONArray jsonArray) {
         ArrayList<CoaListReturnElement> returnElement = new ArrayList<CoaListReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -4161,7 +4305,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<CoaReturnElement> buildCoaReturnElement(JSONArray jsonArray) {
+        public static ArrayList<CoaReturnElement> buildCoaReturnElement(JSONArray jsonArray) {
         ArrayList<CoaReturnElement> returnElement = new ArrayList<CoaReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -4203,7 +4347,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<SurchargeTranslationsReturnElement> buildSurchargeTranslationsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<SurchargeTranslationsReturnElement> buildSurchargeTranslationsReturnElement(JSONArray jsonArray) {
         ArrayList<SurchargeTranslationsReturnElement> returnElement = new ArrayList<SurchargeTranslationsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -4212,6 +4356,7 @@ public class RestUtilities {
             if (jsonArray.get(i) instanceof JSONObject){
             jsonObject = (JSONObject)jsonArray.get(i);
             entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
+            entity.setLocaleNo(getLongValue(jsonObject,"locale_no"));
             entity.setSurchargeNo(getLongValue(jsonObject,"surcharge_no"));
             entity.setSurchargeName(getStringValue(jsonObject,"surcharge_name"));
             } else {
@@ -4222,6 +4367,17 @@ public class RestUtilities {
                 } else {
                     entity.setLocaleName(jsonArray.get(i).toString());
                 }
+            try {
+                if (jsonArray.get(i) instanceof JSONArray){
+                    if(((JSONArray)jsonArray.get(i)).size() > 0){
+                        entity.setLocaleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                    }
+                } else {
+                    entity.setLocaleNo(Long.parseLong(jsonArray.get(i).toString()));
+                }
+            } catch (NumberFormatException e) {
+                entity.setLocaleNo(null);
+            }
             try {
                 if (jsonArray.get(i) instanceof JSONArray){
                     if(((JSONArray)jsonArray.get(i)).size() > 0){
@@ -4245,7 +4401,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<SurchargeTierReturnElement> buildSurchargeTierReturnElement(JSONArray jsonArray) {
+        public static ArrayList<SurchargeTierReturnElement> buildSurchargeTierReturnElement(JSONArray jsonArray) {
         ArrayList<SurchargeTierReturnElement> returnElement = new ArrayList<SurchargeTierReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -4303,7 +4459,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<PayMethodReturnElement> buildPayMethodReturnElement(JSONArray jsonArray) {
+        public static ArrayList<PayMethodReturnElement> buildPayMethodReturnElement(JSONArray jsonArray) {
         ArrayList<PayMethodReturnElement> returnElement = new ArrayList<PayMethodReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -4325,7 +4481,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<SurchargeTranslationDetailsReturnElement> buildSurchargeTranslationDetailsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<SurchargeTranslationDetailsReturnElement> buildSurchargeTranslationDetailsReturnElement(JSONArray jsonArray) {
         ArrayList<SurchargeTranslationDetailsReturnElement> returnElement = new ArrayList<SurchargeTranslationDetailsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -4334,6 +4490,7 @@ public class RestUtilities {
             if (jsonArray.get(i) instanceof JSONObject){
             jsonObject = (JSONObject)jsonArray.get(i);
             entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
+            entity.setLocaleNo(getLongValue(jsonObject,"locale_no"));
             entity.setSurchargeNo(getLongValue(jsonObject,"surcharge_no"));
             entity.setSurchargeName(getStringValue(jsonObject,"surcharge_name"));
             entity.setDescription(getStringValue(jsonObject,"description"));
@@ -4350,6 +4507,17 @@ public class RestUtilities {
                 } else {
                     entity.setLocaleName(jsonArray.get(i).toString());
                 }
+            try {
+                if (jsonArray.get(i) instanceof JSONArray){
+                    if(((JSONArray)jsonArray.get(i)).size() > 0){
+                        entity.setLocaleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                    }
+                } else {
+                    entity.setLocaleNo(Long.parseLong(jsonArray.get(i).toString()));
+                }
+            } catch (NumberFormatException e) {
+                entity.setLocaleNo(null);
+            }
             try {
                 if (jsonArray.get(i) instanceof JSONArray){
                     if(((JSONArray)jsonArray.get(i)).size() > 0){
@@ -4387,7 +4555,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<SurchargeTierTReturnElement> buildSurchargeTierTReturnElement(JSONArray jsonArray) {
+        public static ArrayList<SurchargeTierTReturnElement> buildSurchargeTierTReturnElement(JSONArray jsonArray) {
         ArrayList<SurchargeTierTReturnElement> returnElement = new ArrayList<SurchargeTierTReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -4409,7 +4577,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ProfilesReturnElement> buildProfilesReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ProfilesReturnElement> buildProfilesReturnElement(JSONArray jsonArray) {
         ArrayList<ProfilesReturnElement> returnElement = new ArrayList<ProfilesReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -4459,7 +4627,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ProductFieldCategoryReturnElement> buildProductFieldCategoryReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ProductFieldCategoryReturnElement> buildProductFieldCategoryReturnElement(JSONArray jsonArray) {
         ArrayList<ProductFieldCategoryReturnElement> returnElement = new ArrayList<ProductFieldCategoryReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -4493,7 +4661,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<ProductFieldsReturnElement> buildProductFieldsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<ProductFieldsReturnElement> buildProductFieldsReturnElement(JSONArray jsonArray) {
         ArrayList<ProductFieldsReturnElement> returnElement = new ArrayList<ProductFieldsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -4559,7 +4727,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<CouponGroupsReturnElement> buildCouponGroupsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<CouponGroupsReturnElement> buildCouponGroupsReturnElement(JSONArray jsonArray) {
         ArrayList<CouponGroupsReturnElement> returnElement = new ArrayList<CouponGroupsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -4621,7 +4789,7 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<AllPayMethodsReturnElement> buildAllPayMethodsReturnElement(JSONArray jsonArray) {
+        public static ArrayList<AllPayMethodsReturnElement> buildAllPayMethodsReturnElement(JSONArray jsonArray) {
         ArrayList<AllPayMethodsReturnElement> returnElement = new ArrayList<AllPayMethodsReturnElement>();
         if (jsonArray == null) return returnElement;
         for (int i = 0;i < jsonArray.size();i++) {
@@ -4691,802 +4859,10 @@ public class RestUtilities {
         }
         return returnElement;
     }
-    public static ArrayList<RateSchedReturnElement> buildRateSchedReturnElement(JSONArray jsonArray) {
-        ArrayList<RateSchedReturnElement> returnElement = new ArrayList<RateSchedReturnElement>();
-        if (jsonArray == null) return returnElement;
-        for (int i = 0;i < jsonArray.size();i++) {
-            RateSchedReturnElement entity = new RateSchedReturnElement();
-            JSONObject jsonObject = null;
-            if (jsonArray.get(i) instanceof JSONObject){
-            jsonObject = (JSONObject)jsonArray.get(i);
-            entity.setScheduleNo(getLongValue(jsonObject,"schedule_no"));
-            entity.setClientRateScheduleId(getStringValue(jsonObject,"client_rate_schedule_id"));
-            entity.setScheduleName(getStringValue(jsonObject,"schedule_name"));
-            entity.setScheduleCurrency(getStringValue(jsonObject,"schedule_currency"));
-            entity.setRecurringBillingInterval(getLongValue(jsonObject,"recurring_billing_interval"));
-            entity.setUsageBillingInterval(getLongValue(jsonObject,"usage_billing_interval"));
-            entity.setDefaultInd(getLongValue(jsonObject,"default_ind"));
-            entity.setDefaultIndCurr(getLongValue(jsonObject,"default_ind_curr"));
-            } else {
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setScheduleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setScheduleNo(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setScheduleNo(null);
-            }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setClientRateScheduleId(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setClientRateScheduleId(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setScheduleName(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setScheduleName(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setScheduleCurrency(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setScheduleCurrency(jsonArray.get(i).toString());
-                }
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setRecurringBillingInterval(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setRecurringBillingInterval(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setRecurringBillingInterval(null);
-            }
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setUsageBillingInterval(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setUsageBillingInterval(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setUsageBillingInterval(null);
-            }
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setDefaultInd(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setDefaultInd(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setDefaultInd(null);
-            }
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setDefaultIndCurr(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setDefaultIndCurr(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setDefaultIndCurr(null);
-            }
-            }
-            returnElement.add(entity);
-        }
-        return returnElement;
-    }
-    public static ArrayList<PlanTranslationInfoReturnElement> buildPlanTranslationInfoReturnElement(JSONArray jsonArray) {
-        ArrayList<PlanTranslationInfoReturnElement> returnElement = new ArrayList<PlanTranslationInfoReturnElement>();
-        if (jsonArray == null) return returnElement;
-        for (int i = 0;i < jsonArray.size();i++) {
-            PlanTranslationInfoReturnElement entity = new PlanTranslationInfoReturnElement();
-            JSONObject jsonObject = null;
-            if (jsonArray.get(i) instanceof JSONObject){
-            jsonObject = (JSONObject)jsonArray.get(i);
-            entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
-            entity.setPlanName(getStringValue(jsonObject,"plan_name"));
-            entity.setDescription(getStringValue(jsonObject,"description"));
-                        ArrayList<RateSchedTReturnElement> arrayListRateSchedTReturnElement = buildRateSchedTReturnElement((JSONArray)jsonObject.get("rate_sched_t"));
-            for (RateSchedTReturnElement element : arrayListRateSchedTReturnElement){
-                entity.getRateSchedT().add(element);
-            }
-            entity.setPlanNo(getStringValue(jsonObject,"plan_no"));
-            } else {
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setLocaleName(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setLocaleName(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setPlanName(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setPlanName(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setDescription(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setDescription(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setPlanNo(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setPlanNo(jsonArray.get(i).toString());
-                }
-            }
-            returnElement.add(entity);
-        }
-        return returnElement;
-    }
-    public static ArrayList<RateSchedTReturnElement> buildRateSchedTReturnElement(JSONArray jsonArray) {
-        ArrayList<RateSchedTReturnElement> returnElement = new ArrayList<RateSchedTReturnElement>();
-        if (jsonArray == null) return returnElement;
-        for (int i = 0;i < jsonArray.size();i++) {
-            RateSchedTReturnElement entity = new RateSchedTReturnElement();
-            JSONObject jsonObject = null;
-            if (jsonArray.get(i) instanceof JSONObject){
-            jsonObject = (JSONObject)jsonArray.get(i);
-            entity.setScheduleNo(getLongValue(jsonObject,"schedule_no"));
-            entity.setScheduleName(getStringValue(jsonObject,"schedule_name"));
-            } else {
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setScheduleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setScheduleNo(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setScheduleNo(null);
-            }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setScheduleName(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setScheduleName(jsonArray.get(i).toString());
-                }
-            }
-            returnElement.add(entity);
-        }
-        return returnElement;
-    }
-    public static ArrayList<ContractRolloverRateSchedReturnElement> buildContractRolloverRateSchedReturnElement(JSONArray jsonArray) {
-        ArrayList<ContractRolloverRateSchedReturnElement> returnElement = new ArrayList<ContractRolloverRateSchedReturnElement>();
-        if (jsonArray == null) return returnElement;
-        for (int i = 0;i < jsonArray.size();i++) {
-            ContractRolloverRateSchedReturnElement entity = new ContractRolloverRateSchedReturnElement();
-            JSONObject jsonObject = null;
-            if (jsonArray.get(i) instanceof JSONObject){
-            jsonObject = (JSONObject)jsonArray.get(i);
-            entity.setCurrentRateSchedNo(getLongValue(jsonObject,"current_rate_sched_no"));
-            entity.setCurrentClientRateSchedId(getStringValue(jsonObject,"current_client_rate_sched_id"));
-            entity.setRolloverRateSchedNo(getLongValue(jsonObject,"rollover_rate_sched_no"));
-            entity.setRolloverClientRateSchedId(getStringValue(jsonObject,"rollover_client_rate_sched_id"));
-            } else {
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setCurrentRateSchedNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setCurrentRateSchedNo(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setCurrentRateSchedNo(null);
-            }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setCurrentClientRateSchedId(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setCurrentClientRateSchedId(jsonArray.get(i).toString());
-                }
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setRolloverRateSchedNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setRolloverRateSchedNo(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setRolloverRateSchedNo(null);
-            }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setRolloverClientRateSchedId(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setRolloverClientRateSchedId(jsonArray.get(i).toString());
-                }
-            }
-            returnElement.add(entity);
-        }
-        return returnElement;
-    }
-    public static ArrayList<PlanNsoItemsReturnElement> buildPlanNsoItemsReturnElement(JSONArray jsonArray) {
-        ArrayList<PlanNsoItemsReturnElement> returnElement = new ArrayList<PlanNsoItemsReturnElement>();
-        if (jsonArray == null) return returnElement;
-        for (int i = 0;i < jsonArray.size();i++) {
-            PlanNsoItemsReturnElement entity = new PlanNsoItemsReturnElement();
-            JSONObject jsonObject = null;
-            if (jsonArray.get(i) instanceof JSONObject){
-            jsonObject = (JSONObject)jsonArray.get(i);
-            entity.setItemNo(getLongValue(jsonObject,"item_no"));
-            entity.setActiveInd(getLongValue(jsonObject,"active_ind"));
-            entity.setMinQty(getStringValue(jsonObject,"min_qty"));
-            entity.setMaxQty(getStringValue(jsonObject,"max_qty"));
-            entity.setItemScope(getStringValue(jsonObject,"item_scope"));
-                        ArrayList<PlanNsoPriceOverrideReturnElement> arrayListPlanNsoPriceOverrideReturnElement = buildPlanNsoPriceOverrideReturnElement((JSONArray)jsonObject.get("plan_nso_price_override"));
-            for (PlanNsoPriceOverrideReturnElement element : arrayListPlanNsoPriceOverrideReturnElement){
-                entity.getPlanNsoPriceOverride().add(element);
-            }
-            } else {
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setItemNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setItemNo(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setItemNo(null);
-            }
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setActiveInd(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setActiveInd(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setActiveInd(null);
-            }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setMinQty(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setMinQty(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setMaxQty(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setMaxQty(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setItemScope(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setItemScope(jsonArray.get(i).toString());
-                }
-            }
-            returnElement.add(entity);
-        }
-        return returnElement;
-    }
-    public static ArrayList<PlanNsoPriceOverrideReturnElement> buildPlanNsoPriceOverrideReturnElement(JSONArray jsonArray) {
-        ArrayList<PlanNsoPriceOverrideReturnElement> returnElement = new ArrayList<PlanNsoPriceOverrideReturnElement>();
-        if (jsonArray == null) return returnElement;
-        for (int i = 0;i < jsonArray.size();i++) {
-            PlanNsoPriceOverrideReturnElement entity = new PlanNsoPriceOverrideReturnElement();
-            JSONObject jsonObject = null;
-            if (jsonArray.get(i) instanceof JSONObject){
-            jsonObject = (JSONObject)jsonArray.get(i);
-            entity.setRateScheduleNo(getLongValue(jsonObject,"rate_schedule_no"));
-            entity.setClientRateScheduleId(getStringValue(jsonObject,"client_rate_schedule_id"));
-            entity.setCurrencyCd(getStringValue(jsonObject,"currency_cd"));
-            entity.setOverridePrice(getStringValue(jsonObject,"override_price"));
-            } else {
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setRateScheduleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setRateScheduleNo(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setRateScheduleNo(null);
-            }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setClientRateScheduleId(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setClientRateScheduleId(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setCurrencyCd(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setCurrencyCd(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setOverridePrice(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setOverridePrice(jsonArray.get(i).toString());
-                }
-            }
-            returnElement.add(entity);
-        }
-        return returnElement;
-    }
-    public static ArrayList<PlanNsoGroupReturnElement> buildPlanNsoGroupReturnElement(JSONArray jsonArray) {
-        ArrayList<PlanNsoGroupReturnElement> returnElement = new ArrayList<PlanNsoGroupReturnElement>();
-        if (jsonArray == null) return returnElement;
-        for (int i = 0;i < jsonArray.size();i++) {
-            PlanNsoGroupReturnElement entity = new PlanNsoGroupReturnElement();
-            JSONObject jsonObject = null;
-            if (jsonArray.get(i) instanceof JSONObject){
-            jsonObject = (JSONObject)jsonArray.get(i);
-            entity.setItemNo(getLongValue(jsonObject,"item_no"));
-            entity.setActiveInd(getLongValue(jsonObject,"active_ind"));
-                        ArrayList<PlanNsoGroupPriceOverrideReturnElement> arrayListPlanNsoGroupPriceOverrideReturnElement = buildPlanNsoGroupPriceOverrideReturnElement((JSONArray)jsonObject.get("plan_nso_group_price_override"));
-            for (PlanNsoGroupPriceOverrideReturnElement element : arrayListPlanNsoGroupPriceOverrideReturnElement){
-                entity.getPlanNsoGroupPriceOverride().add(element);
-            }
-            } else {
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setItemNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setItemNo(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setItemNo(null);
-            }
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setActiveInd(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setActiveInd(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setActiveInd(null);
-            }
-            }
-            returnElement.add(entity);
-        }
-        return returnElement;
-    }
-    public static ArrayList<PlanNsoGroupPriceOverrideReturnElement> buildPlanNsoGroupPriceOverrideReturnElement(JSONArray jsonArray) {
-        ArrayList<PlanNsoGroupPriceOverrideReturnElement> returnElement = new ArrayList<PlanNsoGroupPriceOverrideReturnElement>();
-        if (jsonArray == null) return returnElement;
-        for (int i = 0;i < jsonArray.size();i++) {
-            PlanNsoGroupPriceOverrideReturnElement entity = new PlanNsoGroupPriceOverrideReturnElement();
-            JSONObject jsonObject = null;
-            if (jsonArray.get(i) instanceof JSONObject){
-            jsonObject = (JSONObject)jsonArray.get(i);
-            entity.setRateScheduleNo(getLongValue(jsonObject,"rate_schedule_no"));
-            entity.setClientRateScheduleId(getStringValue(jsonObject,"client_rate_schedule_id"));
-            entity.setCurrencyCd(getStringValue(jsonObject,"currency_cd"));
-            entity.setOverridePrice(getStringValue(jsonObject,"override_price"));
-            } else {
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setRateScheduleNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setRateScheduleNo(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setRateScheduleNo(null);
-            }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setClientRateScheduleId(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setClientRateScheduleId(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setCurrencyCd(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setCurrencyCd(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setOverridePrice(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setOverridePrice(jsonArray.get(i).toString());
-                }
-            }
-            returnElement.add(entity);
-        }
-        return returnElement;
-    }
-    public static ArrayList<PlanNsoInclListReturnElement> buildPlanNsoInclListReturnElement(JSONArray jsonArray) {
-        ArrayList<PlanNsoInclListReturnElement> returnElement = new ArrayList<PlanNsoInclListReturnElement>();
-        if (jsonArray == null) return returnElement;
-        for (int i = 0;i < jsonArray.size();i++) {
-            PlanNsoInclListReturnElement entity = new PlanNsoInclListReturnElement();
-            JSONObject jsonObject = null;
-            if (jsonArray.get(i) instanceof JSONObject){
-            jsonObject = (JSONObject)jsonArray.get(i);
-            entity.setItemNo(getLongValue(jsonObject,"item_no"));
-            entity.setActiveInd(getLongValue(jsonObject,"active_ind"));
-            } else {
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setItemNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setItemNo(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setItemNo(null);
-            }
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setActiveInd(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setActiveInd(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setActiveInd(null);
-            }
-            }
-            returnElement.add(entity);
-        }
-        return returnElement;
-    }
-    public static ArrayList<DunningProcessDetailsReturnElement> buildDunningProcessDetailsReturnElement(JSONArray jsonArray) {
-        ArrayList<DunningProcessDetailsReturnElement> returnElement = new ArrayList<DunningProcessDetailsReturnElement>();
-        if (jsonArray == null) return returnElement;
-        for (int i = 0;i < jsonArray.size();i++) {
-            DunningProcessDetailsReturnElement entity = new DunningProcessDetailsReturnElement();
-            JSONObject jsonObject = null;
-            if (jsonArray.get(i) instanceof JSONObject){
-            jsonObject = (JSONObject)jsonArray.get(i);
-            entity.setDunningProcessNo(getLongValue(jsonObject,"dunning_process_no"));
-            entity.setClientDunningProcessId(getStringValue(jsonObject,"client_dunning_process_id"));
-            entity.setDunningProcessName(getStringValue(jsonObject,"dunning_process_name"));
-            entity.setDunningProcessDescription(getStringValue(jsonObject,"dunning_process_description"));
-            entity.setClientDefaultInd(getLongValue(jsonObject,"client_default_ind"));
-            entity.setTotalStepCount(getLongValue(jsonObject,"total_step_count"));
-                        ArrayList<MappedMasterPlansReturnElement> arrayListMappedMasterPlansReturnElement = buildMappedMasterPlansReturnElement((JSONArray)jsonObject.get("mapped_master_plans"));
-            for (MappedMasterPlansReturnElement element : arrayListMappedMasterPlansReturnElement){
-                entity.getMappedMasterPlans().add(element);
-            }
-                        ArrayList<MappedPayMethodTypesReturnElement> arrayListMappedPayMethodTypesReturnElement = buildMappedPayMethodTypesReturnElement((JSONArray)jsonObject.get("mapped_pay_method_types"));
-            for (MappedPayMethodTypesReturnElement element : arrayListMappedPayMethodTypesReturnElement){
-                entity.getMappedPayMethodTypes().add(element);
-            }
-            } else {
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setDunningProcessNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setDunningProcessNo(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setDunningProcessNo(null);
-            }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setClientDunningProcessId(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setClientDunningProcessId(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setDunningProcessName(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setDunningProcessName(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setDunningProcessDescription(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setDunningProcessDescription(jsonArray.get(i).toString());
-                }
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setClientDefaultInd(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setClientDefaultInd(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setClientDefaultInd(null);
-            }
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setTotalStepCount(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setTotalStepCount(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setTotalStepCount(null);
-            }
-            }
-            returnElement.add(entity);
-        }
-        return returnElement;
-    }
-    public static ArrayList<MappedMasterPlansReturnElement> buildMappedMasterPlansReturnElement(JSONArray jsonArray) {
-        ArrayList<MappedMasterPlansReturnElement> returnElement = new ArrayList<MappedMasterPlansReturnElement>();
-        if (jsonArray == null) return returnElement;
-        for (int i = 0;i < jsonArray.size();i++) {
-            MappedMasterPlansReturnElement entity = new MappedMasterPlansReturnElement();
-            JSONObject jsonObject = null;
-            if (jsonArray.get(i) instanceof JSONObject){
-            jsonObject = (JSONObject)jsonArray.get(i);
-            entity.setPlanNo(getLongValue(jsonObject,"plan_no"));
-            entity.setClientPlanId(getStringValue(jsonObject,"client_plan_id"));
-            entity.setPlanName(getStringValue(jsonObject,"plan_name"));
-            } else {
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setPlanNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setPlanNo(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setPlanNo(null);
-            }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setClientPlanId(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setClientPlanId(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setPlanName(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setPlanName(jsonArray.get(i).toString());
-                }
-            }
-            returnElement.add(entity);
-        }
-        return returnElement;
-    }
-    public static ArrayList<MappedPayMethodTypesReturnElement> buildMappedPayMethodTypesReturnElement(JSONArray jsonArray) {
-        ArrayList<MappedPayMethodTypesReturnElement> returnElement = new ArrayList<MappedPayMethodTypesReturnElement>();
-        if (jsonArray == null) return returnElement;
-        for (int i = 0;i < jsonArray.size();i++) {
-            MappedPayMethodTypesReturnElement entity = new MappedPayMethodTypesReturnElement();
-            JSONObject jsonObject = null;
-            if (jsonArray.get(i) instanceof JSONObject){
-            jsonObject = (JSONObject)jsonArray.get(i);
-            entity.setPayMethodTypeCd(getLongValue(jsonObject,"pay_method_type_cd"));
-            entity.setPayMethodType(getStringValue(jsonObject,"pay_method_type"));
-            } else {
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setPayMethodTypeCd(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setPayMethodTypeCd(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setPayMethodTypeCd(null);
-            }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setPayMethodType(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setPayMethodType(jsonArray.get(i).toString());
-                }
-            }
-            returnElement.add(entity);
-        }
-        return returnElement;
-    }
-    public static ArrayList<ItemTranslationsReturnElement> buildItemTranslationsReturnElement(JSONArray jsonArray) {
-        ArrayList<ItemTranslationsReturnElement> returnElement = new ArrayList<ItemTranslationsReturnElement>();
-        if (jsonArray == null) return returnElement;
-        for (int i = 0;i < jsonArray.size();i++) {
-            ItemTranslationsReturnElement entity = new ItemTranslationsReturnElement();
-            JSONObject jsonObject = null;
-            if (jsonArray.get(i) instanceof JSONObject){
-            jsonObject = (JSONObject)jsonArray.get(i);
-            entity.setLocaleName(getStringValue(jsonObject,"locale_name"));
-            entity.setItemNo(getLongValue(jsonObject,"item_no"));
-            entity.setItemName(getStringValue(jsonObject,"item_name"));
-            entity.setItemDesc(getStringValue(jsonObject,"item_desc"));
-            } else {
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setLocaleName(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setLocaleName(jsonArray.get(i).toString());
-                }
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setItemNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setItemNo(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setItemNo(null);
-            }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setItemName(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setItemName(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setItemDesc(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setItemDesc(jsonArray.get(i).toString());
-                }
-            }
-            returnElement.add(entity);
-        }
-        return returnElement;
-    }
-    public static ArrayList<AllPaymentTermsReturnElement> buildAllPaymentTermsReturnElement(JSONArray jsonArray) {
-        ArrayList<AllPaymentTermsReturnElement> returnElement = new ArrayList<AllPaymentTermsReturnElement>();
-        if (jsonArray == null) return returnElement;
-        for (int i = 0;i < jsonArray.size();i++) {
-            AllPaymentTermsReturnElement entity = new AllPaymentTermsReturnElement();
-            JSONObject jsonObject = null;
-            if (jsonArray.get(i) instanceof JSONObject){
-            jsonObject = (JSONObject)jsonArray.get(i);
-            entity.setPaymentTermsNo(getLongValue(jsonObject,"payment_terms_no"));
-            entity.setTermsNameInternal(getStringValue(jsonObject,"terms_name_internal"));
-            entity.setTermsNameExternal(getStringValue(jsonObject,"terms_name_external"));
-            entity.setDaysUntilDue(getLongValue(jsonObject,"days_until_due"));
-            entity.setDiscountPercent(getLongValue(jsonObject,"discount_percent"));
-            entity.setDiscountPeriod(getLongValue(jsonObject,"discount_period"));
-            entity.setFunctionalAcctGroup(getStringValue(jsonObject,"functional_acct_group"));
-            entity.setCreatedBy(getStringValue(jsonObject,"created_by"));
-            entity.setCreatedDate(getStringValue(jsonObject,"created_date"));
-            } else {
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setPaymentTermsNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setPaymentTermsNo(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setPaymentTermsNo(null);
-            }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setTermsNameInternal(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setTermsNameInternal(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setTermsNameExternal(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setTermsNameExternal(jsonArray.get(i).toString());
-                }
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setDaysUntilDue(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setDaysUntilDue(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setDaysUntilDue(null);
-            }
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setDiscountPercent(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setDiscountPercent(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setDiscountPercent(null);
-            }
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setDiscountPeriod(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
-                    }
-                } else {
-                    entity.setDiscountPeriod(Long.parseLong(jsonArray.get(i).toString()));
-                }
-            } catch (NumberFormatException e) {
-                entity.setDiscountPeriod(null);
-            }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setFunctionalAcctGroup(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setFunctionalAcctGroup(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setCreatedBy(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setCreatedBy(jsonArray.get(i).toString());
-                }
-            if (jsonArray.get(i) instanceof JSONArray){
-                    if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setCreatedDate(((JSONArray)jsonArray.get(i)).get(0).toString());
-                    }
-                } else {
-                    entity.setCreatedDate(jsonArray.get(i).toString());
-                }
-            }
-            returnElement.add(entity);
-        }
-        return returnElement;
-    }
     /* ****************** END - SPECIFIC METHODS FOR EACH RETURN ELEMENT (build<#name#>) **************************************** */
 
     /* ****************** ARRAY TO PARAM METHODS FOR EACH ARRAY ELEMENT ********************************************** */
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ServiceArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ServiceArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ServiceRow row : arrayList.getServiceRow()){
@@ -5613,7 +4989,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ScheduleArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ScheduleArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ScheduleRow row : arrayList.getScheduleRow()){
@@ -5671,12 +5047,6 @@ public class RestUtilities {
             }
             if (row.getMinSurchargeToApply() != null){
                 parameters.add("min_surcharge_to_apply["+i+"]", getValue("Double", row.getMinSurchargeToApply()));
-            }
-            if (row.getRecurringBillingInterval() != null){
-                parameters.add("recurring_billing_interval["+i+"]", getValue("Long", row.getRecurringBillingInterval()));
-            }
-            if (row.getUsageBillingInterval() != null){
-                parameters.add("usage_billing_interval["+i+"]", getValue("Long", row.getUsageBillingInterval()));
             }
             i++;
         }
@@ -5740,17 +5110,11 @@ public class RestUtilities {
                                     if (row.getMinSurchargeToApply() != null){
                 parameters.add(paramPrefix + "["+i+"]" + "[min_surcharge_to_apply]", getValue("Double", row.getMinSurchargeToApply()));
             }
-                                    if (row.getRecurringBillingInterval() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[recurring_billing_interval]", getValue("Long", row.getRecurringBillingInterval()));
-            }
-                                    if (row.getUsageBillingInterval() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[usage_billing_interval]", getValue("Long", row.getUsageBillingInterval()));
-            }
                         i++;
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.TierArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.TierArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.TierRow row : arrayList.getTierRow()){
@@ -5767,7 +5131,6 @@ public class RestUtilities {
                 parameters.add("amount["+i+"]", getValue("Double", row.getAmount()));
             }
                         addParameterValuesFromArray(parameters, row.getSchedule(), "schedule["+i+"]");
-                        addParameterValuesFromArray(parameters, row.getPrice(), "price["+i+"]");
             i++;
         }
     }
@@ -5788,12 +5151,11 @@ public class RestUtilities {
                 parameters.add(paramPrefix + "["+i+"]" + "[amount]", getValue("Double", row.getAmount()));
             }
                         addParameterValuesFromArray(parameters, row.getSchedule(), paramPrefix + "["+i+"]" + "[schedule]");
-            addParameterValuesFromArray(parameters, row.getPrice(), paramPrefix + "["+i+"]" + "[price]");
             i++;
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ImageArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ImageArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ImageRow row : arrayList.getImageRow()){
@@ -5838,7 +5200,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ParentClassArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ParentClassArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ParentClassRow row : arrayList.getParentClassRow()){
@@ -5859,7 +5221,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.SupplementalObjFieldArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.SupplementalObjFieldArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.SupplementalObjFieldRow row : arrayList.getSupplementalObjFieldRow()){
@@ -5888,7 +5250,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.FieldValueArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.FieldValueArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.FieldValueRow row : arrayList.getFieldValueRow()){
@@ -5909,7 +5271,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.TemplateArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.TemplateArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.TemplateRow row : arrayList.getTemplateRow()){
@@ -6028,7 +5390,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.EligibleServiceTypesArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.EligibleServiceTypesArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.EligibleServiceTypesRow row : arrayList.getEligibleServiceTypesRow()){
@@ -6049,7 +5411,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ExistingTemplateArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ExistingTemplateArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ExistingTemplateRow row : arrayList.getExistingTemplateRow()){
@@ -6070,7 +5432,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ExistingTemplateIdArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ExistingTemplateIdArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ExistingTemplateIdRow row : arrayList.getExistingTemplateIdRow()){
@@ -6091,7 +5453,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.DiscountRuleArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.DiscountRuleArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.DiscountRuleRow row : arrayList.getDiscountRuleRow()){
@@ -6226,7 +5588,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.PlanNoArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.PlanNoArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.PlanNoRow row : arrayList.getPlanNoRow()){
@@ -6247,7 +5609,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ClientPlanIdArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ClientPlanIdArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ClientPlanIdRow row : arrayList.getClientPlanIdRow()){
@@ -6268,7 +5630,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ServiceNoArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ServiceNoArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ServiceNoRow row : arrayList.getServiceNoRow()){
@@ -6289,7 +5651,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ClientServiceIdArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ClientServiceIdArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ClientServiceIdRow row : arrayList.getClientServiceIdRow()){
@@ -6310,7 +5672,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ItemNoArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ItemNoArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ItemNoRow row : arrayList.getItemNoRow()){
@@ -6331,7 +5693,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ClientItemIdArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ClientItemIdArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ClientItemIdRow row : arrayList.getClientItemIdRow()){
@@ -6352,7 +5714,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ExistingDiscountRuleArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ExistingDiscountRuleArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ExistingDiscountRuleRow row : arrayList.getExistingDiscountRuleRow()){
@@ -6373,7 +5735,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ExistingDiscountRuleIdArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ExistingDiscountRuleIdArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ExistingDiscountRuleIdRow row : arrayList.getExistingDiscountRuleIdRow()){
@@ -6394,7 +5756,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.DiscountBundleArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.DiscountBundleArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.DiscountBundleRow row : arrayList.getDiscountBundleRow()){
@@ -6437,7 +5799,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.RulesArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.RulesArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.RulesRow row : arrayList.getRulesRow()){
@@ -6458,7 +5820,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.RuleIdsArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.RuleIdsArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.RuleIdsRow row : arrayList.getRuleIdsRow()){
@@ -6485,7 +5847,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ExistingDiscountBundleArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ExistingDiscountBundleArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ExistingDiscountBundleRow row : arrayList.getExistingDiscountBundleRow()){
@@ -6506,7 +5868,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ExistingDiscountBundleIdArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ExistingDiscountBundleIdArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ExistingDiscountBundleIdRow row : arrayList.getExistingDiscountBundleIdRow()){
@@ -6527,7 +5889,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.CouponNosArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.CouponNosArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.CouponNosRow row : arrayList.getCouponNosRow()){
@@ -6548,7 +5910,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.CouponArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.CouponArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.CouponRow row : arrayList.getCouponRow()){
@@ -6611,7 +5973,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ExistingCouponArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ExistingCouponArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ExistingCouponRow row : arrayList.getExistingCouponRow()){
@@ -6632,7 +5994,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.TemplateNosArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.TemplateNosArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.TemplateNosRow row : arrayList.getTemplateNosRow()){
@@ -6653,7 +6015,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.RuleNosArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.RuleNosArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.RuleNosRow row : arrayList.getRuleNosRow()){
@@ -6674,7 +6036,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.BundleNosArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.BundleNosArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.BundleNosRow row : arrayList.getBundleNosRow()){
@@ -6695,7 +6057,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.UsageThresholdArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.UsageThresholdArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.UsageThresholdRow row : arrayList.getUsageThresholdRow()){
@@ -6722,7 +6084,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.PlanGroupArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.PlanGroupArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.PlanGroupRow row : arrayList.getPlanGroupRow()){
@@ -6743,7 +6105,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.PlanGroupIdArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.PlanGroupIdArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.PlanGroupIdRow row : arrayList.getPlanGroupIdRow()){
@@ -6764,7 +6126,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ResourceArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ResourceArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ResourceRow row : arrayList.getResourceRow()){
@@ -6827,7 +6189,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ParentPlansArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ParentPlansArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ParentPlansRow row : arrayList.getParentPlansRow()){
@@ -6848,7 +6210,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ParentClientPlanIdsArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ParentClientPlanIdsArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ParentClientPlanIdsRow row : arrayList.getParentClientPlanIdsRow()){
@@ -6869,7 +6231,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ExclusionPlansArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ExclusionPlansArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ExclusionPlansRow row : arrayList.getExclusionPlansRow()){
@@ -6890,7 +6252,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ChildPlansArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ChildPlansArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ChildPlansRow row : arrayList.getChildPlansRow()){
@@ -6911,7 +6273,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.SurchargeNoArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.SurchargeNoArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.SurchargeNoRow row : arrayList.getSurchargeNoRow()){
@@ -6932,7 +6294,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ClientSurchargeIdArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ClientSurchargeIdArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ClientSurchargeIdRow row : arrayList.getClientSurchargeIdRow()){
@@ -6953,7 +6315,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.PlanNosArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.PlanNosArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.PlanNosRow row : arrayList.getPlanNosRow()){
@@ -6974,7 +6336,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.AssignFieldCategoriesArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.AssignFieldCategoriesArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.AssignFieldCategoriesRow row : arrayList.getAssignFieldCategoriesRow()){
@@ -7007,7 +6369,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ObjectTypeArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ObjectTypeArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.ObjectTypeRow row : arrayList.getObjectTypeRow()){
@@ -7028,7 +6390,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.FieldSelectionArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.FieldSelectionArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.FieldSelectionRow row : arrayList.getFieldSelectionRow()){
@@ -7055,7 +6417,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.FieldCategoriesArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.FieldCategoriesArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.FieldCategoriesRow row : arrayList.getFieldCategoriesRow()){
@@ -7082,7 +6444,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.SurchargeTierArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.SurchargeTierArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.SurchargeTierRow row : arrayList.getSurchargeTierRow()){
@@ -7121,7 +6483,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.AssignCategoryPlansArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.AssignCategoryPlansArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.AssignCategoryPlansRow row : arrayList.getAssignCategoryPlansRow()){
@@ -7154,7 +6516,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.AssignCategoryFieldsArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.AssignCategoryFieldsArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.AssignCategoryFieldsRow row : arrayList.getAssignCategoryFieldsRow()){
@@ -7187,7 +6549,7 @@ public class RestUtilities {
         }
     }
 
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.CouponsArray arrayList) {
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.CouponsArray arrayList) {
         if (arrayList == null) return;
         int i = 0;
         for (com.aria.common.shared.admin.CouponsRow row : arrayList.getCouponsRow()){
@@ -7203,349 +6565,6 @@ public class RestUtilities {
         for (com.aria.common.shared.admin.CouponsRow row : arrayList.getCouponsRow()){
                         if (row.getCouponCd() != null){
                 parameters.add(paramPrefix + "["+i+"]", getValue("String", row.getCouponCd()));
-            }
-                        i++;
-        }
-    }
-
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.PriceArray arrayList) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.PriceRow row : arrayList.getPriceRow()){
-            if (row.getAmount() != null){
-                parameters.add("amount["+i+"]", getValue("Double", row.getAmount()));
-            }
-            i++;
-        }
-    }
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.PriceArray arrayList, String paramPrefix) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.PriceRow row : arrayList.getPriceRow()){
-                        if (row.getAmount() != null){
-                parameters.add(paramPrefix + "["+i+"]", getValue("Double", row.getAmount()));
-            }
-                        i++;
-        }
-    }
-
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.EligibleChildPlansArray arrayList) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.EligibleChildPlansRow row : arrayList.getEligibleChildPlansRow()){
-            if (row.getPlanNo() != null){
-                parameters.add("plan_no["+i+"]", getValue("String", row.getPlanNo()));
-            }
-            if (row.getClientPlanId() != null){
-                parameters.add("client_plan_id["+i+"]", getValue("String", row.getClientPlanId()));
-            }
-            if (row.getIsMandatory() != null){
-                parameters.add("is_mandatory["+i+"]", getValue("Long", row.getIsMandatory()));
-            }
-            if (row.getIncludeDefault() != null){
-                parameters.add("include_default["+i+"]", getValue("Long", row.getIncludeDefault()));
-            }
-            if (row.getMinUnits() != null){
-                parameters.add("min_units["+i+"]", getValue("Long", row.getMinUnits()));
-            }
-            if (row.getMaxUnits() != null){
-                parameters.add("max_units["+i+"]", getValue("Long", row.getMaxUnits()));
-            }
-            if (row.getEnforcementLevel() != null){
-                parameters.add("enforcement_level["+i+"]", getValue("Long", row.getEnforcementLevel()));
-            }
-            i++;
-        }
-    }
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.EligibleChildPlansArray arrayList, String paramPrefix) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.EligibleChildPlansRow row : arrayList.getEligibleChildPlansRow()){
-                        if (row.getPlanNo() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[plan_no]", getValue("String", row.getPlanNo()));
-            }
-                                    if (row.getClientPlanId() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[client_plan_id]", getValue("String", row.getClientPlanId()));
-            }
-                                    if (row.getIsMandatory() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[is_mandatory]", getValue("Long", row.getIsMandatory()));
-            }
-                                    if (row.getIncludeDefault() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[include_default]", getValue("Long", row.getIncludeDefault()));
-            }
-                                    if (row.getMinUnits() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[min_units]", getValue("Long", row.getMinUnits()));
-            }
-                                    if (row.getMaxUnits() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[max_units]", getValue("Long", row.getMaxUnits()));
-            }
-                                    if (row.getEnforcementLevel() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[enforcement_level]", getValue("Long", row.getEnforcementLevel()));
-            }
-                        i++;
-        }
-    }
-
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ContractRolloverRateSchedArray arrayList) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.ContractRolloverRateSchedRow row : arrayList.getContractRolloverRateSchedRow()){
-            if (row.getCurrentRateSchedNo() != null){
-                parameters.add("current_rate_sched_no["+i+"]", getValue("Long", row.getCurrentRateSchedNo()));
-            }
-            if (row.getCurrentClientRateSchedId() != null){
-                parameters.add("current_client_rate_sched_id["+i+"]", getValue("String", row.getCurrentClientRateSchedId()));
-            }
-            if (row.getRolloverRateSchedNo() != null){
-                parameters.add("rollover_rate_sched_no["+i+"]", getValue("Long", row.getRolloverRateSchedNo()));
-            }
-            if (row.getRolloverClientRateSchedId() != null){
-                parameters.add("rollover_client_rate_sched_id["+i+"]", getValue("String", row.getRolloverClientRateSchedId()));
-            }
-            i++;
-        }
-    }
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.ContractRolloverRateSchedArray arrayList, String paramPrefix) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.ContractRolloverRateSchedRow row : arrayList.getContractRolloverRateSchedRow()){
-                        if (row.getCurrentRateSchedNo() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[current_rate_sched_no]", getValue("Long", row.getCurrentRateSchedNo()));
-            }
-                                    if (row.getCurrentClientRateSchedId() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[current_client_rate_sched_id]", getValue("String", row.getCurrentClientRateSchedId()));
-            }
-                                    if (row.getRolloverRateSchedNo() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[rollover_rate_sched_no]", getValue("Long", row.getRolloverRateSchedNo()));
-            }
-                                    if (row.getRolloverClientRateSchedId() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[rollover_client_rate_sched_id]", getValue("String", row.getRolloverClientRateSchedId()));
-            }
-                        i++;
-        }
-    }
-
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.NsoInclListArrayArray arrayList) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.NsoInclListArrayRow row : arrayList.getNsoInclListArrayRow()){
-            if (row.getItemNo() != null){
-                parameters.add("item_no["+i+"]", getValue("Long", row.getItemNo()));
-            }
-            i++;
-        }
-    }
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.NsoInclListArrayArray arrayList, String paramPrefix) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.NsoInclListArrayRow row : arrayList.getNsoInclListArrayRow()){
-                        if (row.getItemNo() != null){
-                parameters.add(paramPrefix + "["+i+"]", getValue("Long", row.getItemNo()));
-            }
-                        i++;
-        }
-    }
-
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.NsoGroupArrayArray arrayList) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.NsoGroupArrayRow row : arrayList.getNsoGroupArrayRow()){
-            if (row.getItemNo() != null){
-                parameters.add("item_no["+i+"]", getValue("Long", row.getItemNo()));
-            }
-                        addParameterValuesFromArray(parameters, row.getNsoGroupPriceOverride(), "nso_group_price_override["+i+"]");
-            i++;
-        }
-    }
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.NsoGroupArrayArray arrayList, String paramPrefix) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.NsoGroupArrayRow row : arrayList.getNsoGroupArrayRow()){
-                        if (row.getItemNo() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[item_no]", getValue("Long", row.getItemNo()));
-            }
-                        addParameterValuesFromArray(parameters, row.getNsoGroupPriceOverride(), paramPrefix + "["+i+"]" + "[nso_group_price_override]");
-            i++;
-        }
-    }
-
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.NsoGroupPriceOverrideArray arrayList) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.NsoGroupPriceOverrideRow row : arrayList.getNsoGroupPriceOverrideRow()){
-            if (row.getRateScheduleNo() != null){
-                parameters.add("rate_schedule_no["+i+"]", getValue("Long", row.getRateScheduleNo()));
-            }
-            if (row.getClientRateScheduleId() != null){
-                parameters.add("client_rate_schedule_id["+i+"]", getValue("String", row.getClientRateScheduleId()));
-            }
-            if (row.getOverridePrice() != null){
-                parameters.add("override_price["+i+"]", getValue("String", row.getOverridePrice()));
-            }
-            i++;
-        }
-    }
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.NsoGroupPriceOverrideArray arrayList, String paramPrefix) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.NsoGroupPriceOverrideRow row : arrayList.getNsoGroupPriceOverrideRow()){
-                        if (row.getRateScheduleNo() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[rate_schedule_no]", getValue("Long", row.getRateScheduleNo()));
-            }
-                                    if (row.getClientRateScheduleId() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[client_rate_schedule_id]", getValue("String", row.getClientRateScheduleId()));
-            }
-                                    if (row.getOverridePrice() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[override_price]", getValue("String", row.getOverridePrice()));
-            }
-                        i++;
-        }
-    }
-
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.NsoItemsArrayArray arrayList) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.NsoItemsArrayRow row : arrayList.getNsoItemsArrayRow()){
-            if (row.getItemNo() != null){
-                parameters.add("item_no["+i+"]", getValue("Long", row.getItemNo()));
-            }
-            if (row.getNsoItemMinQty() != null){
-                parameters.add("nso_item_min_qty["+i+"]", getValue("String", row.getNsoItemMinQty()));
-            }
-            if (row.getNsoItemMaxQty() != null){
-                parameters.add("nso_item_max_qty["+i+"]", getValue("String", row.getNsoItemMaxQty()));
-            }
-            if (row.getItemScope() != null){
-                parameters.add("item_scope["+i+"]", getValue("String", row.getItemScope()));
-            }
-                        addParameterValuesFromArray(parameters, row.getNsoItemsPriceOverride(), "nso_items_price_override["+i+"]");
-            i++;
-        }
-    }
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.NsoItemsArrayArray arrayList, String paramPrefix) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.NsoItemsArrayRow row : arrayList.getNsoItemsArrayRow()){
-                        if (row.getItemNo() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[item_no]", getValue("Long", row.getItemNo()));
-            }
-                                    if (row.getNsoItemMinQty() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[nso_item_min_qty]", getValue("String", row.getNsoItemMinQty()));
-            }
-                                    if (row.getNsoItemMaxQty() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[nso_item_max_qty]", getValue("String", row.getNsoItemMaxQty()));
-            }
-                                    if (row.getItemScope() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[item_scope]", getValue("String", row.getItemScope()));
-            }
-                        addParameterValuesFromArray(parameters, row.getNsoItemsPriceOverride(), paramPrefix + "["+i+"]" + "[nso_items_price_override]");
-            i++;
-        }
-    }
-
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.NsoItemsPriceOverrideArray arrayList) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.NsoItemsPriceOverrideRow row : arrayList.getNsoItemsPriceOverrideRow()){
-            if (row.getRateScheduleNo() != null){
-                parameters.add("rate_schedule_no["+i+"]", getValue("Long", row.getRateScheduleNo()));
-            }
-            if (row.getClientRateScheduleId() != null){
-                parameters.add("client_rate_schedule_id["+i+"]", getValue("String", row.getClientRateScheduleId()));
-            }
-            if (row.getOverridePrice() != null){
-                parameters.add("override_price["+i+"]", getValue("String", row.getOverridePrice()));
-            }
-            i++;
-        }
-    }
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.NsoItemsPriceOverrideArray arrayList, String paramPrefix) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.NsoItemsPriceOverrideRow row : arrayList.getNsoItemsPriceOverrideRow()){
-                        if (row.getRateScheduleNo() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[rate_schedule_no]", getValue("Long", row.getRateScheduleNo()));
-            }
-                                    if (row.getClientRateScheduleId() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[client_rate_schedule_id]", getValue("String", row.getClientRateScheduleId()));
-            }
-                                    if (row.getOverridePrice() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[override_price]", getValue("String", row.getOverridePrice()));
-            }
-                        i++;
-        }
-    }
-
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.DunningProcessesArray arrayList) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.DunningProcessesRow row : arrayList.getDunningProcessesRow()){
-            if (row.getDunningProcessNo() != null){
-                parameters.add("dunning_process_no["+i+"]", getValue("Long", row.getDunningProcessNo()));
-            }
-            if (row.getClientDunningProcessId() != null){
-                parameters.add("client_dunning_process_id["+i+"]", getValue("String", row.getClientDunningProcessId()));
-            }
-            i++;
-        }
-    }
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.DunningProcessesArray arrayList, String paramPrefix) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.DunningProcessesRow row : arrayList.getDunningProcessesRow()){
-                        if (row.getDunningProcessNo() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[dunning_process_no]", getValue("Long", row.getDunningProcessNo()));
-            }
-                                    if (row.getClientDunningProcessId() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[client_dunning_process_id]", getValue("String", row.getClientDunningProcessId()));
-            }
-                        i++;
-        }
-    }
-
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.PayMethodTypesArray arrayList) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.PayMethodTypesRow row : arrayList.getPayMethodTypesRow()){
-            if (row.getPayMethodTypeCd() != null){
-                parameters.add("pay_method_type_cd["+i+"]", getValue("Long", row.getPayMethodTypeCd()));
-            }
-            i++;
-        }
-    }
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.PayMethodTypesArray arrayList, String paramPrefix) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.PayMethodTypesRow row : arrayList.getPayMethodTypesRow()){
-                        if (row.getPayMethodTypeCd() != null){
-                parameters.add(paramPrefix + "["+i+"]", getValue("Long", row.getPayMethodTypeCd()));
-            }
-                        i++;
-        }
-    }
-
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.MasterPlansArray arrayList) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.MasterPlansRow row : arrayList.getMasterPlansRow()){
-            if (row.getPlanNo() != null){
-                parameters.add("plan_no["+i+"]", getValue("Long", row.getPlanNo()));
-            }
-            if (row.getClientPlanId() != null){
-                parameters.add("client_plan_id["+i+"]", getValue("String", row.getClientPlanId()));
-            }
-            i++;
-        }
-    }
-    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.MasterPlansArray arrayList, String paramPrefix) {
-        if (arrayList == null) return;
-        int i = 0;
-        for (com.aria.common.shared.admin.MasterPlansRow row : arrayList.getMasterPlansRow()){
-                        if (row.getPlanNo() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[plan_no]", getValue("Long", row.getPlanNo()));
-            }
-                                    if (row.getClientPlanId() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[client_plan_id]", getValue("String", row.getClientPlanId()));
             }
                         i++;
         }

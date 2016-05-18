@@ -37,7 +37,7 @@ public abstract class BaseAriaBilling {
         return RestUtilities.getValue(type, value);
     }
 
-    protected HashMap<String, Object> buildHashMapReturnValues(String response, String[] returnValues) {
+    protected HashMap<String, Object> buildHashMapReturnValues(String response, String[] returnValues) {        
         if (getLibraryType() == null || getLibraryType().equals(LibraryType.CORE)) {
             return RestUtilities.buildJSonReturn(response,returnValues);
         } else if (getLibraryType().equals(LibraryType.ADMINTOOLS)) {
@@ -65,7 +65,8 @@ public abstract class BaseAriaBilling {
     /*************** END - GETTERS ****************/
     
     protected static LibraryType asLibraryType(String type) {
-      return "Administration".equals(type) ? LibraryType.ADMINTOOLS 
+      return         
+        "Administration".equals(type) ? LibraryType.ADMINTOOLS 
         : "Integration".equals(type) ? LibraryType.OBJECT_QUERY
         : LibraryType.CORE;
     }

@@ -45,15 +45,13 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
     public AriaBillingAdministrationRest(String url) {
         this(url, Client.create(new DefaultClientConfig()));
     }
-    
-    /**
+        /**
      * @deprecated use {@link AriaBillingAdministrationRest(String)} or {@link AriaBillingAdministrationRest(String,Client)}
      */
     public AriaBillingAdministrationRest(BaseAriaBillingDTO baseAriaBillingDTO) throws Exception {
         this(baseAriaBillingDTO.getUrl(), Client.create(new DefaultClientConfig()));
     }
-    
-    /**
+        /**
      * Destroys the underlying {@link Client}.
      */
     public void close() {
@@ -95,12 +93,13 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return getPromoPlanSets(client_no, auth_key);
     }
 
-    public Map<String,Object> getPromoPlanSetDetails(Long client_no, String auth_key, Long promo_plan_set_no, String client_plan_type_id, String locale_name, String include_translations){
+    public Map<String,Object> getPromoPlanSetDetails(Long client_no, String auth_key, Long promo_plan_set_no, String client_plan_type_id, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"promo_plan_set_no", getValue("Long", promo_plan_set_no));
         addParameters(parameters,"client_plan_type_id", getValue("String", client_plan_type_id));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -125,10 +124,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         Long promo_plan_set_no = (Long) map.get("promo_plan_set_no");
         String client_plan_type_id = (String) map.get("client_plan_type_id");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getPromoPlanSetDetails(client_no, auth_key, promo_plan_set_no, client_plan_type_id, locale_name, include_translations);
+        return getPromoPlanSetDetails(client_no, auth_key, promo_plan_set_no, client_plan_type_id, locale_no, locale_name, include_translations);
     }
 
     public Map<String,Object> createPromoPlanSet(Long client_no, String auth_key, String promo_plan_set_name, String promo_plan_set_desc, String client_plan_type_id, Long plan_no, String client_plan_id){
@@ -245,7 +245,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return getCompanyProfile(client_no, auth_key);
     }
 
-    public Map<String,Object> setCompanyProfile(Long client_no, String auth_key, String domain, String address1, String address2, String city, String locality, String state_prov, String country, String postal_code, String phone, String contact, String contact_address1, String contact_address2, String contact_city, String contact_state, String contact_zip, String contact_phone, String contact_email, String billing_contact, String billing_address1, String billing_address2, String billing_city, String billing_state, String billing_zip, String billing_phone, String billing_email, String contact_country, String contact_locality, String billing_country, String billing_locality, String batch_job_alert_contact, String batch_job_alert_email, String locale_name){
+    public Map<String,Object> setCompanyProfile(Long client_no, String auth_key, String domain, String address1, String address2, String city, String locality, String state_prov, String country, String postal_code, String phone, String contact, String contact_address1, String contact_address2, String contact_city, String contact_state, String contact_zip, String contact_phone, String contact_email, String billing_contact, String billing_address1, String billing_address2, String billing_city, String billing_state, String billing_zip, String billing_phone, String billing_email, String contact_country, String contact_locality, String billing_country, String billing_locality, String batch_job_alert_contact, String batch_job_alert_email, Long locale_no, String locale_name){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
@@ -280,6 +280,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         addParameters(parameters,"billing_locality", getValue("String", billing_locality));
         addParameters(parameters,"batch_job_alert_contact", getValue("String", batch_job_alert_contact));
         addParameters(parameters,"batch_job_alert_email", getValue("String", batch_job_alert_email));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         
         WebResource webResource = client.resource(buildUrl("set_company_profile"));
@@ -327,9 +328,10 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String billing_locality = (String) map.get("billing_locality");
         String batch_job_alert_contact = (String) map.get("batch_job_alert_contact");
         String batch_job_alert_email = (String) map.get("batch_job_alert_email");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         
-        return setCompanyProfile(client_no, auth_key, domain, address1, address2, city, locality, state_prov, country, postal_code, phone, contact, contact_address1, contact_address2, contact_city, contact_state, contact_zip, contact_phone, contact_email, billing_contact, billing_address1, billing_address2, billing_city, billing_state, billing_zip, billing_phone, billing_email, contact_country, contact_locality, billing_country, billing_locality, batch_job_alert_contact, batch_job_alert_email, locale_name);
+        return setCompanyProfile(client_no, auth_key, domain, address1, address2, city, locality, state_prov, country, postal_code, phone, contact, contact_address1, contact_address2, contact_city, contact_state, contact_zip, contact_phone, contact_email, billing_contact, billing_address1, billing_address2, billing_city, billing_state, billing_zip, billing_phone, billing_email, contact_country, contact_locality, billing_country, billing_locality, batch_job_alert_contact, batch_job_alert_email, locale_no, locale_name);
     }
 
     public Map<String,Object> getInventoryItems(Long client_no, String auth_key){
@@ -659,10 +661,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return getServiceTypes(client_no, auth_key);
     }
 
-    public Map<String,Object> getServices(Long client_no, String auth_key, String locale_name, String include_translations){
+    public Map<String,Object> getServices(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -680,18 +683,20 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
     public Map<String,Object> getServices(Map<String,Object> map){
         Long client_no = (Long) map.get("client_no");
         String auth_key = (String) map.get("auth_key");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getServices(client_no, auth_key, locale_name, include_translations);
+        return getServices(client_no, auth_key, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getServiceDetails(Long client_no, String auth_key, Long service_no, String client_service_id, String locale_name, String include_translations){
+    public Map<String,Object> getServiceDetails(Long client_no, String auth_key, Long service_no, String client_service_id, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"service_no", getValue("Long", service_no));
         addParameters(parameters,"client_service_id", getValue("String", client_service_id));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -727,13 +732,14 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         Long service_no = (Long) map.get("service_no");
         String client_service_id = (String) map.get("client_service_id");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getServiceDetails(client_no, auth_key, service_no, client_service_id, locale_name, include_translations);
+        return getServiceDetails(client_no, auth_key, service_no, client_service_id, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getPlanServiceDetails(Long client_no, String auth_key, Long service_no, Long plan_no, String client_service_id, String client_plan_id, String locale_name, String include_translations){
+    public Map<String,Object> getPlanServiceDetails(Long client_no, String auth_key, Long service_no, Long plan_no, String client_service_id, String client_plan_id, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
@@ -741,6 +747,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         addParameters(parameters,"plan_no", getValue("Long", plan_no));
         addParameters(parameters,"client_service_id", getValue("String", client_service_id));
         addParameters(parameters,"client_plan_id", getValue("String", client_plan_id));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -783,10 +790,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         Long plan_no = (Long) map.get("plan_no");
         String client_service_id = (String) map.get("client_service_id");
         String client_plan_id = (String) map.get("client_plan_id");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getPlanServiceDetails(client_no, auth_key, service_no, plan_no, client_service_id, client_plan_id, locale_name, include_translations);
+        return getPlanServiceDetails(client_no, auth_key, service_no, plan_no, client_service_id, client_plan_id, locale_no, locale_name, include_translations);
     }
 
     public Map<String,Object> createService(Long client_no, String auth_key, String service_name, String service_type, String gl_cd, String ar_gl_cd, String def_gl_cd, Long rev_rec_ind, Long deferred_ind, Long taxable_ind, Long tax_group, Long usage_type, String client_service_id, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field, String commodity_cd, String client_tax_group_id){
@@ -893,10 +901,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return updateService(client_no, auth_key, service_no, service_name, service_type, gl_cd, ar_gl_cd, def_gl_cd, rev_rec_ind, deferred_ind, taxable_ind, tax_group, usage_type, client_service_id, supplemental_obj_field, commodity_cd, client_tax_group_id);
     }
 
-    public Map<String,Object> getSuppFields(Long client_no, String auth_key, String locale_name, String include_translations){
+    public Map<String,Object> getSuppFields(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -914,17 +923,19 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
     public Map<String,Object> getSuppFields(Map<String,Object> map){
         Long client_no = (Long) map.get("client_no");
         String auth_key = (String) map.get("auth_key");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getSuppFields(client_no, auth_key, locale_name, include_translations);
+        return getSuppFields(client_no, auth_key, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getSuppFieldDetails(Long client_no, String auth_key, String field_name, String locale_name, String include_translations){
+    public Map<String,Object> getSuppFieldDetails(Long client_no, String auth_key, String field_name, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"field_name", getValue("String", field_name));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -954,10 +965,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         Long client_no = (Long) map.get("client_no");
         String auth_key = (String) map.get("auth_key");
         String field_name = (String) map.get("field_name");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getSuppFieldDetails(client_no, auth_key, field_name, locale_name, include_translations);
+        return getSuppFieldDetails(client_no, auth_key, field_name, locale_no, locale_name, include_translations);
     }
 
     public Map<String,Object> createSuppField(Long client_no, String auth_key, String field_name, Long field_order, String presentation_mode, String field_desc, Long required_ind, Long hidden_ind, Long sel_ind, Long min_no_sel, Long max_no_sel, String display_text, String option_value, Long option_value_order){
@@ -1007,7 +1019,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return createSuppField(client_no, auth_key, field_name, field_order, presentation_mode, field_desc, required_ind, hidden_ind, sel_ind, min_no_sel, max_no_sel, display_text, option_value, option_value_order);
     }
 
-    public Map<String,Object> updateSuppField(Long client_no, String auth_key, String field_name, String field_desc, Long field_order, Long required_ind, Long hidden_ind, Long sel_ind, String presentation_mode, Long min_no_sel, Long max_no_sel, String display_text, String option_value, Long option_value_order, String locale_name){
+    public Map<String,Object> updateSuppField(Long client_no, String auth_key, String field_name, String field_desc, Long field_order, Long required_ind, Long hidden_ind, Long sel_ind, String presentation_mode, Long min_no_sel, Long max_no_sel, String display_text, String option_value, Long option_value_order, Long locale_no, String locale_name){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
@@ -1023,6 +1035,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         addParameters(parameters,"display_text", getValue("String", display_text));
         addParameters(parameters,"option_value", getValue("String", option_value));
         addParameters(parameters,"option_value_order", getValue("Long", option_value_order));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         
         WebResource webResource = client.resource(buildUrl("update_supp_field"));
@@ -1051,15 +1064,17 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String display_text = (String) map.get("display_text");
         String option_value = (String) map.get("option_value");
         Long option_value_order = (Long) map.get("option_value_order");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         
-        return updateSuppField(client_no, auth_key, field_name, field_desc, field_order, required_ind, hidden_ind, sel_ind, presentation_mode, min_no_sel, max_no_sel, display_text, option_value, option_value_order, locale_name);
+        return updateSuppField(client_no, auth_key, field_name, field_desc, field_order, required_ind, hidden_ind, sel_ind, presentation_mode, min_no_sel, max_no_sel, display_text, option_value, option_value_order, locale_no, locale_name);
     }
 
-    public Map<String,Object> getCoupons(Long client_no, String auth_key, String locale_name, String include_translations){
+    public Map<String,Object> getCoupons(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -1077,17 +1092,19 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
     public Map<String,Object> getCoupons(Map<String,Object> map){
         Long client_no = (Long) map.get("client_no");
         String auth_key = (String) map.get("auth_key");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getCoupons(client_no, auth_key, locale_name, include_translations);
+        return getCoupons(client_no, auth_key, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getCouponDetails(Long client_no, String auth_key, String coupon_cd, String locale_name, String include_translations){
+    public Map<String,Object> getCouponDetails(Long client_no, String auth_key, String coupon_cd, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"coupon_cd", getValue("String", coupon_cd));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -1139,10 +1156,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         Long client_no = (Long) map.get("client_no");
         String auth_key = (String) map.get("auth_key");
         String coupon_cd = (String) map.get("coupon_cd");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getCouponDetails(client_no, auth_key, coupon_cd, locale_name, include_translations);
+        return getCouponDetails(client_no, auth_key, coupon_cd, locale_no, locale_name, include_translations);
     }
 
     public Map<String,Object> createCoupon(Long client_no, String auth_key, String coupon_cd, String coupon_desc, String coupon_msg, Long status_ind, Long no_of_uses, String start_date, String end_date, com.aria.common.shared.admin.TemplateArray template, com.aria.common.shared.admin.ExistingTemplateArray existing_template, com.aria.common.shared.admin.ExistingTemplateIdArray existing_template_id, com.aria.common.shared.admin.DiscountRuleArray discount_rule, com.aria.common.shared.admin.ExistingDiscountRuleArray existing_discount_rule, com.aria.common.shared.admin.ExistingDiscountRuleIdArray existing_discount_rule_id, com.aria.common.shared.admin.DiscountBundleArray discount_bundle, com.aria.common.shared.admin.ExistingDiscountBundleArray existing_discount_bundle, com.aria.common.shared.admin.ExistingDiscountBundleIdArray existing_discount_bundle_id, Long coupon_scope){
@@ -1202,7 +1220,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return createCoupon(client_no, auth_key, coupon_cd, coupon_desc, coupon_msg, status_ind, no_of_uses, start_date, end_date, template, existing_template, existing_template_id, discount_rule, existing_discount_rule, existing_discount_rule_id, discount_bundle, existing_discount_bundle, existing_discount_bundle_id, coupon_scope);
     }
 
-    public Map<String,Object> updateCoupon(Long client_no, String auth_key, String coupon_cd, String coupon_desc, String coupon_msg, Long status_ind, Long no_of_uses, String start_date, String end_date, com.aria.common.shared.admin.TemplateArray template, com.aria.common.shared.admin.ExistingTemplateArray existing_template, com.aria.common.shared.admin.ExistingTemplateIdArray existing_template_id, com.aria.common.shared.admin.DiscountRuleArray discount_rule, com.aria.common.shared.admin.ExistingDiscountRuleArray existing_discount_rule, com.aria.common.shared.admin.ExistingDiscountRuleIdArray existing_discount_rule_id, com.aria.common.shared.admin.DiscountBundleArray discount_bundle, com.aria.common.shared.admin.ExistingDiscountBundleArray existing_discount_bundle, com.aria.common.shared.admin.ExistingDiscountBundleIdArray existing_discount_bundle_id, Long coupon_scope, String locale_name){
+    public Map<String,Object> updateCoupon(Long client_no, String auth_key, String coupon_cd, String coupon_desc, String coupon_msg, Long status_ind, Long no_of_uses, String start_date, String end_date, com.aria.common.shared.admin.TemplateArray template, com.aria.common.shared.admin.ExistingTemplateArray existing_template, com.aria.common.shared.admin.ExistingTemplateIdArray existing_template_id, com.aria.common.shared.admin.DiscountRuleArray discount_rule, com.aria.common.shared.admin.ExistingDiscountRuleArray existing_discount_rule, com.aria.common.shared.admin.ExistingDiscountRuleIdArray existing_discount_rule_id, com.aria.common.shared.admin.DiscountBundleArray discount_bundle, com.aria.common.shared.admin.ExistingDiscountBundleArray existing_discount_bundle, com.aria.common.shared.admin.ExistingDiscountBundleIdArray existing_discount_bundle_id, Long coupon_scope, Long locale_no, String locale_name){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
@@ -1223,6 +1241,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         RestUtilities.addParameterValuesFromArray(parameters, existing_discount_bundle, "existing_discount_bundle");
         RestUtilities.addParameterValuesFromArray(parameters, existing_discount_bundle_id, "existing_discount_bundle_id");
         addParameters(parameters,"coupon_scope", getValue("Long", coupon_scope));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         
         WebResource webResource = client.resource(buildUrl("update_coupon"));
@@ -1256,9 +1275,10 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         com.aria.common.shared.admin.ExistingDiscountBundleArray existing_discount_bundle = (com.aria.common.shared.admin.ExistingDiscountBundleArray) map.get("existing_discount_bundle");
         com.aria.common.shared.admin.ExistingDiscountBundleIdArray existing_discount_bundle_id = (com.aria.common.shared.admin.ExistingDiscountBundleIdArray) map.get("existing_discount_bundle_id");
         Long coupon_scope = (Long) map.get("coupon_scope");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         
-        return updateCoupon(client_no, auth_key, coupon_cd, coupon_desc, coupon_msg, status_ind, no_of_uses, start_date, end_date, template, existing_template, existing_template_id, discount_rule, existing_discount_rule, existing_discount_rule_id, discount_bundle, existing_discount_bundle, existing_discount_bundle_id, coupon_scope, locale_name);
+        return updateCoupon(client_no, auth_key, coupon_cd, coupon_desc, coupon_msg, status_ind, no_of_uses, start_date, end_date, template, existing_template, existing_template_id, discount_rule, existing_discount_rule, existing_discount_rule_id, discount_bundle, existing_discount_bundle, existing_discount_bundle_id, coupon_scope, locale_no, locale_name);
     }
 
     public Map<String,Object> deleteCoupons(Long client_no, String auth_key, com.aria.common.shared.admin.CouponNosArray coupon_nos){
@@ -1612,10 +1632,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return createDiscountBundle(client_no, auth_key, bundle_name, bundle_id, bundle_description, allow_overlap_ind, rules, rule_ids);
     }
 
-    public Map<String,Object> getDiscountBundles(Long client_no, String auth_key, String locale_name, String include_translations){
+    public Map<String,Object> getDiscountBundles(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -1633,10 +1654,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
     public Map<String,Object> getDiscountBundles(Map<String,Object> map){
         Long client_no = (Long) map.get("client_no");
         String auth_key = (String) map.get("auth_key");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getDiscountBundles(client_no, auth_key, locale_name, include_translations);
+        return getDiscountBundles(client_no, auth_key, locale_no, locale_name, include_translations);
     }
 
     public Map<String,Object> getDiscountBundleDetails(Long client_no, String auth_key, Long bundle_no, String bundle_id){
@@ -1666,10 +1688,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return getDiscountBundleDetails(client_no, auth_key, bundle_no, bundle_id);
     }
 
-    public Map<String,Object> getDiscountRules(Long client_no, String auth_key, String locale_name, String include_translations){
+    public Map<String,Object> getDiscountRules(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -1688,18 +1711,20 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
     public Map<String,Object> getDiscountRules(Map<String,Object> map){
         Long client_no = (Long) map.get("client_no");
         String auth_key = (String) map.get("auth_key");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getDiscountRules(client_no, auth_key, locale_name, include_translations);
+        return getDiscountRules(client_no, auth_key, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getDiscountRuleDetails(Long client_no, String auth_key, Long rule_no, String client_rule_id, String locale_name, String include_translations){
+    public Map<String,Object> getDiscountRuleDetails(Long client_no, String auth_key, Long rule_no, String client_rule_id, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"rule_no", getValue("Long", rule_no));
         addParameters(parameters,"client_rule_id", getValue("String", client_rule_id));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -1719,10 +1744,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         Long rule_no = (Long) map.get("rule_no");
         String client_rule_id = (String) map.get("client_rule_id");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getDiscountRuleDetails(client_no, auth_key, rule_no, client_rule_id, locale_name, include_translations);
+        return getDiscountRuleDetails(client_no, auth_key, rule_no, client_rule_id, locale_no, locale_name, include_translations);
     }
 
     public Map<String,Object> deleteRules(Long client_no, String auth_key, com.aria.common.shared.admin.RuleNosArray rule_nos){
@@ -2129,10 +2155,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return copyPlan(client_no, auth_key, plan_no, client_plan_id, plan_name, new_client_plan_id);
     }
 
-    public Map<String,Object> getPromotions(Long client_no, String auth_key, String locale_name, String include_translations){
+    public Map<String,Object> getPromotions(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -2150,17 +2177,19 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
     public Map<String,Object> getPromotions(Map<String,Object> map){
         Long client_no = (Long) map.get("client_no");
         String auth_key = (String) map.get("auth_key");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getPromotions(client_no, auth_key, locale_name, include_translations);
+        return getPromotions(client_no, auth_key, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getPromotionDetails(Long client_no, String auth_key, String promo_cd, String locale_name, String include_translations){
+    public Map<String,Object> getPromotionDetails(Long client_no, String auth_key, String promo_cd, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"promo_cd", getValue("String", promo_cd));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -2187,10 +2216,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         Long client_no = (Long) map.get("client_no");
         String auth_key = (String) map.get("auth_key");
         String promo_cd = (String) map.get("promo_cd");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getPromotionDetails(client_no, auth_key, promo_cd, locale_name, include_translations);
+        return getPromotionDetails(client_no, auth_key, promo_cd, locale_no, locale_name, include_translations);
     }
 
     public Map<String,Object> createPromotion(Long client_no, String auth_key, String promo_cd, String promo_desc, Long promo_plan_set_no, String no_of_uses, String start_date, String exp_date){
@@ -2228,7 +2258,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return createPromotion(client_no, auth_key, promo_cd, promo_desc, promo_plan_set_no, no_of_uses, start_date, exp_date);
     }
 
-    public Map<String,Object> updatePromotion(Long client_no, String auth_key, String promo_cd, String promo_desc, Long promo_plan_set_no, String no_of_uses, String start_date, String exp_date, String locale_name){
+    public Map<String,Object> updatePromotion(Long client_no, String auth_key, String promo_cd, String promo_desc, Long promo_plan_set_no, String no_of_uses, String start_date, String exp_date, Long locale_no, String locale_name){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
@@ -2238,6 +2268,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         addParameters(parameters,"no_of_uses", getValue("String", no_of_uses));
         addParameters(parameters,"start_date", getValue("String", start_date));
         addParameters(parameters,"exp_date", getValue("String", exp_date));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         
         WebResource webResource = client.resource(buildUrl("update_promotion"));
@@ -2260,15 +2291,17 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String no_of_uses = (String) map.get("no_of_uses");
         String start_date = (String) map.get("start_date");
         String exp_date = (String) map.get("exp_date");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         
-        return updatePromotion(client_no, auth_key, promo_cd, promo_desc, promo_plan_set_no, no_of_uses, start_date, exp_date, locale_name);
+        return updatePromotion(client_no, auth_key, promo_cd, promo_desc, promo_plan_set_no, no_of_uses, start_date, exp_date, locale_no, locale_name);
     }
 
-    public Map<String,Object> getUsageTypes(Long client_no, String auth_key, String locale_name, String include_translations){
+    public Map<String,Object> getUsageTypes(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -2286,18 +2319,20 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
     public Map<String,Object> getUsageTypes(Map<String,Object> map){
         Long client_no = (Long) map.get("client_no");
         String auth_key = (String) map.get("auth_key");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getUsageTypes(client_no, auth_key, locale_name, include_translations);
+        return getUsageTypes(client_no, auth_key, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getUsageTypeDetails(Long client_no, String auth_key, Long usage_type_no, String usage_type_code, String locale_name, String include_translations){
+    public Map<String,Object> getUsageTypeDetails(Long client_no, String auth_key, Long usage_type_no, String usage_type_code, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"usage_type_no", getValue("Long", usage_type_no));
         addParameters(parameters,"usage_type_code", getValue("String", usage_type_code));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -2325,16 +2360,18 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         Long usage_type_no = (Long) map.get("usage_type_no");
         String usage_type_code = (String) map.get("usage_type_code");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getUsageTypeDetails(client_no, auth_key, usage_type_no, usage_type_code, locale_name, include_translations);
+        return getUsageTypeDetails(client_no, auth_key, usage_type_no, usage_type_code, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getUsageUnitTypes(Long client_no, String auth_key, String locale_name, String include_translations){
+    public Map<String,Object> getUsageUnitTypes(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -2352,10 +2389,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
     public Map<String,Object> getUsageUnitTypes(Map<String,Object> map){
         Long client_no = (Long) map.get("client_no");
         String auth_key = (String) map.get("auth_key");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getUsageUnitTypes(client_no, auth_key, locale_name, include_translations);
+        return getUsageUnitTypes(client_no, auth_key, locale_no, locale_name, include_translations);
     }
 
     public Map<String,Object> createUsageType(Long client_no, String auth_key, String usage_type_name, String usage_type_desc, Long usage_unit_type_no, String usage_type_code, String usage_type_display_string, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field){
@@ -2393,7 +2431,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return createUsageType(client_no, auth_key, usage_type_name, usage_type_desc, usage_unit_type_no, usage_type_code, usage_type_display_string, supplemental_obj_field);
     }
 
-    public Map<String,Object> updateUsageType(Long client_no, String auth_key, Long usage_type_no, String usage_type_name, String usage_type_desc, Long usage_unit_type_no, String usage_type_code, String usage_type_display_string, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field, String locale_name){
+    public Map<String,Object> updateUsageType(Long client_no, String auth_key, Long usage_type_no, String usage_type_name, String usage_type_desc, Long usage_unit_type_no, String usage_type_code, String usage_type_display_string, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field, Long locale_no, String locale_name){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
@@ -2404,6 +2442,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         addParameters(parameters,"usage_type_code", getValue("String", usage_type_code));
         addParameters(parameters,"usage_type_display_string", getValue("String", usage_type_display_string));
         RestUtilities.addParameterValuesFromArray(parameters, supplemental_obj_field, "supplemental_obj_field");
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         
         WebResource webResource = client.resource(buildUrl("update_usage_type"));
@@ -2427,9 +2466,10 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String usage_type_code = (String) map.get("usage_type_code");
         String usage_type_display_string = (String) map.get("usage_type_display_string");
         com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field = (com.aria.common.shared.admin.SupplementalObjFieldArray) map.get("supplemental_obj_field");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         
-        return updateUsageType(client_no, auth_key, usage_type_no, usage_type_name, usage_type_desc, usage_unit_type_no, usage_type_code, usage_type_display_string, supplemental_obj_field, locale_name);
+        return updateUsageType(client_no, auth_key, usage_type_no, usage_type_name, usage_type_desc, usage_unit_type_no, usage_type_code, usage_type_display_string, supplemental_obj_field, locale_no, locale_name);
     }
 
     public Map<String,Object> createSuppObjField(Long client_no, String auth_key, String field_name, com.aria.common.shared.admin.AssignFieldCategoriesArray assign_field_categories, String description, String min_no_sel, Long max_no_sel, String datatype, String form_input_type, String use_allowed_vals_ind, String option_value, String option_value_order, Long allow_instance_override, com.aria.common.shared.admin.ObjectTypeArray object_type){
@@ -2479,7 +2519,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return createSuppObjField(client_no, auth_key, field_name, assign_field_categories, description, min_no_sel, max_no_sel, datatype, form_input_type, use_allowed_vals_ind, option_value, option_value_order, allow_instance_override, object_type);
     }
 
-    public Map<String,Object> updateSuppObjField(Long client_no, String auth_key, Long field_no, String field_name, com.aria.common.shared.admin.AssignFieldCategoriesArray assign_field_categories, String description, String min_no_sel, Long max_no_sel, String datatype, String form_input_type, String use_allowed_vals_ind, String option_value, String option_value_order, Long allow_instance_override, com.aria.common.shared.admin.ObjectTypeArray object_type, String locale_name){
+    public Map<String,Object> updateSuppObjField(Long client_no, String auth_key, Long field_no, String field_name, com.aria.common.shared.admin.AssignFieldCategoriesArray assign_field_categories, String description, String min_no_sel, Long max_no_sel, String datatype, String form_input_type, String use_allowed_vals_ind, String option_value, String option_value_order, Long allow_instance_override, com.aria.common.shared.admin.ObjectTypeArray object_type, Long locale_no, String locale_name){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
@@ -2496,6 +2536,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         addParameters(parameters,"option_value_order", getValue("String", option_value_order));
         addParameters(parameters,"allow_instance_override", getValue("Long", allow_instance_override));
         RestUtilities.addParameterValuesFromArray(parameters, object_type, "object_type");
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         
         WebResource webResource = client.resource(buildUrl("update_supp_obj_field"));
@@ -2525,16 +2566,18 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String option_value_order = (String) map.get("option_value_order");
         Long allow_instance_override = (Long) map.get("allow_instance_override");
         com.aria.common.shared.admin.ObjectTypeArray object_type = (com.aria.common.shared.admin.ObjectTypeArray) map.get("object_type");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         
-        return updateSuppObjField(client_no, auth_key, field_no, field_name, assign_field_categories, description, min_no_sel, max_no_sel, datatype, form_input_type, use_allowed_vals_ind, option_value, option_value_order, allow_instance_override, object_type, locale_name);
+        return updateSuppObjField(client_no, auth_key, field_no, field_name, assign_field_categories, description, min_no_sel, max_no_sel, datatype, form_input_type, use_allowed_vals_ind, option_value, option_value_order, allow_instance_override, object_type, locale_no, locale_name);
     }
 
-    public Map<String,Object> getSuppObjFields(Long client_no, String auth_key, Long field_no, String locale_name, String include_translations){
+    public Map<String,Object> getSuppObjFields(Long client_no, String auth_key, Long field_no, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"field_no", getValue("Long", field_no));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -2564,18 +2607,20 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         Long client_no = (Long) map.get("client_no");
         String auth_key = (String) map.get("auth_key");
         Long field_no = (Long) map.get("field_no");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getSuppObjFields(client_no, auth_key, field_no, locale_name, include_translations);
+        return getSuppObjFields(client_no, auth_key, field_no, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> listSuppObjFields(Long client_no, String auth_key, com.aria.common.shared.admin.FieldSelectionArray field_selection, com.aria.common.shared.admin.FieldCategoriesArray field_categories, String locale_name, String include_translations){
+    public Map<String,Object> listSuppObjFields(Long client_no, String auth_key, com.aria.common.shared.admin.FieldSelectionArray field_selection, com.aria.common.shared.admin.FieldCategoriesArray field_categories, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         RestUtilities.addParameterValuesFromArray(parameters, field_selection, "field_selection");
         RestUtilities.addParameterValuesFromArray(parameters, field_categories, "field_categories");
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -2595,10 +2640,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         com.aria.common.shared.admin.FieldSelectionArray field_selection = (com.aria.common.shared.admin.FieldSelectionArray) map.get("field_selection");
         com.aria.common.shared.admin.FieldCategoriesArray field_categories = (com.aria.common.shared.admin.FieldCategoriesArray) map.get("field_categories");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return listSuppObjFields(client_no, auth_key, field_selection, field_categories, locale_name, include_translations);
+        return listSuppObjFields(client_no, auth_key, field_selection, field_categories, locale_no, locale_name, include_translations);
     }
 
     public Map<String,Object> getPlanGroups(Long client_no, String auth_key){
@@ -2624,12 +2670,13 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return getPlanGroups(client_no, auth_key);
     }
 
-    public Map<String,Object> getPlanGroupDetails(Long client_no, String auth_key, Long group_no, String client_plan_change_group_id, String locale_name, String include_translations){
+    public Map<String,Object> getPlanGroupDetails(Long client_no, String auth_key, Long group_no, String client_plan_change_group_id, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"group_no", getValue("Long", group_no));
         addParameters(parameters,"client_plan_change_group_id", getValue("String", client_plan_change_group_id));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -2655,10 +2702,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         Long group_no = (Long) map.get("group_no");
         String client_plan_change_group_id = (String) map.get("client_plan_change_group_id");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getPlanGroupDetails(client_no, auth_key, group_no, client_plan_change_group_id, locale_name, include_translations);
+        return getPlanGroupDetails(client_no, auth_key, group_no, client_plan_change_group_id, locale_no, locale_name, include_translations);
     }
 
     public Map<String,Object> createPlanGroup(Long client_no, String auth_key, String group_name, String group_desc, String group_usage, String client_plan_change_group_id, String group_plans, String group_plan_ids){
@@ -2862,10 +2910,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return editCoa(client_no, auth_key, coa_id, coa_code, coa_description);
     }
 
-    public Map<String,Object> getSurcharges(Long client_no, String auth_key, String locale_name, String include_translations){
+    public Map<String,Object> getSurcharges(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -2883,18 +2932,20 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
     public Map<String,Object> getSurcharges(Map<String,Object> map){
         Long client_no = (Long) map.get("client_no");
         String auth_key = (String) map.get("auth_key");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getSurcharges(client_no, auth_key, locale_name, include_translations);
+        return getSurcharges(client_no, auth_key, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getSurchargeDetails(Long client_no, String auth_key, Long surcharge_no, String client_surcharge_id, String locale_name, String include_translations){
+    public Map<String,Object> getSurchargeDetails(Long client_no, String auth_key, Long surcharge_no, String client_surcharge_id, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"surcharge_no", getValue("Long", surcharge_no));
         addParameters(parameters,"client_surcharge_id", getValue("String", client_surcharge_id));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         addParameters(parameters,"include_translations", getValue("String", include_translations));
         
@@ -2938,10 +2989,11 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         Long surcharge_no = (Long) map.get("surcharge_no");
         String client_surcharge_id = (String) map.get("client_surcharge_id");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         String include_translations = (String) map.get("include_translations");
         
-        return getSurchargeDetails(client_no, auth_key, surcharge_no, client_surcharge_id, locale_name, include_translations);
+        return getSurchargeDetails(client_no, auth_key, surcharge_no, client_surcharge_id, locale_no, locale_name, include_translations);
     }
 
     public Map<String,Object> createSurcharge(Long client_no, String auth_key, String surcharge_name, String description, String ext_description, String currency_cd, String surcharge_type_cd, String inline_offset_ind, String apply_b4_or_after_discount_cd, Long scope_no, com.aria.common.shared.admin.SurchargeTierArray surcharge_tier, String client_surcharge_id, Long apply_to_zero_invoice_ind, Long tax_group, String gl_cd, String ar_gl_cd, com.aria.common.shared.admin.PlanNoArray plan_no, com.aria.common.shared.admin.ClientPlanIdArray client_plan_id, com.aria.common.shared.admin.ServiceNoArray service_no, com.aria.common.shared.admin.ClientServiceIdArray client_service_id, com.aria.common.shared.admin.ItemNoArray item_no, com.aria.common.shared.admin.ClientItemIdArray client_item_id, com.aria.common.shared.admin.ScheduleArray schedule, Long surcharge_scope){
@@ -3011,7 +3063,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return createSurcharge(client_no, auth_key, surcharge_name, description, ext_description, currency_cd, surcharge_type_cd, inline_offset_ind, apply_b4_or_after_discount_cd, scope_no, surcharge_tier, client_surcharge_id, apply_to_zero_invoice_ind, tax_group, gl_cd, ar_gl_cd, plan_no, client_plan_id, service_no, client_service_id, item_no, client_item_id, schedule, surcharge_scope);
     }
 
-    public Map<String,Object> editSurcharge(Long client_no, String auth_key, String surcharge_no, String surcharge_name, String client_surcharge_id, String description, String ext_description, String currency_cd, Long scope_no, com.aria.common.shared.admin.SurchargeTierArray surcharge_tier, Long apply_to_zero_invoice_ind, com.aria.common.shared.admin.PlanNoArray plan_no, com.aria.common.shared.admin.ClientPlanIdArray client_plan_id, com.aria.common.shared.admin.ServiceNoArray service_no, com.aria.common.shared.admin.ClientServiceIdArray client_service_id, com.aria.common.shared.admin.ItemNoArray item_no, com.aria.common.shared.admin.ClientItemIdArray client_item_id, com.aria.common.shared.admin.ScheduleArray schedule, Long surcharge_scope, String locale_name){
+    public Map<String,Object> editSurcharge(Long client_no, String auth_key, String surcharge_no, String surcharge_name, String client_surcharge_id, String description, String ext_description, String currency_cd, Long scope_no, com.aria.common.shared.admin.SurchargeTierArray surcharge_tier, Long apply_to_zero_invoice_ind, com.aria.common.shared.admin.PlanNoArray plan_no, com.aria.common.shared.admin.ClientPlanIdArray client_plan_id, com.aria.common.shared.admin.ServiceNoArray service_no, com.aria.common.shared.admin.ClientServiceIdArray client_service_id, com.aria.common.shared.admin.ItemNoArray item_no, com.aria.common.shared.admin.ClientItemIdArray client_item_id, com.aria.common.shared.admin.ScheduleArray schedule, Long surcharge_scope, Long locale_no, String locale_name){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
@@ -3032,6 +3084,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         RestUtilities.addParameterValuesFromArray(parameters, client_item_id, "client_item_id");
         RestUtilities.addParameterValuesFromArray(parameters, schedule, "schedule");
         addParameters(parameters,"surcharge_scope", getValue("Long", surcharge_scope));
+        addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
         
         WebResource webResource = client.resource(buildUrl("edit_surcharge"));
@@ -3065,9 +3118,10 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         com.aria.common.shared.admin.ClientItemIdArray client_item_id = (com.aria.common.shared.admin.ClientItemIdArray) map.get("client_item_id");
         com.aria.common.shared.admin.ScheduleArray schedule = (com.aria.common.shared.admin.ScheduleArray) map.get("schedule");
         Long surcharge_scope = (Long) map.get("surcharge_scope");
+        Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
         
-        return editSurcharge(client_no, auth_key, surcharge_no, surcharge_name, client_surcharge_id, description, ext_description, currency_cd, scope_no, surcharge_tier, apply_to_zero_invoice_ind, plan_no, client_plan_id, service_no, client_service_id, item_no, client_item_id, schedule, surcharge_scope, locale_name);
+        return editSurcharge(client_no, auth_key, surcharge_no, surcharge_name, client_surcharge_id, description, ext_description, currency_cd, scope_no, surcharge_tier, apply_to_zero_invoice_ind, plan_no, client_plan_id, service_no, client_service_id, item_no, client_item_id, schedule, surcharge_scope, locale_no, locale_name);
     }
 
     public Map<String,Object> deleteSurcharge(Long client_no, String auth_key, com.aria.common.shared.admin.SurchargeNoArray surcharge_no, com.aria.common.shared.admin.ClientSurchargeIdArray client_surcharge_id){
@@ -3645,945 +3699,6 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         
         return getClientPaymentMethod(client_no, auth_key);
-    }
-
-    public Map<String,Object> getPlansM(Long client_no, String auth_key, String include_rs_summary, String locale_name, String include_translations){
-        MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
-        addParameters(parameters,"client_no",getValue("Long",client_no));
-        addParameters(parameters,"auth_key",getValue("String",auth_key));
-        addParameters(parameters,"include_rs_summary", getValue("String", include_rs_summary));
-        addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("String", include_translations));
-        
-        WebResource webResource = client.resource(buildUrl("get_plans_m"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[3];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "plans";
-        
-        return buildHashMapReturnValues(ret,returnValues);
-    }
-
-    public Map<String,Object> getPlansM(Map<String,Object> map){
-        Long client_no = (Long) map.get("client_no");
-        String auth_key = (String) map.get("auth_key");
-        String include_rs_summary = (String) map.get("include_rs_summary");
-        String locale_name = (String) map.get("locale_name");
-        String include_translations = (String) map.get("include_translations");
-        
-        return getPlansM(client_no, auth_key, include_rs_summary, locale_name, include_translations);
-    }
-
-    public Map<String,Object> getPlanDetailsM(Long client_no, String auth_key, Long plan_no, String client_plan_id, String include_rs_summary, String retrieve_bundled_nso, String retrieve_included_nso, String locale_name, String include_translations){
-        MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
-        addParameters(parameters,"client_no",getValue("Long",client_no));
-        addParameters(parameters,"auth_key",getValue("String",auth_key));
-        addParameters(parameters,"plan_no", getValue("Long", plan_no));
-        addParameters(parameters,"client_plan_id", getValue("String", client_plan_id));
-        addParameters(parameters,"include_rs_summary", getValue("String", include_rs_summary));
-        addParameters(parameters,"retrieve_bundled_nso", getValue("String", retrieve_bundled_nso));
-        addParameters(parameters,"retrieve_included_nso", getValue("String", retrieve_included_nso));
-        addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("String", include_translations));
-        
-        WebResource webResource = client.resource(buildUrl("get_plan_details_m"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[53];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "plan_no";
-        returnValues[3] = "client_plan_id";
-        returnValues[4] = "plan_level";
-        returnValues[5] = "plan_type";
-        returnValues[6] = "plan_name";
-        returnValues[7] = "plan_desc";
-        returnValues[8] = "plan_groups";
-        returnValues[9] = "plan_group_ids";
-        returnValues[10] = "currency_cd";
-        returnValues[11] = "active_ind";
-        returnValues[12] = "rollover_plan_duration";
-        returnValues[13] = "rollover_plan_uom_cd";
-        returnValues[14] = "rollover_plan_no";
-        returnValues[15] = "rollover_client_plan_id";
-        returnValues[16] = "init_free_period_duration";
-        returnValues[17] = "init_free_period_uom_cd";
-        returnValues[18] = "initial_plan_status_cd";
-        returnValues[19] = "rollover_plan_status_duration";
-        returnValues[20] = "rollover_plan_status_uom_cd";
-        returnValues[21] = "rollover_plan_status_cd";
-        returnValues[22] = "allow_child_accounts";
-        returnValues[23] = "dunning_plan_no";
-        returnValues[24] = "dunning_client_plan_id";
-        returnValues[25] = "acct_status_cd";
-        returnValues[26] = "rollover_acct_status_days";
-        returnValues[27] = "rollover_acct_status_cd";
-        returnValues[28] = "template_no";
-        returnValues[29] = "template_id";
-        returnValues[30] = "plan_cancel_min_months";
-        returnValues[31] = "how_to_apply_min_fee";
-        returnValues[32] = "is_deletable";
-        returnValues[33] = "services";
-        returnValues[34] = "parent_plans";
-        returnValues[35] = "parent_plan_ids";
-        returnValues[36] = "exclusion_plans";
-        returnValues[37] = "resources";
-        returnValues[38] = "supplemental_obj_fields";
-        returnValues[39] = "surcharges";
-        returnValues[40] = "proration_invoice_timing_cd";
-        returnValues[41] = "rate_sched";
-        returnValues[42] = "contract_rollover_plan_no";
-        returnValues[43] = "contract_rollover_client_plan_id";
-        returnValues[44] = "contract_rollover_rate_sched";
-        returnValues[45] = "plan_nso_items";
-        returnValues[46] = "plan_nso_group";
-        returnValues[47] = "nso_group_min_qty";
-        returnValues[48] = "nso_group_max_qty";
-        returnValues[49] = "nso_group_item_scope";
-        returnValues[50] = "nso_incl_list_scope";
-        returnValues[51] = "plan_nso_incl_list";
-        returnValues[52] = "plan_translation_info";
-        
-        return buildHashMapReturnValues(ret,returnValues);
-    }
-
-    public Map<String,Object> getPlanDetailsM(Map<String,Object> map){
-        Long client_no = (Long) map.get("client_no");
-        String auth_key = (String) map.get("auth_key");
-        Long plan_no = (Long) map.get("plan_no");
-        String client_plan_id = (String) map.get("client_plan_id");
-        String include_rs_summary = (String) map.get("include_rs_summary");
-        String retrieve_bundled_nso = (String) map.get("retrieve_bundled_nso");
-        String retrieve_included_nso = (String) map.get("retrieve_included_nso");
-        String locale_name = (String) map.get("locale_name");
-        String include_translations = (String) map.get("include_translations");
-        
-        return getPlanDetailsM(client_no, auth_key, plan_no, client_plan_id, include_rs_summary, retrieve_bundled_nso, retrieve_included_nso, locale_name, include_translations);
-    }
-
-    public Map<String,Object> createNewPlanM(Long client_no, String auth_key, String plan_name, String plan_type, String currency, Long active, com.aria.common.shared.admin.ScheduleArray schedule, com.aria.common.shared.admin.ServiceArray service, String plan_description, String client_plan_id, com.aria.common.shared.admin.PlanGroupArray plan_group, com.aria.common.shared.admin.PlanGroupIdArray plan_group_id, Long rollover_plan_duration, Long rollover_plan_uom_cd, Long rollover_plan_no, String rollover_client_plan_id, Long init_free_period_duration, Long init_free_period_uom_cd, Long initial_plan_status_cd, Long rollover_plan_status_duration, Long rollover_plan_status_uom_cd, Long rollover_plan_status_cd, Long dunning_plan_no, String dunning_client_plan_id, Long template_no, String client_email_template_id, String apply_cancellation, Long plan_cancel_min_month, String apply_minimum_fee, String how_to_apply_min_fee, com.aria.common.shared.admin.ResourceArray resource, Long arc_service_no, com.aria.common.shared.admin.ParentPlansArray parent_plans, com.aria.common.shared.admin.ParentClientPlanIdsArray parent_client_plan_ids, com.aria.common.shared.admin.ExclusionPlansArray exclusion_plans, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field, Long template_ind, com.aria.common.shared.admin.ChildPlansArray child_plans, com.aria.common.shared.admin.EligibleChildPlansArray eligible_child_plans, String notification_template_group_no, String credit_note_template_no, com.aria.common.shared.admin.SurchargeNoArray surcharge_no, com.aria.common.shared.admin.ClientSurchargeIdArray client_surcharge_id, String proration_invoice_timing_cd, Long plan_instance_status_cd, com.aria.common.shared.admin.AssignFieldCategoriesArray assign_field_categories, Long contract_rollover_plan_no, String contract_rollover_client_plan_id, com.aria.common.shared.admin.ContractRolloverRateSchedArray contract_rollover_rate_sched, Long nso_incl_list_scope, com.aria.common.shared.admin.NsoInclListArrayArray nso_incl_list_array, com.aria.common.shared.admin.NsoGroupArrayArray nso_group_array, String nso_group_min_qty, String nso_group_max_qty, String nso_group_item_scope, com.aria.common.shared.admin.NsoItemsArrayArray nso_items_array){
-        MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
-        addParameters(parameters,"client_no",getValue("Long",client_no));
-        addParameters(parameters,"auth_key",getValue("String",auth_key));
-        addParameters(parameters,"plan_name", getValue("String", plan_name));
-        addParameters(parameters,"plan_type", getValue("String", plan_type));
-        addParameters(parameters,"currency", getValue("String", currency));
-        addParameters(parameters,"active", getValue("Long", active));
-        RestUtilities.addParameterValuesFromArray(parameters, schedule, "schedule");
-        RestUtilities.addParameterValuesFromArray(parameters, service, "service");
-        addParameters(parameters,"plan_description", getValue("String", plan_description));
-        addParameters(parameters,"client_plan_id", getValue("String", client_plan_id));
-        RestUtilities.addParameterValuesFromArray(parameters, plan_group, "plan_group");
-        RestUtilities.addParameterValuesFromArray(parameters, plan_group_id, "plan_group_id");
-        addParameters(parameters,"rollover_plan_duration", getValue("Long", rollover_plan_duration));
-        addParameters(parameters,"rollover_plan_uom_cd", getValue("Long", rollover_plan_uom_cd));
-        addParameters(parameters,"rollover_plan_no", getValue("Long", rollover_plan_no));
-        addParameters(parameters,"rollover_client_plan_id", getValue("String", rollover_client_plan_id));
-        addParameters(parameters,"init_free_period_duration", getValue("Long", init_free_period_duration));
-        addParameters(parameters,"init_free_period_uom_cd", getValue("Long", init_free_period_uom_cd));
-        addParameters(parameters,"initial_plan_status_cd", getValue("Long", initial_plan_status_cd));
-        addParameters(parameters,"rollover_plan_status_duration", getValue("Long", rollover_plan_status_duration));
-        addParameters(parameters,"rollover_plan_status_uom_cd", getValue("Long", rollover_plan_status_uom_cd));
-        addParameters(parameters,"rollover_plan_status_cd", getValue("Long", rollover_plan_status_cd));
-        addParameters(parameters,"dunning_plan_no", getValue("Long", dunning_plan_no));
-        addParameters(parameters,"dunning_client_plan_id", getValue("String", dunning_client_plan_id));
-        addParameters(parameters,"template_no", getValue("Long", template_no));
-        addParameters(parameters,"client_email_template_id", getValue("String", client_email_template_id));
-        addParameters(parameters,"apply_cancellation", getValue("String", apply_cancellation));
-        addParameters(parameters,"plan_cancel_min_month", getValue("Long", plan_cancel_min_month));
-        addParameters(parameters,"apply_minimum_fee", getValue("String", apply_minimum_fee));
-        addParameters(parameters,"how_to_apply_min_fee", getValue("String", how_to_apply_min_fee));
-        RestUtilities.addParameterValuesFromArray(parameters, resource, "resource");
-        addParameters(parameters,"arc_service_no", getValue("Long", arc_service_no));
-        RestUtilities.addParameterValuesFromArray(parameters, parent_plans, "parent_plans");
-        RestUtilities.addParameterValuesFromArray(parameters, parent_client_plan_ids, "parent_client_plan_ids");
-        RestUtilities.addParameterValuesFromArray(parameters, exclusion_plans, "exclusion_plans");
-        RestUtilities.addParameterValuesFromArray(parameters, supplemental_obj_field, "supplemental_obj_field");
-        addParameters(parameters,"template_ind", getValue("Long", template_ind));
-        RestUtilities.addParameterValuesFromArray(parameters, child_plans, "child_plans");
-        RestUtilities.addParameterValuesFromArray(parameters, eligible_child_plans, "eligible_child_plans");
-        addParameters(parameters,"notification_template_group_no", getValue("String", notification_template_group_no));
-        addParameters(parameters,"credit_note_template_no", getValue("String", credit_note_template_no));
-        RestUtilities.addParameterValuesFromArray(parameters, surcharge_no, "surcharge_no");
-        RestUtilities.addParameterValuesFromArray(parameters, client_surcharge_id, "client_surcharge_id");
-        addParameters(parameters,"proration_invoice_timing_cd", getValue("String", proration_invoice_timing_cd));
-        addParameters(parameters,"plan_instance_status_cd", getValue("Long", plan_instance_status_cd));
-        RestUtilities.addParameterValuesFromArray(parameters, assign_field_categories, "assign_field_categories");
-        addParameters(parameters,"contract_rollover_plan_no", getValue("Long", contract_rollover_plan_no));
-        addParameters(parameters,"contract_rollover_client_plan_id", getValue("String", contract_rollover_client_plan_id));
-        RestUtilities.addParameterValuesFromArray(parameters, contract_rollover_rate_sched, "contract_rollover_rate_sched");
-        addParameters(parameters,"nso_incl_list_scope", getValue("Long", nso_incl_list_scope));
-        RestUtilities.addParameterValuesFromArray(parameters, nso_incl_list_array, "nso_incl_list_array");
-        RestUtilities.addParameterValuesFromArray(parameters, nso_group_array, "nso_group_array");
-        addParameters(parameters,"nso_group_min_qty", getValue("String", nso_group_min_qty));
-        addParameters(parameters,"nso_group_max_qty", getValue("String", nso_group_max_qty));
-        addParameters(parameters,"nso_group_item_scope", getValue("String", nso_group_item_scope));
-        RestUtilities.addParameterValuesFromArray(parameters, nso_items_array, "nso_items_array");
-        
-        WebResource webResource = client.resource(buildUrl("create_new_plan_m"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[3];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "plan_no";
-        
-        return buildHashMapReturnValues(ret,returnValues);
-    }
-
-    public Map<String,Object> createNewPlanM(Map<String,Object> map){
-        Long client_no = (Long) map.get("client_no");
-        String auth_key = (String) map.get("auth_key");
-        String plan_name = (String) map.get("plan_name");
-        String plan_type = (String) map.get("plan_type");
-        String currency = (String) map.get("currency");
-        Long active = (Long) map.get("active");
-        com.aria.common.shared.admin.ScheduleArray schedule = (com.aria.common.shared.admin.ScheduleArray) map.get("schedule");
-        com.aria.common.shared.admin.ServiceArray service = (com.aria.common.shared.admin.ServiceArray) map.get("service");
-        String plan_description = (String) map.get("plan_description");
-        String client_plan_id = (String) map.get("client_plan_id");
-        com.aria.common.shared.admin.PlanGroupArray plan_group = (com.aria.common.shared.admin.PlanGroupArray) map.get("plan_group");
-        com.aria.common.shared.admin.PlanGroupIdArray plan_group_id = (com.aria.common.shared.admin.PlanGroupIdArray) map.get("plan_group_id");
-        Long rollover_plan_duration = (Long) map.get("rollover_plan_duration");
-        Long rollover_plan_uom_cd = (Long) map.get("rollover_plan_uom_cd");
-        Long rollover_plan_no = (Long) map.get("rollover_plan_no");
-        String rollover_client_plan_id = (String) map.get("rollover_client_plan_id");
-        Long init_free_period_duration = (Long) map.get("init_free_period_duration");
-        Long init_free_period_uom_cd = (Long) map.get("init_free_period_uom_cd");
-        Long initial_plan_status_cd = (Long) map.get("initial_plan_status_cd");
-        Long rollover_plan_status_duration = (Long) map.get("rollover_plan_status_duration");
-        Long rollover_plan_status_uom_cd = (Long) map.get("rollover_plan_status_uom_cd");
-        Long rollover_plan_status_cd = (Long) map.get("rollover_plan_status_cd");
-        Long dunning_plan_no = (Long) map.get("dunning_plan_no");
-        String dunning_client_plan_id = (String) map.get("dunning_client_plan_id");
-        Long template_no = (Long) map.get("template_no");
-        String client_email_template_id = (String) map.get("client_email_template_id");
-        String apply_cancellation = (String) map.get("apply_cancellation");
-        Long plan_cancel_min_month = (Long) map.get("plan_cancel_min_month");
-        String apply_minimum_fee = (String) map.get("apply_minimum_fee");
-        String how_to_apply_min_fee = (String) map.get("how_to_apply_min_fee");
-        com.aria.common.shared.admin.ResourceArray resource = (com.aria.common.shared.admin.ResourceArray) map.get("resource");
-        Long arc_service_no = (Long) map.get("arc_service_no");
-        com.aria.common.shared.admin.ParentPlansArray parent_plans = (com.aria.common.shared.admin.ParentPlansArray) map.get("parent_plans");
-        com.aria.common.shared.admin.ParentClientPlanIdsArray parent_client_plan_ids = (com.aria.common.shared.admin.ParentClientPlanIdsArray) map.get("parent_client_plan_ids");
-        com.aria.common.shared.admin.ExclusionPlansArray exclusion_plans = (com.aria.common.shared.admin.ExclusionPlansArray) map.get("exclusion_plans");
-        com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field = (com.aria.common.shared.admin.SupplementalObjFieldArray) map.get("supplemental_obj_field");
-        Long template_ind = (Long) map.get("template_ind");
-        com.aria.common.shared.admin.ChildPlansArray child_plans = (com.aria.common.shared.admin.ChildPlansArray) map.get("child_plans");
-        com.aria.common.shared.admin.EligibleChildPlansArray eligible_child_plans = (com.aria.common.shared.admin.EligibleChildPlansArray) map.get("eligible_child_plans");
-        String notification_template_group_no = (String) map.get("notification_template_group_no");
-        String credit_note_template_no = (String) map.get("credit_note_template_no");
-        com.aria.common.shared.admin.SurchargeNoArray surcharge_no = (com.aria.common.shared.admin.SurchargeNoArray) map.get("surcharge_no");
-        com.aria.common.shared.admin.ClientSurchargeIdArray client_surcharge_id = (com.aria.common.shared.admin.ClientSurchargeIdArray) map.get("client_surcharge_id");
-        String proration_invoice_timing_cd = (String) map.get("proration_invoice_timing_cd");
-        Long plan_instance_status_cd = (Long) map.get("plan_instance_status_cd");
-        com.aria.common.shared.admin.AssignFieldCategoriesArray assign_field_categories = (com.aria.common.shared.admin.AssignFieldCategoriesArray) map.get("assign_field_categories");
-        Long contract_rollover_plan_no = (Long) map.get("contract_rollover_plan_no");
-        String contract_rollover_client_plan_id = (String) map.get("contract_rollover_client_plan_id");
-        com.aria.common.shared.admin.ContractRolloverRateSchedArray contract_rollover_rate_sched = (com.aria.common.shared.admin.ContractRolloverRateSchedArray) map.get("contract_rollover_rate_sched");
-        Long nso_incl_list_scope = (Long) map.get("nso_incl_list_scope");
-        com.aria.common.shared.admin.NsoInclListArrayArray nso_incl_list_array = (com.aria.common.shared.admin.NsoInclListArrayArray) map.get("nso_incl_list_array");
-        com.aria.common.shared.admin.NsoGroupArrayArray nso_group_array = (com.aria.common.shared.admin.NsoGroupArrayArray) map.get("nso_group_array");
-        String nso_group_min_qty = (String) map.get("nso_group_min_qty");
-        String nso_group_max_qty = (String) map.get("nso_group_max_qty");
-        String nso_group_item_scope = (String) map.get("nso_group_item_scope");
-        com.aria.common.shared.admin.NsoItemsArrayArray nso_items_array = (com.aria.common.shared.admin.NsoItemsArrayArray) map.get("nso_items_array");
-        
-        return createNewPlanM(client_no, auth_key, plan_name, plan_type, currency, active, schedule, service, plan_description, client_plan_id, plan_group, plan_group_id, rollover_plan_duration, rollover_plan_uom_cd, rollover_plan_no, rollover_client_plan_id, init_free_period_duration, init_free_period_uom_cd, initial_plan_status_cd, rollover_plan_status_duration, rollover_plan_status_uom_cd, rollover_plan_status_cd, dunning_plan_no, dunning_client_plan_id, template_no, client_email_template_id, apply_cancellation, plan_cancel_min_month, apply_minimum_fee, how_to_apply_min_fee, resource, arc_service_no, parent_plans, parent_client_plan_ids, exclusion_plans, supplemental_obj_field, template_ind, child_plans, eligible_child_plans, notification_template_group_no, credit_note_template_no, surcharge_no, client_surcharge_id, proration_invoice_timing_cd, plan_instance_status_cd, assign_field_categories, contract_rollover_plan_no, contract_rollover_client_plan_id, contract_rollover_rate_sched, nso_incl_list_scope, nso_incl_list_array, nso_group_array, nso_group_min_qty, nso_group_max_qty, nso_group_item_scope, nso_items_array);
-    }
-
-    public Map<String,Object> editPlanM(Long client_no, String auth_key, String plan_no, String client_plan_id, String plan_name, String plan_description, com.aria.common.shared.admin.PlanGroupArray plan_group, com.aria.common.shared.admin.PlanGroupIdArray plan_group_id, Long plan_type, Long active, String currency, Long template_no, String client_email_template_id, Long rollover_plan_duration, Long rollover_plan_uom_cd, Long rollover_plan_no, String rollover_client_plan_id, Long init_free_period_duration, Long init_free_period_uom_cd, Long initial_plan_status_cd, Long rollover_plan_status_duration, Long rollover_plan_status_uom_cd, Long rollover_plan_status_cd, Long dunning_plan_no, String dunning_client_plan_id, Long allow_child_accts, String apply_cancellation, Long plan_cancel_min_month, String apply_minimum_fee, Long how_to_apply_min_fee, com.aria.common.shared.admin.ScheduleArray schedule, com.aria.common.shared.admin.ServiceArray service, com.aria.common.shared.admin.ResourceArray resource, Long arc_service_no, com.aria.common.shared.admin.ParentPlansArray parent_plans, com.aria.common.shared.admin.ParentClientPlanIdsArray parent_client_plan_ids, com.aria.common.shared.admin.ExclusionPlansArray exclusion_plans, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field, com.aria.common.shared.admin.ChildPlansArray child_plans, com.aria.common.shared.admin.EligibleChildPlansArray eligible_child_plans, String notification_template_group_no, String credit_note_template_no, com.aria.common.shared.admin.SurchargeNoArray surcharge_no, com.aria.common.shared.admin.ClientSurchargeIdArray client_surcharge_id, String proration_invoice_timing_cd, Long plan_instance_status_cd, com.aria.common.shared.admin.AssignFieldCategoriesArray assign_field_categories, Long edit_directives, Long contract_rollover_plan_no, String contract_rollover_client_plan_id, com.aria.common.shared.admin.ContractRolloverRateSchedArray contract_rollover_rate_sched, Long nso_incl_list_scope, com.aria.common.shared.admin.NsoInclListArrayArray nso_incl_list_array, com.aria.common.shared.admin.NsoGroupArrayArray nso_group_array, String nso_group_min_qty, String nso_group_max_qty, String nso_group_item_scope, com.aria.common.shared.admin.NsoItemsArrayArray nso_items_array, String locale_name){
-        MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
-        addParameters(parameters,"client_no",getValue("Long",client_no));
-        addParameters(parameters,"auth_key",getValue("String",auth_key));
-        addParameters(parameters,"plan_no", getValue("String", plan_no));
-        addParameters(parameters,"client_plan_id", getValue("String", client_plan_id));
-        addParameters(parameters,"plan_name", getValue("String", plan_name));
-        addParameters(parameters,"plan_description", getValue("String", plan_description));
-        RestUtilities.addParameterValuesFromArray(parameters, plan_group, "plan_group");
-        RestUtilities.addParameterValuesFromArray(parameters, plan_group_id, "plan_group_id");
-        addParameters(parameters,"plan_type", getValue("Long", plan_type));
-        addParameters(parameters,"active", getValue("Long", active));
-        addParameters(parameters,"currency", getValue("String", currency));
-        addParameters(parameters,"template_no", getValue("Long", template_no));
-        addParameters(parameters,"client_email_template_id", getValue("String", client_email_template_id));
-        addParameters(parameters,"rollover_plan_duration", getValue("Long", rollover_plan_duration));
-        addParameters(parameters,"rollover_plan_uom_cd", getValue("Long", rollover_plan_uom_cd));
-        addParameters(parameters,"rollover_plan_no", getValue("Long", rollover_plan_no));
-        addParameters(parameters,"rollover_client_plan_id", getValue("String", rollover_client_plan_id));
-        addParameters(parameters,"init_free_period_duration", getValue("Long", init_free_period_duration));
-        addParameters(parameters,"init_free_period_uom_cd", getValue("Long", init_free_period_uom_cd));
-        addParameters(parameters,"initial_plan_status_cd", getValue("Long", initial_plan_status_cd));
-        addParameters(parameters,"rollover_plan_status_duration", getValue("Long", rollover_plan_status_duration));
-        addParameters(parameters,"rollover_plan_status_uom_cd", getValue("Long", rollover_plan_status_uom_cd));
-        addParameters(parameters,"rollover_plan_status_cd", getValue("Long", rollover_plan_status_cd));
-        addParameters(parameters,"dunning_plan_no", getValue("Long", dunning_plan_no));
-        addParameters(parameters,"dunning_client_plan_id", getValue("String", dunning_client_plan_id));
-        addParameters(parameters,"allow_child_accts", getValue("Long", allow_child_accts));
-        addParameters(parameters,"apply_cancellation", getValue("String", apply_cancellation));
-        addParameters(parameters,"plan_cancel_min_month", getValue("Long", plan_cancel_min_month));
-        addParameters(parameters,"apply_minimum_fee", getValue("String", apply_minimum_fee));
-        addParameters(parameters,"how_to_apply_min_fee", getValue("Long", how_to_apply_min_fee));
-        RestUtilities.addParameterValuesFromArray(parameters, schedule, "schedule");
-        RestUtilities.addParameterValuesFromArray(parameters, service, "service");
-        RestUtilities.addParameterValuesFromArray(parameters, resource, "resource");
-        addParameters(parameters,"arc_service_no", getValue("Long", arc_service_no));
-        RestUtilities.addParameterValuesFromArray(parameters, parent_plans, "parent_plans");
-        RestUtilities.addParameterValuesFromArray(parameters, parent_client_plan_ids, "parent_client_plan_ids");
-        RestUtilities.addParameterValuesFromArray(parameters, exclusion_plans, "exclusion_plans");
-        RestUtilities.addParameterValuesFromArray(parameters, supplemental_obj_field, "supplemental_obj_field");
-        RestUtilities.addParameterValuesFromArray(parameters, child_plans, "child_plans");
-        RestUtilities.addParameterValuesFromArray(parameters, eligible_child_plans, "eligible_child_plans");
-        addParameters(parameters,"notification_template_group_no", getValue("String", notification_template_group_no));
-        addParameters(parameters,"credit_note_template_no", getValue("String", credit_note_template_no));
-        RestUtilities.addParameterValuesFromArray(parameters, surcharge_no, "surcharge_no");
-        RestUtilities.addParameterValuesFromArray(parameters, client_surcharge_id, "client_surcharge_id");
-        addParameters(parameters,"proration_invoice_timing_cd", getValue("String", proration_invoice_timing_cd));
-        addParameters(parameters,"plan_instance_status_cd", getValue("Long", plan_instance_status_cd));
-        RestUtilities.addParameterValuesFromArray(parameters, assign_field_categories, "assign_field_categories");
-        addParameters(parameters,"edit_directives", getValue("Long", edit_directives));
-        addParameters(parameters,"contract_rollover_plan_no", getValue("Long", contract_rollover_plan_no));
-        addParameters(parameters,"contract_rollover_client_plan_id", getValue("String", contract_rollover_client_plan_id));
-        RestUtilities.addParameterValuesFromArray(parameters, contract_rollover_rate_sched, "contract_rollover_rate_sched");
-        addParameters(parameters,"nso_incl_list_scope", getValue("Long", nso_incl_list_scope));
-        RestUtilities.addParameterValuesFromArray(parameters, nso_incl_list_array, "nso_incl_list_array");
-        RestUtilities.addParameterValuesFromArray(parameters, nso_group_array, "nso_group_array");
-        addParameters(parameters,"nso_group_min_qty", getValue("String", nso_group_min_qty));
-        addParameters(parameters,"nso_group_max_qty", getValue("String", nso_group_max_qty));
-        addParameters(parameters,"nso_group_item_scope", getValue("String", nso_group_item_scope));
-        RestUtilities.addParameterValuesFromArray(parameters, nso_items_array, "nso_items_array");
-        addParameters(parameters,"locale_name", getValue("String", locale_name));
-        
-        WebResource webResource = client.resource(buildUrl("edit_plan_m"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[3];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "plan_no";
-        
-        return buildHashMapReturnValues(ret,returnValues);
-    }
-
-    public Map<String,Object> editPlanM(Map<String,Object> map){
-        Long client_no = (Long) map.get("client_no");
-        String auth_key = (String) map.get("auth_key");
-        String plan_no = (String) map.get("plan_no");
-        String client_plan_id = (String) map.get("client_plan_id");
-        String plan_name = (String) map.get("plan_name");
-        String plan_description = (String) map.get("plan_description");
-        com.aria.common.shared.admin.PlanGroupArray plan_group = (com.aria.common.shared.admin.PlanGroupArray) map.get("plan_group");
-        com.aria.common.shared.admin.PlanGroupIdArray plan_group_id = (com.aria.common.shared.admin.PlanGroupIdArray) map.get("plan_group_id");
-        Long plan_type = (Long) map.get("plan_type");
-        Long active = (Long) map.get("active");
-        String currency = (String) map.get("currency");
-        Long template_no = (Long) map.get("template_no");
-        String client_email_template_id = (String) map.get("client_email_template_id");
-        Long rollover_plan_duration = (Long) map.get("rollover_plan_duration");
-        Long rollover_plan_uom_cd = (Long) map.get("rollover_plan_uom_cd");
-        Long rollover_plan_no = (Long) map.get("rollover_plan_no");
-        String rollover_client_plan_id = (String) map.get("rollover_client_plan_id");
-        Long init_free_period_duration = (Long) map.get("init_free_period_duration");
-        Long init_free_period_uom_cd = (Long) map.get("init_free_period_uom_cd");
-        Long initial_plan_status_cd = (Long) map.get("initial_plan_status_cd");
-        Long rollover_plan_status_duration = (Long) map.get("rollover_plan_status_duration");
-        Long rollover_plan_status_uom_cd = (Long) map.get("rollover_plan_status_uom_cd");
-        Long rollover_plan_status_cd = (Long) map.get("rollover_plan_status_cd");
-        Long dunning_plan_no = (Long) map.get("dunning_plan_no");
-        String dunning_client_plan_id = (String) map.get("dunning_client_plan_id");
-        Long allow_child_accts = (Long) map.get("allow_child_accts");
-        String apply_cancellation = (String) map.get("apply_cancellation");
-        Long plan_cancel_min_month = (Long) map.get("plan_cancel_min_month");
-        String apply_minimum_fee = (String) map.get("apply_minimum_fee");
-        Long how_to_apply_min_fee = (Long) map.get("how_to_apply_min_fee");
-        com.aria.common.shared.admin.ScheduleArray schedule = (com.aria.common.shared.admin.ScheduleArray) map.get("schedule");
-        com.aria.common.shared.admin.ServiceArray service = (com.aria.common.shared.admin.ServiceArray) map.get("service");
-        com.aria.common.shared.admin.ResourceArray resource = (com.aria.common.shared.admin.ResourceArray) map.get("resource");
-        Long arc_service_no = (Long) map.get("arc_service_no");
-        com.aria.common.shared.admin.ParentPlansArray parent_plans = (com.aria.common.shared.admin.ParentPlansArray) map.get("parent_plans");
-        com.aria.common.shared.admin.ParentClientPlanIdsArray parent_client_plan_ids = (com.aria.common.shared.admin.ParentClientPlanIdsArray) map.get("parent_client_plan_ids");
-        com.aria.common.shared.admin.ExclusionPlansArray exclusion_plans = (com.aria.common.shared.admin.ExclusionPlansArray) map.get("exclusion_plans");
-        com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field = (com.aria.common.shared.admin.SupplementalObjFieldArray) map.get("supplemental_obj_field");
-        com.aria.common.shared.admin.ChildPlansArray child_plans = (com.aria.common.shared.admin.ChildPlansArray) map.get("child_plans");
-        com.aria.common.shared.admin.EligibleChildPlansArray eligible_child_plans = (com.aria.common.shared.admin.EligibleChildPlansArray) map.get("eligible_child_plans");
-        String notification_template_group_no = (String) map.get("notification_template_group_no");
-        String credit_note_template_no = (String) map.get("credit_note_template_no");
-        com.aria.common.shared.admin.SurchargeNoArray surcharge_no = (com.aria.common.shared.admin.SurchargeNoArray) map.get("surcharge_no");
-        com.aria.common.shared.admin.ClientSurchargeIdArray client_surcharge_id = (com.aria.common.shared.admin.ClientSurchargeIdArray) map.get("client_surcharge_id");
-        String proration_invoice_timing_cd = (String) map.get("proration_invoice_timing_cd");
-        Long plan_instance_status_cd = (Long) map.get("plan_instance_status_cd");
-        com.aria.common.shared.admin.AssignFieldCategoriesArray assign_field_categories = (com.aria.common.shared.admin.AssignFieldCategoriesArray) map.get("assign_field_categories");
-        Long edit_directives = (Long) map.get("edit_directives");
-        Long contract_rollover_plan_no = (Long) map.get("contract_rollover_plan_no");
-        String contract_rollover_client_plan_id = (String) map.get("contract_rollover_client_plan_id");
-        com.aria.common.shared.admin.ContractRolloverRateSchedArray contract_rollover_rate_sched = (com.aria.common.shared.admin.ContractRolloverRateSchedArray) map.get("contract_rollover_rate_sched");
-        Long nso_incl_list_scope = (Long) map.get("nso_incl_list_scope");
-        com.aria.common.shared.admin.NsoInclListArrayArray nso_incl_list_array = (com.aria.common.shared.admin.NsoInclListArrayArray) map.get("nso_incl_list_array");
-        com.aria.common.shared.admin.NsoGroupArrayArray nso_group_array = (com.aria.common.shared.admin.NsoGroupArrayArray) map.get("nso_group_array");
-        String nso_group_min_qty = (String) map.get("nso_group_min_qty");
-        String nso_group_max_qty = (String) map.get("nso_group_max_qty");
-        String nso_group_item_scope = (String) map.get("nso_group_item_scope");
-        com.aria.common.shared.admin.NsoItemsArrayArray nso_items_array = (com.aria.common.shared.admin.NsoItemsArrayArray) map.get("nso_items_array");
-        String locale_name = (String) map.get("locale_name");
-        
-        return editPlanM(client_no, auth_key, plan_no, client_plan_id, plan_name, plan_description, plan_group, plan_group_id, plan_type, active, currency, template_no, client_email_template_id, rollover_plan_duration, rollover_plan_uom_cd, rollover_plan_no, rollover_client_plan_id, init_free_period_duration, init_free_period_uom_cd, initial_plan_status_cd, rollover_plan_status_duration, rollover_plan_status_uom_cd, rollover_plan_status_cd, dunning_plan_no, dunning_client_plan_id, allow_child_accts, apply_cancellation, plan_cancel_min_month, apply_minimum_fee, how_to_apply_min_fee, schedule, service, resource, arc_service_no, parent_plans, parent_client_plan_ids, exclusion_plans, supplemental_obj_field, child_plans, eligible_child_plans, notification_template_group_no, credit_note_template_no, surcharge_no, client_surcharge_id, proration_invoice_timing_cd, plan_instance_status_cd, assign_field_categories, edit_directives, contract_rollover_plan_no, contract_rollover_client_plan_id, contract_rollover_rate_sched, nso_incl_list_scope, nso_incl_list_array, nso_group_array, nso_group_min_qty, nso_group_max_qty, nso_group_item_scope, nso_items_array, locale_name);
-    }
-
-    public Map<String,Object> getDunningProcessesM(Long client_no, String auth_key, com.aria.common.shared.admin.DunningProcessesArray dunning_processes, com.aria.common.shared.admin.PayMethodTypesArray pay_method_types, com.aria.common.shared.admin.MasterPlansArray master_plans){
-        MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
-        addParameters(parameters,"client_no",getValue("Long",client_no));
-        addParameters(parameters,"auth_key",getValue("String",auth_key));
-        RestUtilities.addParameterValuesFromArray(parameters, dunning_processes, "dunning_processes");
-        RestUtilities.addParameterValuesFromArray(parameters, pay_method_types, "pay_method_types");
-        RestUtilities.addParameterValuesFromArray(parameters, master_plans, "master_plans");
-        
-        WebResource webResource = client.resource(buildUrl("get_dunning_processes_m"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[3];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "dunning_process_details";
-        
-        return buildHashMapReturnValues(ret,returnValues);
-    }
-
-    public Map<String,Object> getDunningProcessesM(Map<String,Object> map){
-        Long client_no = (Long) map.get("client_no");
-        String auth_key = (String) map.get("auth_key");
-        com.aria.common.shared.admin.DunningProcessesArray dunning_processes = (com.aria.common.shared.admin.DunningProcessesArray) map.get("dunning_processes");
-        com.aria.common.shared.admin.PayMethodTypesArray pay_method_types = (com.aria.common.shared.admin.PayMethodTypesArray) map.get("pay_method_types");
-        com.aria.common.shared.admin.MasterPlansArray master_plans = (com.aria.common.shared.admin.MasterPlansArray) map.get("master_plans");
-        
-        return getDunningProcessesM(client_no, auth_key, dunning_processes, pay_method_types, master_plans);
-    }
-
-    public Map<String,Object> createInventoryItemM(Long client_no, String auth_key, Long item_type, String item_name, String item_desc, Long service_no, com.aria.common.shared.admin.ServiceArray service, String client_sku, String currency_cd, String item_price, String client_item_id, Long active_ind, Long purchase_scope, String client_service_id, String tax_inclusive_ind, String modify_price_ind, Long subunit_qty, String subunit_label, Long queued_active_ind, String queued_active_date, String do_auto_create_service_credit, Long days_to_expiry, String resource_type_no, String resource_units, Long stock_level_track, Double stock_level_adjust, com.aria.common.shared.admin.ImageArray image, com.aria.common.shared.admin.ParentClassArray parent_class, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field, String allow_service_credits){
-        MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
-        addParameters(parameters,"client_no",getValue("Long",client_no));
-        addParameters(parameters,"auth_key",getValue("String",auth_key));
-        addParameters(parameters,"item_type", getValue("Long", item_type));
-        addParameters(parameters,"item_name", getValue("String", item_name));
-        addParameters(parameters,"item_desc", getValue("String", item_desc));
-        addParameters(parameters,"service_no", getValue("Long", service_no));
-        RestUtilities.addParameterValuesFromArray(parameters, service, "service");
-        addParameters(parameters,"client_sku", getValue("String", client_sku));
-        addParameters(parameters,"currency_cd", getValue("String", currency_cd));
-        addParameters(parameters,"item_price", getValue("String", item_price));
-        addParameters(parameters,"client_item_id", getValue("String", client_item_id));
-        addParameters(parameters,"active_ind", getValue("Long", active_ind));
-        addParameters(parameters,"purchase_scope", getValue("Long", purchase_scope));
-        addParameters(parameters,"client_service_id", getValue("String", client_service_id));
-        addParameters(parameters,"tax_inclusive_ind", getValue("String", tax_inclusive_ind));
-        addParameters(parameters,"modify_price_ind", getValue("String", modify_price_ind));
-        addParameters(parameters,"subunit_qty", getValue("Long", subunit_qty));
-        addParameters(parameters,"subunit_label", getValue("String", subunit_label));
-        addParameters(parameters,"queued_active_ind", getValue("Long", queued_active_ind));
-        addParameters(parameters,"queued_active_date", getValue("String", queued_active_date));
-        addParameters(parameters,"do_auto_create_service_credit", getValue("String", do_auto_create_service_credit));
-        addParameters(parameters,"days_to_expiry", getValue("Long", days_to_expiry));
-        addParameters(parameters,"resource_type_no", getValue("String", resource_type_no));
-        addParameters(parameters,"resource_units", getValue("String", resource_units));
-        addParameters(parameters,"stock_level_track", getValue("Long", stock_level_track));
-        addParameters(parameters,"stock_level_adjust", getValue("Double", stock_level_adjust));
-        RestUtilities.addParameterValuesFromArray(parameters, image, "image");
-        RestUtilities.addParameterValuesFromArray(parameters, parent_class, "parent_class");
-        RestUtilities.addParameterValuesFromArray(parameters, supplemental_obj_field, "supplemental_obj_field");
-        addParameters(parameters,"allow_service_credits", getValue("String", allow_service_credits));
-        
-        WebResource webResource = client.resource(buildUrl("create_inventory_item_m"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[3];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "item_no";
-        
-        return buildHashMapReturnValues(ret,returnValues);
-    }
-
-    public Map<String,Object> createInventoryItemM(Map<String,Object> map){
-        Long client_no = (Long) map.get("client_no");
-        String auth_key = (String) map.get("auth_key");
-        Long item_type = (Long) map.get("item_type");
-        String item_name = (String) map.get("item_name");
-        String item_desc = (String) map.get("item_desc");
-        Long service_no = (Long) map.get("service_no");
-        com.aria.common.shared.admin.ServiceArray service = (com.aria.common.shared.admin.ServiceArray) map.get("service");
-        String client_sku = (String) map.get("client_sku");
-        String currency_cd = (String) map.get("currency_cd");
-        String item_price = (String) map.get("item_price");
-        String client_item_id = (String) map.get("client_item_id");
-        Long active_ind = (Long) map.get("active_ind");
-        Long purchase_scope = (Long) map.get("purchase_scope");
-        String client_service_id = (String) map.get("client_service_id");
-        String tax_inclusive_ind = (String) map.get("tax_inclusive_ind");
-        String modify_price_ind = (String) map.get("modify_price_ind");
-        Long subunit_qty = (Long) map.get("subunit_qty");
-        String subunit_label = (String) map.get("subunit_label");
-        Long queued_active_ind = (Long) map.get("queued_active_ind");
-        String queued_active_date = (String) map.get("queued_active_date");
-        String do_auto_create_service_credit = (String) map.get("do_auto_create_service_credit");
-        Long days_to_expiry = (Long) map.get("days_to_expiry");
-        String resource_type_no = (String) map.get("resource_type_no");
-        String resource_units = (String) map.get("resource_units");
-        Long stock_level_track = (Long) map.get("stock_level_track");
-        Double stock_level_adjust = (Double) map.get("stock_level_adjust");
-        com.aria.common.shared.admin.ImageArray image = (com.aria.common.shared.admin.ImageArray) map.get("image");
-        com.aria.common.shared.admin.ParentClassArray parent_class = (com.aria.common.shared.admin.ParentClassArray) map.get("parent_class");
-        com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field = (com.aria.common.shared.admin.SupplementalObjFieldArray) map.get("supplemental_obj_field");
-        String allow_service_credits = (String) map.get("allow_service_credits");
-        
-        return createInventoryItemM(client_no, auth_key, item_type, item_name, item_desc, service_no, service, client_sku, currency_cd, item_price, client_item_id, active_ind, purchase_scope, client_service_id, tax_inclusive_ind, modify_price_ind, subunit_qty, subunit_label, queued_active_ind, queued_active_date, do_auto_create_service_credit, days_to_expiry, resource_type_no, resource_units, stock_level_track, stock_level_adjust, image, parent_class, supplemental_obj_field, allow_service_credits);
-    }
-
-    public Map<String,Object> updateInventoryItemM(Long client_no, String auth_key, Long item_no, Long item_type, String item_name, String item_desc, String client_item_id, Long service_no, String client_service_id, com.aria.common.shared.admin.ServiceArray service, String client_sku, String currency_cd, String item_price, Long active_ind, Long purchase_scope, String tax_inclusive_ind, String modify_price_ind, Long subunit_qty, String subunit_label, Long queued_active_ind, String queued_active_date, Long do_auto_create_service_credit, Long days_to_expiry, String resource_type_no, String resource_units, Long stock_level_track, Double stock_level_adjust, com.aria.common.shared.admin.ImageArray image, com.aria.common.shared.admin.ParentClassArray parent_class, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field, String locale_name, String allow_service_credits){
-        MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
-        addParameters(parameters,"client_no",getValue("Long",client_no));
-        addParameters(parameters,"auth_key",getValue("String",auth_key));
-        addParameters(parameters,"item_no", getValue("Long", item_no));
-        addParameters(parameters,"item_type", getValue("Long", item_type));
-        addParameters(parameters,"item_name", getValue("String", item_name));
-        addParameters(parameters,"item_desc", getValue("String", item_desc));
-        addParameters(parameters,"client_item_id", getValue("String", client_item_id));
-        addParameters(parameters,"service_no", getValue("Long", service_no));
-        addParameters(parameters,"client_service_id", getValue("String", client_service_id));
-        RestUtilities.addParameterValuesFromArray(parameters, service, "service");
-        addParameters(parameters,"client_sku", getValue("String", client_sku));
-        addParameters(parameters,"currency_cd", getValue("String", currency_cd));
-        addParameters(parameters,"item_price", getValue("String", item_price));
-        addParameters(parameters,"active_ind", getValue("Long", active_ind));
-        addParameters(parameters,"purchase_scope", getValue("Long", purchase_scope));
-        addParameters(parameters,"tax_inclusive_ind", getValue("String", tax_inclusive_ind));
-        addParameters(parameters,"modify_price_ind", getValue("String", modify_price_ind));
-        addParameters(parameters,"subunit_qty", getValue("Long", subunit_qty));
-        addParameters(parameters,"subunit_label", getValue("String", subunit_label));
-        addParameters(parameters,"queued_active_ind", getValue("Long", queued_active_ind));
-        addParameters(parameters,"queued_active_date", getValue("String", queued_active_date));
-        addParameters(parameters,"do_auto_create_service_credit", getValue("Long", do_auto_create_service_credit));
-        addParameters(parameters,"days_to_expiry", getValue("Long", days_to_expiry));
-        addParameters(parameters,"resource_type_no", getValue("String", resource_type_no));
-        addParameters(parameters,"resource_units", getValue("String", resource_units));
-        addParameters(parameters,"stock_level_track", getValue("Long", stock_level_track));
-        addParameters(parameters,"stock_level_adjust", getValue("Double", stock_level_adjust));
-        RestUtilities.addParameterValuesFromArray(parameters, image, "image");
-        RestUtilities.addParameterValuesFromArray(parameters, parent_class, "parent_class");
-        RestUtilities.addParameterValuesFromArray(parameters, supplemental_obj_field, "supplemental_obj_field");
-        addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"allow_service_credits", getValue("String", allow_service_credits));
-        
-        WebResource webResource = client.resource(buildUrl("update_inventory_item_m"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[3];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "item_no";
-        
-        return buildHashMapReturnValues(ret,returnValues);
-    }
-
-    public Map<String,Object> updateInventoryItemM(Map<String,Object> map){
-        Long client_no = (Long) map.get("client_no");
-        String auth_key = (String) map.get("auth_key");
-        Long item_no = (Long) map.get("item_no");
-        Long item_type = (Long) map.get("item_type");
-        String item_name = (String) map.get("item_name");
-        String item_desc = (String) map.get("item_desc");
-        String client_item_id = (String) map.get("client_item_id");
-        Long service_no = (Long) map.get("service_no");
-        String client_service_id = (String) map.get("client_service_id");
-        com.aria.common.shared.admin.ServiceArray service = (com.aria.common.shared.admin.ServiceArray) map.get("service");
-        String client_sku = (String) map.get("client_sku");
-        String currency_cd = (String) map.get("currency_cd");
-        String item_price = (String) map.get("item_price");
-        Long active_ind = (Long) map.get("active_ind");
-        Long purchase_scope = (Long) map.get("purchase_scope");
-        String tax_inclusive_ind = (String) map.get("tax_inclusive_ind");
-        String modify_price_ind = (String) map.get("modify_price_ind");
-        Long subunit_qty = (Long) map.get("subunit_qty");
-        String subunit_label = (String) map.get("subunit_label");
-        Long queued_active_ind = (Long) map.get("queued_active_ind");
-        String queued_active_date = (String) map.get("queued_active_date");
-        Long do_auto_create_service_credit = (Long) map.get("do_auto_create_service_credit");
-        Long days_to_expiry = (Long) map.get("days_to_expiry");
-        String resource_type_no = (String) map.get("resource_type_no");
-        String resource_units = (String) map.get("resource_units");
-        Long stock_level_track = (Long) map.get("stock_level_track");
-        Double stock_level_adjust = (Double) map.get("stock_level_adjust");
-        com.aria.common.shared.admin.ImageArray image = (com.aria.common.shared.admin.ImageArray) map.get("image");
-        com.aria.common.shared.admin.ParentClassArray parent_class = (com.aria.common.shared.admin.ParentClassArray) map.get("parent_class");
-        com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field = (com.aria.common.shared.admin.SupplementalObjFieldArray) map.get("supplemental_obj_field");
-        String locale_name = (String) map.get("locale_name");
-        String allow_service_credits = (String) map.get("allow_service_credits");
-        
-        return updateInventoryItemM(client_no, auth_key, item_no, item_type, item_name, item_desc, client_item_id, service_no, client_service_id, service, client_sku, currency_cd, item_price, active_ind, purchase_scope, tax_inclusive_ind, modify_price_ind, subunit_qty, subunit_label, queued_active_ind, queued_active_date, do_auto_create_service_credit, days_to_expiry, resource_type_no, resource_units, stock_level_track, stock_level_adjust, image, parent_class, supplemental_obj_field, locale_name, allow_service_credits);
-    }
-
-    public Map<String,Object> getInventoryItemsM(Long client_no, String auth_key, String locale_name, String include_translations){
-        MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
-        addParameters(parameters,"client_no",getValue("Long",client_no));
-        addParameters(parameters,"auth_key",getValue("String",auth_key));
-        addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("String", include_translations));
-        
-        WebResource webResource = client.resource(buildUrl("get_inventory_items_m"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[3];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "inventory_items";
-        
-        return buildHashMapReturnValues(ret,returnValues);
-    }
-
-    public Map<String,Object> getInventoryItemsM(Map<String,Object> map){
-        Long client_no = (Long) map.get("client_no");
-        String auth_key = (String) map.get("auth_key");
-        String locale_name = (String) map.get("locale_name");
-        String include_translations = (String) map.get("include_translations");
-        
-        return getInventoryItemsM(client_no, auth_key, locale_name, include_translations);
-    }
-
-    public Map<String,Object> getInventoryItemDetailsM(Long client_no, String auth_key, Long item_no, String client_item_id, String currency_cd, String locale_name, String include_translations){
-        MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
-        addParameters(parameters,"client_no",getValue("Long",client_no));
-        addParameters(parameters,"auth_key",getValue("String",auth_key));
-        addParameters(parameters,"item_no", getValue("Long", item_no));
-        addParameters(parameters,"client_item_id", getValue("String", client_item_id));
-        addParameters(parameters,"currency_cd", getValue("String", currency_cd));
-        addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("String", include_translations));
-        
-        WebResource webResource = client.resource(buildUrl("get_inventory_item_details_m"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[26];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "item_no";
-        returnValues[3] = "client_item_id";
-        returnValues[4] = "item_type";
-        returnValues[5] = "item_name";
-        returnValues[6] = "item_desc";
-        returnValues[7] = "active_ind";
-        returnValues[8] = "purchase_scope";
-        returnValues[9] = "service_no";
-        returnValues[10] = "client_service_id";
-        returnValues[11] = "invoice_advancement_months";
-        returnValues[12] = "plan_no";
-        returnValues[13] = "client_plan_id";
-        returnValues[14] = "client_sku";
-        returnValues[15] = "modify_price_ind";
-        returnValues[16] = "subunit_qty";
-        returnValues[17] = "subunit_label";
-        returnValues[18] = "days_to_expiry";
-        returnValues[19] = "resources";
-        returnValues[20] = "pricing";
-        returnValues[21] = "stock_level";
-        returnValues[22] = "image";
-        returnValues[23] = "item_class";
-        returnValues[24] = "supplemental_obj_fields";
-        returnValues[25] = "item_translations";
-        
-        return buildHashMapReturnValues(ret,returnValues);
-    }
-
-    public Map<String,Object> getInventoryItemDetailsM(Map<String,Object> map){
-        Long client_no = (Long) map.get("client_no");
-        String auth_key = (String) map.get("auth_key");
-        Long item_no = (Long) map.get("item_no");
-        String client_item_id = (String) map.get("client_item_id");
-        String currency_cd = (String) map.get("currency_cd");
-        String locale_name = (String) map.get("locale_name");
-        String include_translations = (String) map.get("include_translations");
-        
-        return getInventoryItemDetailsM(client_no, auth_key, item_no, client_item_id, currency_cd, locale_name, include_translations);
-    }
-
-    public Map<String,Object> createReasonCodeM(Long client_no, String auth_key, Long type, Long reason_code, String reason_code_name, String debit_gl_code, String enable_for_csr, String allow_time_restrictions, String allow_plan_restrictions, String record_service_credit_trans){
-        MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
-        addParameters(parameters,"client_no",getValue("Long",client_no));
-        addParameters(parameters,"auth_key",getValue("String",auth_key));
-        addParameters(parameters,"type", getValue("Long", type));
-        addParameters(parameters,"reason_code", getValue("Long", reason_code));
-        addParameters(parameters,"reason_code_name", getValue("String", reason_code_name));
-        addParameters(parameters,"debit_gl_code", getValue("String", debit_gl_code));
-        addParameters(parameters,"enable_for_csr", getValue("String", enable_for_csr));
-        addParameters(parameters,"allow_time_restrictions", getValue("String", allow_time_restrictions));
-        addParameters(parameters,"allow_plan_restrictions", getValue("String", allow_plan_restrictions));
-        addParameters(parameters,"record_service_credit_trans", getValue("String", record_service_credit_trans));
-        
-        WebResource webResource = client.resource(buildUrl("create_reason_code_m"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[4];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "created_by";
-        returnValues[3] = "created_date";
-        
-        return buildHashMapReturnValues(ret,returnValues);
-    }
-
-    public Map<String,Object> createReasonCodeM(Map<String,Object> map){
-        Long client_no = (Long) map.get("client_no");
-        String auth_key = (String) map.get("auth_key");
-        Long type = (Long) map.get("type");
-        Long reason_code = (Long) map.get("reason_code");
-        String reason_code_name = (String) map.get("reason_code_name");
-        String debit_gl_code = (String) map.get("debit_gl_code");
-        String enable_for_csr = (String) map.get("enable_for_csr");
-        String allow_time_restrictions = (String) map.get("allow_time_restrictions");
-        String allow_plan_restrictions = (String) map.get("allow_plan_restrictions");
-        String record_service_credit_trans = (String) map.get("record_service_credit_trans");
-        
-        return createReasonCodeM(client_no, auth_key, type, reason_code, reason_code_name, debit_gl_code, enable_for_csr, allow_time_restrictions, allow_plan_restrictions, record_service_credit_trans);
-    }
-
-    public Map<String,Object> updateReasonCodeM(Long client_no, String auth_key, Long type, Long reason_code, String reason_code_name, String debit_gl_code, String enable_for_csr, String allow_time_restrictions, String allow_plan_restrictions){
-        MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
-        addParameters(parameters,"client_no",getValue("Long",client_no));
-        addParameters(parameters,"auth_key",getValue("String",auth_key));
-        addParameters(parameters,"type", getValue("Long", type));
-        addParameters(parameters,"reason_code", getValue("Long", reason_code));
-        addParameters(parameters,"reason_code_name", getValue("String", reason_code_name));
-        addParameters(parameters,"debit_gl_code", getValue("String", debit_gl_code));
-        addParameters(parameters,"enable_for_csr", getValue("String", enable_for_csr));
-        addParameters(parameters,"allow_time_restrictions", getValue("String", allow_time_restrictions));
-        addParameters(parameters,"allow_plan_restrictions", getValue("String", allow_plan_restrictions));
-        
-        WebResource webResource = client.resource(buildUrl("update_reason_code_m"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[4];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "created_by";
-        returnValues[3] = "created_date";
-        
-        return buildHashMapReturnValues(ret,returnValues);
-    }
-
-    public Map<String,Object> updateReasonCodeM(Map<String,Object> map){
-        Long client_no = (Long) map.get("client_no");
-        String auth_key = (String) map.get("auth_key");
-        Long type = (Long) map.get("type");
-        Long reason_code = (Long) map.get("reason_code");
-        String reason_code_name = (String) map.get("reason_code_name");
-        String debit_gl_code = (String) map.get("debit_gl_code");
-        String enable_for_csr = (String) map.get("enable_for_csr");
-        String allow_time_restrictions = (String) map.get("allow_time_restrictions");
-        String allow_plan_restrictions = (String) map.get("allow_plan_restrictions");
-        
-        return updateReasonCodeM(client_no, auth_key, type, reason_code, reason_code_name, debit_gl_code, enable_for_csr, allow_time_restrictions, allow_plan_restrictions);
-    }
-
-    public Map<String,Object> getReasonCodeM(Long client_no, String auth_key, Long type, Long reason_code){
-        MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
-        addParameters(parameters,"client_no",getValue("Long",client_no));
-        addParameters(parameters,"auth_key",getValue("String",auth_key));
-        addParameters(parameters,"type", getValue("Long", type));
-        addParameters(parameters,"reason_code", getValue("Long", reason_code));
-        
-        WebResource webResource = client.resource(buildUrl("get_reason_code_m"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[11];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "created_by";
-        returnValues[3] = "created_date";
-        returnValues[4] = "updated_by";
-        returnValues[5] = "updated_date";
-        returnValues[6] = "reason_code_name";
-        returnValues[7] = "debit_gl_code";
-        returnValues[8] = "allow_time_restrictions";
-        returnValues[9] = "allow_plan_restrictions";
-        returnValues[10] = "record_service_credit_transactions";
-        
-        return buildHashMapReturnValues(ret,returnValues);
-    }
-
-    public Map<String,Object> getReasonCodeM(Map<String,Object> map){
-        Long client_no = (Long) map.get("client_no");
-        String auth_key = (String) map.get("auth_key");
-        Long type = (Long) map.get("type");
-        Long reason_code = (Long) map.get("reason_code");
-        
-        return getReasonCodeM(client_no, auth_key, type, reason_code);
-    }
-
-    public Map<String,Object> createPaymentTermsM(Long client_no, String auth_key, String pmt_terms_name, String pmt_terms_description, Long days_until_due, Long discount_percent, Long discount_period, Long functional_acct_group_no){
-        MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
-        addParameters(parameters,"client_no",getValue("Long",client_no));
-        addParameters(parameters,"auth_key",getValue("String",auth_key));
-        addParameters(parameters,"pmt_terms_name", getValue("String", pmt_terms_name));
-        addParameters(parameters,"pmt_terms_description", getValue("String", pmt_terms_description));
-        addParameters(parameters,"days_until_due", getValue("Long", days_until_due));
-        addParameters(parameters,"discount_percent", getValue("Long", discount_percent));
-        addParameters(parameters,"discount_period", getValue("Long", discount_period));
-        addParameters(parameters,"functional_acct_group_no", getValue("Long", functional_acct_group_no));
-        
-        WebResource webResource = client.resource(buildUrl("create_payment_terms_m"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[3];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "payment_terms_no";
-        
-        return buildHashMapReturnValues(ret,returnValues);
-    }
-
-    public Map<String,Object> createPaymentTermsM(Map<String,Object> map){
-        Long client_no = (Long) map.get("client_no");
-        String auth_key = (String) map.get("auth_key");
-        String pmt_terms_name = (String) map.get("pmt_terms_name");
-        String pmt_terms_description = (String) map.get("pmt_terms_description");
-        Long days_until_due = (Long) map.get("days_until_due");
-        Long discount_percent = (Long) map.get("discount_percent");
-        Long discount_period = (Long) map.get("discount_period");
-        Long functional_acct_group_no = (Long) map.get("functional_acct_group_no");
-        
-        return createPaymentTermsM(client_no, auth_key, pmt_terms_name, pmt_terms_description, days_until_due, discount_percent, discount_period, functional_acct_group_no);
-    }
-
-    public Map<String,Object> getPaymentTermsM(Long client_no, String auth_key){
-        MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
-        addParameters(parameters,"client_no",getValue("Long",client_no));
-        addParameters(parameters,"auth_key",getValue("String",auth_key));
-        
-        WebResource webResource = client.resource(buildUrl("get_payment_terms_m"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[3];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "all_payment_terms";
-        
-        return buildHashMapReturnValues(ret,returnValues);
-    }
-
-    public Map<String,Object> getPaymentTermsM(Map<String,Object> map){
-        Long client_no = (Long) map.get("client_no");
-        String auth_key = (String) map.get("auth_key");
-        
-        return getPaymentTermsM(client_no, auth_key);
-    }
-
-    public Map<String,Object> createServiceM(Long client_no, String auth_key, String service_name, String service_type, String gl_cd, String ar_gl_cd, String def_gl_cd, Long rev_rec_ind, Long deferred_ind, Long taxable_ind, Long tax_group, Long usage_type, String client_service_id, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field, String commodity_cd, String client_tax_group_id, String allow_service_credits){
-        MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
-        addParameters(parameters,"client_no",getValue("Long",client_no));
-        addParameters(parameters,"auth_key",getValue("String",auth_key));
-        addParameters(parameters,"service_name", getValue("String", service_name));
-        addParameters(parameters,"service_type", getValue("String", service_type));
-        addParameters(parameters,"gl_cd", getValue("String", gl_cd));
-        addParameters(parameters,"ar_gl_cd", getValue("String", ar_gl_cd));
-        addParameters(parameters,"def_gl_cd", getValue("String", def_gl_cd));
-        addParameters(parameters,"rev_rec_ind", getValue("Long", rev_rec_ind));
-        addParameters(parameters,"deferred_ind", getValue("Long", deferred_ind));
-        addParameters(parameters,"taxable_ind", getValue("Long", taxable_ind));
-        addParameters(parameters,"tax_group", getValue("Long", tax_group));
-        addParameters(parameters,"usage_type", getValue("Long", usage_type));
-        addParameters(parameters,"client_service_id", getValue("String", client_service_id));
-        RestUtilities.addParameterValuesFromArray(parameters, supplemental_obj_field, "supplemental_obj_field");
-        addParameters(parameters,"commodity_cd", getValue("String", commodity_cd));
-        addParameters(parameters,"client_tax_group_id", getValue("String", client_tax_group_id));
-        addParameters(parameters,"allow_service_credits", getValue("String", allow_service_credits));
-        
-        WebResource webResource = client.resource(buildUrl("create_service_m"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[3];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "service_no";
-        
-        return buildHashMapReturnValues(ret,returnValues);
-    }
-
-    public Map<String,Object> createServiceM(Map<String,Object> map){
-        Long client_no = (Long) map.get("client_no");
-        String auth_key = (String) map.get("auth_key");
-        String service_name = (String) map.get("service_name");
-        String service_type = (String) map.get("service_type");
-        String gl_cd = (String) map.get("gl_cd");
-        String ar_gl_cd = (String) map.get("ar_gl_cd");
-        String def_gl_cd = (String) map.get("def_gl_cd");
-        Long rev_rec_ind = (Long) map.get("rev_rec_ind");
-        Long deferred_ind = (Long) map.get("deferred_ind");
-        Long taxable_ind = (Long) map.get("taxable_ind");
-        Long tax_group = (Long) map.get("tax_group");
-        Long usage_type = (Long) map.get("usage_type");
-        String client_service_id = (String) map.get("client_service_id");
-        com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field = (com.aria.common.shared.admin.SupplementalObjFieldArray) map.get("supplemental_obj_field");
-        String commodity_cd = (String) map.get("commodity_cd");
-        String client_tax_group_id = (String) map.get("client_tax_group_id");
-        String allow_service_credits = (String) map.get("allow_service_credits");
-        
-        return createServiceM(client_no, auth_key, service_name, service_type, gl_cd, ar_gl_cd, def_gl_cd, rev_rec_ind, deferred_ind, taxable_ind, tax_group, usage_type, client_service_id, supplemental_obj_field, commodity_cd, client_tax_group_id, allow_service_credits);
-    }
-
-    public Map<String,Object> updateServiceM(Long client_no, String auth_key, Long service_no, String service_name, String service_type, String gl_cd, String ar_gl_cd, String def_gl_cd, Long rev_rec_ind, Long deferred_ind, Long taxable_ind, Long tax_group, Long usage_type, String client_service_id, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field, String commodity_cd, String client_tax_group_id, String locale_name, String allow_service_credits){
-        MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
-        addParameters(parameters,"client_no",getValue("Long",client_no));
-        addParameters(parameters,"auth_key",getValue("String",auth_key));
-        addParameters(parameters,"service_no", getValue("Long", service_no));
-        addParameters(parameters,"service_name", getValue("String", service_name));
-        addParameters(parameters,"service_type", getValue("String", service_type));
-        addParameters(parameters,"gl_cd", getValue("String", gl_cd));
-        addParameters(parameters,"ar_gl_cd", getValue("String", ar_gl_cd));
-        addParameters(parameters,"def_gl_cd", getValue("String", def_gl_cd));
-        addParameters(parameters,"rev_rec_ind", getValue("Long", rev_rec_ind));
-        addParameters(parameters,"deferred_ind", getValue("Long", deferred_ind));
-        addParameters(parameters,"taxable_ind", getValue("Long", taxable_ind));
-        addParameters(parameters,"tax_group", getValue("Long", tax_group));
-        addParameters(parameters,"usage_type", getValue("Long", usage_type));
-        addParameters(parameters,"client_service_id", getValue("String", client_service_id));
-        RestUtilities.addParameterValuesFromArray(parameters, supplemental_obj_field, "supplemental_obj_field");
-        addParameters(parameters,"commodity_cd", getValue("String", commodity_cd));
-        addParameters(parameters,"client_tax_group_id", getValue("String", client_tax_group_id));
-        addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"allow_service_credits", getValue("String", allow_service_credits));
-        
-        WebResource webResource = client.resource(buildUrl("update_service_m"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[3];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "service_no";
-        
-        return buildHashMapReturnValues(ret,returnValues);
-    }
-
-    public Map<String,Object> updateServiceM(Map<String,Object> map){
-        Long client_no = (Long) map.get("client_no");
-        String auth_key = (String) map.get("auth_key");
-        Long service_no = (Long) map.get("service_no");
-        String service_name = (String) map.get("service_name");
-        String service_type = (String) map.get("service_type");
-        String gl_cd = (String) map.get("gl_cd");
-        String ar_gl_cd = (String) map.get("ar_gl_cd");
-        String def_gl_cd = (String) map.get("def_gl_cd");
-        Long rev_rec_ind = (Long) map.get("rev_rec_ind");
-        Long deferred_ind = (Long) map.get("deferred_ind");
-        Long taxable_ind = (Long) map.get("taxable_ind");
-        Long tax_group = (Long) map.get("tax_group");
-        Long usage_type = (Long) map.get("usage_type");
-        String client_service_id = (String) map.get("client_service_id");
-        com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field = (com.aria.common.shared.admin.SupplementalObjFieldArray) map.get("supplemental_obj_field");
-        String commodity_cd = (String) map.get("commodity_cd");
-        String client_tax_group_id = (String) map.get("client_tax_group_id");
-        String locale_name = (String) map.get("locale_name");
-        String allow_service_credits = (String) map.get("allow_service_credits");
-        
-        return updateServiceM(client_no, auth_key, service_no, service_name, service_type, gl_cd, ar_gl_cd, def_gl_cd, rev_rec_ind, deferred_ind, taxable_ind, tax_group, usage_type, client_service_id, supplemental_obj_field, commodity_cd, client_tax_group_id, locale_name, allow_service_credits);
     }
 
     /********************************** END - METHODS IMPLEMENTATION ***********************************************/

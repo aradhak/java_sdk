@@ -10,11 +10,13 @@ import javax.xml.bind.annotation.XmlType;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "coupon_translations_ReturnElement", propOrder = {"localeName", "couponDesc"})
+@XmlType(name = "coupon_translations_ReturnElement", propOrder = {"localeName", "localeNo", "couponDesc"})
 public class CouponTranslationsReturnElement {
 
     @XmlElement(name = "locale_name")
     protected String localeName;
+    @XmlElement(name = "locale_no")
+    protected Long localeNo;
     @XmlElement(name = "coupon_desc")
     protected String couponDesc;
     
@@ -24,6 +26,14 @@ public class CouponTranslationsReturnElement {
 
     public void setLocaleName(String value) {
         this.localeName = value;
+    }
+
+    public Long getLocaleNo() {
+        return localeNo;
+    }
+
+    public void setLocaleNo(Long value) {
+        this.localeNo = value;
     }
 
     public String getCouponDesc() {

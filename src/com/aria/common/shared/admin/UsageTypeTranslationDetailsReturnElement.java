@@ -10,11 +10,13 @@ import javax.xml.bind.annotation.XmlType;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "usage_type_translation_details_ReturnElement", propOrder = {"localeName", "usageTypeNo", "usageTypeName", "usageTypeDesc", "usageTypeDisplayString"})
+@XmlType(name = "usage_type_translation_details_ReturnElement", propOrder = {"localeName", "localeNo", "usageTypeNo", "usageTypeName", "usageTypeDesc", "usageTypeDisplayString"})
 public class UsageTypeTranslationDetailsReturnElement {
 
     @XmlElement(name = "locale_name")
     protected String localeName;
+    @XmlElement(name = "locale_no")
+    protected Long localeNo;
     @XmlElement(name = "usage_type_no")
     protected Long usageTypeNo;
     @XmlElement(name = "usage_type_name")
@@ -30,6 +32,14 @@ public class UsageTypeTranslationDetailsReturnElement {
 
     public void setLocaleName(String value) {
         this.localeName = value;
+    }
+
+    public Long getLocaleNo() {
+        return localeNo;
+    }
+
+    public void setLocaleNo(Long value) {
+        this.localeNo = value;
     }
 
     public Long getUsageTypeNo() {

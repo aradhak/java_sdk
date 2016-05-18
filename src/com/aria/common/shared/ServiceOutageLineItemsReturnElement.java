@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "service_outage_line_items_ReturnElement", propOrder = {"planNo", "planName", "serviceNo", "serviceName", "outageDuration", "creditAmount", "clientPlanId", "clientServiceId", "outAcctNo", "outMasterPlanInstanceNo", "outClientMpInstanceId"})
+@XmlType(name = "service_outage_line_items_ReturnElement", propOrder = {"planNo", "planName", "serviceNo", "serviceName", "outageDuration", "creditAmount", "clientPlanId", "clientServiceId"})
 public class ServiceOutageLineItemsReturnElement {
 
     @XmlElement(name = "plan_no")
@@ -29,12 +29,6 @@ public class ServiceOutageLineItemsReturnElement {
     protected String clientPlanId;
     @XmlElement(name = "client_service_id")
     protected String clientServiceId;
-    @XmlElement(name = "out_acct_no")
-    protected Long outAcctNo;
-    @XmlElement(name = "out_master_plan_instance_no")
-    protected Long outMasterPlanInstanceNo;
-    @XmlElement(name = "out_client_mp_instance_id")
-    protected String outClientMpInstanceId;
     
     public Long getPlanNo() {
         return planNo;
@@ -98,30 +92,6 @@ public class ServiceOutageLineItemsReturnElement {
 
     public void setClientServiceId(String value) {
         this.clientServiceId = value;
-    }
-
-    public Long getOutAcctNo() {
-        return outAcctNo;
-    }
-
-    public void setOutAcctNo(Long value) {
-        this.outAcctNo = value;
-    }
-
-    public Long getOutMasterPlanInstanceNo() {
-        return outMasterPlanInstanceNo;
-    }
-
-    public void setOutMasterPlanInstanceNo(Long value) {
-        this.outMasterPlanInstanceNo = value;
-    }
-
-    public String getOutClientMpInstanceId() {
-        return outClientMpInstanceId;
-    }
-
-    public void setOutClientMpInstanceId(String value) {
-        this.outClientMpInstanceId = value;
     }
 
     

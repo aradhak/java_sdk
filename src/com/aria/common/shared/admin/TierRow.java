@@ -12,8 +12,7 @@ import javax.xml.bind.annotation.XmlType;
     "to",
     "description",
     "amount",
-    "schedule",
-    "price"
+    "schedule"
     })
 public class TierRow {
 
@@ -27,8 +26,6 @@ public class TierRow {
     protected Double amount;
     @XmlElement(name = "schedule")
     protected com.aria.common.shared.admin.ScheduleArray schedule;
-    @XmlElement(name = "price")
-    protected com.aria.common.shared.admin.PriceArray price;
     public Long getFrom() {
         return from;
     }
@@ -67,14 +64,6 @@ public class TierRow {
 
     public void setSchedule(com.aria.common.shared.admin.ScheduleArray value) {
         this.schedule = value;
-    }
-
-    public com.aria.common.shared.admin.PriceArray getPrice() {
-        return price;
-    }
-
-    public void setPrice(com.aria.common.shared.admin.PriceArray value) {
-        this.price = value;
     }
 
     

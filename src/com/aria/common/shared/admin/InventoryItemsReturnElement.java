@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "inventory_items_ReturnElement", propOrder = {"itemNo", "itemName", "itemType", "clientSku", "activeInd", "stockLevel", "clientItemId", "purchaseScope", "itemTranslations"})
+@XmlType(name = "inventory_items_ReturnElement", propOrder = {"itemNo", "itemName", "itemType", "clientSku", "activeInd", "stockLevel", "clientItemId"})
 public class InventoryItemsReturnElement {
 
     @XmlElement(name = "item_no")
@@ -27,10 +27,6 @@ public class InventoryItemsReturnElement {
     protected Double stockLevel;
     @XmlElement(name = "client_item_id")
     protected String clientItemId;
-    @XmlElement(name = "purchase_scope")
-    protected Long purchaseScope;
-    @XmlElement(name = "item_translations")
-    protected List<ItemTranslationsReturnElement> itemTranslations;
     
     public Long getItemNo() {
         return itemNo;
@@ -88,18 +84,5 @@ public class InventoryItemsReturnElement {
         this.clientItemId = value;
     }
 
-    public Long getPurchaseScope() {
-        return purchaseScope;
-    }
-
-    public void setPurchaseScope(Long value) {
-        this.purchaseScope = value;
-    }
-
-    public List<ItemTranslationsReturnElement> getItemTranslations() {
-        if (this.itemTranslations == null) {
-            this.itemTranslations = new ArrayList<ItemTranslationsReturnElement>();
-        }
-        return this.itemTranslations;
-    }
+    
 }

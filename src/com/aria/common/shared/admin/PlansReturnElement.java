@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "plans_ReturnElement", propOrder = {"planNo", "clientPlanId", "planName", "planLevel", "billingInterval", "activeInd", "description", "isDeletable", "planDesc", "rateSched", "planTranslationInfo"})
+@XmlType(name = "plans_ReturnElement", propOrder = {"planNo", "clientPlanId", "planName", "planLevel", "billingInterval", "activeInd", "description", "isDeletable", "planDesc"})
 public class PlansReturnElement {
 
     @XmlElement(name = "plan_no")
@@ -31,10 +31,6 @@ public class PlansReturnElement {
     protected String isDeletable;
     @XmlElement(name = "plan_desc")
     protected String planDesc;
-    @XmlElement(name = "rate_sched")
-    protected List<RateSchedReturnElement> rateSched;
-    @XmlElement(name = "plan_translation_info")
-    protected List<PlanTranslationInfoReturnElement> planTranslationInfo;
     
     public Long getPlanNo() {
         return planNo;
@@ -108,15 +104,5 @@ public class PlansReturnElement {
         this.planDesc = value;
     }
 
-    public List<RateSchedReturnElement> getRateSched() {
-        if (this.rateSched == null) {
-            this.rateSched = new ArrayList<RateSchedReturnElement>();
-        }
-        return this.rateSched;
-    }public List<PlanTranslationInfoReturnElement> getPlanTranslationInfo() {
-        if (this.planTranslationInfo == null) {
-            this.planTranslationInfo = new ArrayList<PlanTranslationInfoReturnElement>();
-        }
-        return this.planTranslationInfo;
-    }
+    
 }

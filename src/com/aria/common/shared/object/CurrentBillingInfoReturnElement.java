@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "current_billing_info_ReturnElement", propOrder = {"billingFirstName", "billingMiddleInitial", "billingLastName", "billingAddress1", "billingAddress2", "billingCity", "billingState", "billingLocality", "billingZip", "billingCountry", "billingPhoneNpa", "billingPhoneNxx", "billingPhoneSuffix", "billingPhoneExtension", "billingIntlPhone", "billingEmail", "billingPayMethod", "billingCcExpireMm", "billingCcExpireYyyy", "billingBankRoutingNum"})
+@XmlType(name = "current_billing_info_ReturnElement", propOrder = {"billingFirstName", "billingMiddleInitial", "billingLastName", "billingAddress1", "billingAddress2", "billingCity", "billingState", "billingLocality", "billingZip", "billingCountry", "billingPhoneNpa", "billingPhoneNxx", "billingPhoneSuffix", "billingPhoneExtension", "billingIntlPhone", "billingEmail", "billingPayMethod", "billingCcExpireMm", "billingCcExpireYyyy", "billingBankRoutingNum", "billingAgreementId"})
 public class CurrentBillingInfoReturnElement {
 
     @XmlElement(name = "billing_first_name")
@@ -53,6 +53,8 @@ public class CurrentBillingInfoReturnElement {
     protected String billingCcExpireYyyy;
     @XmlElement(name = "billing_bank_routing_num")
     protected String billingBankRoutingNum;
+    @XmlElement(name = "billing_agreement_id")
+    protected String billingAgreementId;
     
     public String getBillingFirstName() {
         return billingFirstName;
@@ -212,6 +214,14 @@ public class CurrentBillingInfoReturnElement {
 
     public void setBillingBankRoutingNum(String value) {
         this.billingBankRoutingNum = value;
+    }
+
+    public String getBillingAgreementId() {
+        return billingAgreementId;
+    }
+
+    public void setBillingAgreementId(String value) {
+        this.billingAgreementId = value;
     }
 
     

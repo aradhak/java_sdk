@@ -26,9 +26,7 @@ import javax.xml.bind.annotation.XmlType;
     "to",
     "description",
     "futureAmount",
-    "minSurchargeToApply",
-    "recurringBillingInterval",
-    "usageBillingInterval"
+    "minSurchargeToApply"
     })
 public class ScheduleRow {
 
@@ -70,10 +68,6 @@ public class ScheduleRow {
     protected Double futureAmount;
     @XmlElement(name = "min_surcharge_to_apply")
     protected Double minSurchargeToApply;
-    @XmlElement(name = "recurring_billing_interval")
-    protected Long recurringBillingInterval;
-    @XmlElement(name = "usage_billing_interval")
-    protected Long usageBillingInterval;
     public String getScheduleName() {
         return scheduleName;
     }
@@ -224,22 +218,6 @@ public class ScheduleRow {
 
     public void setMinSurchargeToApply(Double value) {
         this.minSurchargeToApply = value;
-    }
-
-    public Long getRecurringBillingInterval() {
-        return recurringBillingInterval;
-    }
-
-    public void setRecurringBillingInterval(Long value) {
-        this.recurringBillingInterval = value;
-    }
-
-    public Long getUsageBillingInterval() {
-        return usageBillingInterval;
-    }
-
-    public void setUsageBillingInterval(Long value) {
-        this.usageBillingInterval = value;
     }
 
     

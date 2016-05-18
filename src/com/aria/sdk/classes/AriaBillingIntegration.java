@@ -8,7 +8,7 @@ import java.util.Map;
  * @copyright Aria Systems, Inc
  * @author (Automatic generated) Aria
  */
-public interface AriaBillingIntegration {
+public interface AriaBillingIntegration  {
     /********************************** METHODS ***********************************************/
     /**
     * getAccountDetails
@@ -243,114 +243,6 @@ public interface AriaBillingIntegration {
     abstract Map<String,Object> getAllInvoiceInformation(Long client_no, String auth_key, String query_string, Long limit, Long offset);
 
     abstract Map<String,Object> getAllInvoiceInformation(Map<String,Object> map);
-
-    /**
-    * getPlanInstanceInformationM
-    * @param client_no - Type: Long
-    * @param auth_key - Type: String
-    * @param query_string - Type: String
-    * @param limit - Type: Long
-    * @param offset - Type: Long
-    * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
-    *   error_code - Type: javax.xml.ws.Holder<br>
-    *   error_msg - Type: javax.xml.ws.Holder<br>
-    *   starting_record - Type: javax.xml.ws.Holder<br>
-    *   total_records - Type: javax.xml.ws.Holder<br>
-    *   plan_instance_details - Type: ArrayList&#60;PlanInstanceDetailsReturnElement&#62;<br>
-    */
-    abstract Map<String,Object> getPlanInstanceInformationM(Long client_no, String auth_key, String query_string, Long limit, Long offset);
-
-    abstract Map<String,Object> getPlanInstanceInformationM(Map<String,Object> map);
-
-    /**
-    * getAccountDetailsM
-    * @param client_no - Type: Long
-    * @param auth_key - Type: String
-    * @param query_string - Type: String
-    * @param limit - Type: Long
-    * @param offset - Type: Long
-    * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
-    *   error_code - Type: javax.xml.ws.Holder<br>
-    *   error_msg - Type: javax.xml.ws.Holder<br>
-    *   starting_record - Type: javax.xml.ws.Holder<br>
-    *   total_records - Type: javax.xml.ws.Holder<br>
-    *   account_details_m - Type: ArrayList&#60;AccountDetailsMReturnElement&#62;<br>
-    */
-    abstract Map<String,Object> getAccountDetailsM(Long client_no, String auth_key, String query_string, Long limit, Long offset);
-
-    abstract Map<String,Object> getAccountDetailsM(Map<String,Object> map);
-
-    /**
-    * getCouponHistoryM
-    * @param client_no - Type: Long
-    * @param auth_key - Type: String
-    * @param query_string - Type: String
-    * @param limit - Type: Long
-    * @param offset - Type: Long
-    * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
-    *   error_code - Type: javax.xml.ws.Holder<br>
-    *   error_msg - Type: javax.xml.ws.Holder<br>
-    *   starting_record - Type: javax.xml.ws.Holder<br>
-    *   total_records - Type: javax.xml.ws.Holder<br>
-    *   coupon_history_m - Type: ArrayList&#60;CouponHistoryMReturnElement&#62;<br>
-    */
-    abstract Map<String,Object> getCouponHistoryM(Long client_no, String auth_key, String query_string, Long limit, Long offset);
-
-    abstract Map<String,Object> getCouponHistoryM(Map<String,Object> map);
-
-    /**
-    * getInvoiceInformationM
-    * @param client_no - Type: Long
-    * @param auth_key - Type: String
-    * @param query_string - Type: String
-    * @param limit - Type: Long
-    * @param offset - Type: Long
-    * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
-    *   error_code - Type: javax.xml.ws.Holder<br>
-    *   error_msg - Type: javax.xml.ws.Holder<br>
-    *   starting_record - Type: javax.xml.ws.Holder<br>
-    *   total_records - Type: javax.xml.ws.Holder<br>
-    *   invoice_details_m - Type: ArrayList&#60;InvoiceDetailsMReturnElement&#62;<br>
-    */
-    abstract Map<String,Object> getInvoiceInformationM(Long client_no, String auth_key, String query_string, Long limit, Long offset);
-
-    abstract Map<String,Object> getInvoiceInformationM(Map<String,Object> map);
-
-    /**
-    * getAllInvoiceInformationM
-    * @param client_no - Type: Long
-    * @param auth_key - Type: String
-    * @param query_string - Type: String
-    * @param limit - Type: Long
-    * @param offset - Type: Long
-    * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
-    *   error_code - Type: javax.xml.ws.Holder<br>
-    *   error_msg - Type: javax.xml.ws.Holder<br>
-    *   starting_record - Type: javax.xml.ws.Holder<br>
-    *   total_records - Type: javax.xml.ws.Holder<br>
-    *   all_invoice_details_m - Type: ArrayList&#60;AllInvoiceDetailsMReturnElement&#62;<br>
-    */
-    abstract Map<String,Object> getAllInvoiceInformationM(Long client_no, String auth_key, String query_string, Long limit, Long offset);
-
-    abstract Map<String,Object> getAllInvoiceInformationM(Map<String,Object> map);
-
-    /**
-    * getAccountPlanHistoryM
-    * @param client_no - Type: Long
-    * @param auth_key - Type: String
-    * @param query_string - Type: String
-    * @param limit - Type: Long
-    * @param offset - Type: Long
-    * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
-    *   error_code - Type: javax.xml.ws.Holder<br>
-    *   error_msg - Type: javax.xml.ws.Holder<br>
-    *   starting_record - Type: javax.xml.ws.Holder<br>
-    *   total_records - Type: javax.xml.ws.Holder<br>
-    *   account_plan_history_m - Type: ArrayList&#60;AccountPlanHistoryMReturnElement&#62;<br>
-    */
-    abstract Map<String,Object> getAccountPlanHistoryM(Long client_no, String auth_key, String query_string, Long limit, Long offset);
-
-    abstract Map<String,Object> getAccountPlanHistoryM(Map<String,Object> map);
 
     /********************************** END - METHODS ***********************************************/
 }
