@@ -17,13 +17,13 @@ import javax.xml.ws.Service;
  */
 @WebServiceClient(name = "aria_integration_services_api",
                   wsdlLocation = "D:/file.xml",
-                  targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.47:aria_integration_services_api")
+                  targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
 public class AriaIntegrationServicesApi extends Service {
 
     public final static URL WSDL_LOCATION;
 
-    public final static QName SERVICE = new QName("urn:client:api:wsdl:document/literal_wrapped:vers:6.47:aria_integration_services_api", "aria_integration_services_api");
-    public final static QName IntegrationServicesPort = new QName("urn:client:api:wsdl:document/literal_wrapped:vers:6.47:aria_integration_services_api", "integration_servicesPort");
+    public final static QName SERVICE = new QName("urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", "aria_integration_services_api");
+    public final static QName IntegrationServicesPort = new QName("urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", "integration_servicesPort");
     static {
         URL url = AriaIntegrationServicesApi.class.getResource("D:/file.xml");
         if (url == null) {
