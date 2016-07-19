@@ -1591,8 +1591,8 @@ public class AriaServiceClientTest {
         
         hashMapReturnValues = getBaseAriaBilling().voidTransaction(getClientNo(), getAuthKey()        , 1L
                 , 1L
-                , 1L
                 , ""
+                , 1L
                 , ""
                 , ""
         );

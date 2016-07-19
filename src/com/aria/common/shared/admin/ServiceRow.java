@@ -56,7 +56,7 @@ public class ServiceRow {
     @XmlElement(name = "pricing_rule")
     protected String pricingRule;
     @XmlElement(name = "high_water")
-    protected String highWater;
+    protected Long highWater;
     @XmlElement(name = "tax_inclusive_ind")
     protected Long taxInclusiveInd;
     @XmlElement(name = "usage_threshold")
@@ -167,11 +167,11 @@ public class ServiceRow {
         this.pricingRule = value;
     }
 
-    public String getHighWater() {
+    public Long getHighWater() {
         return highWater;
     }
 
-    public void setHighWater(String value) {
+    public void setHighWater(Long value) {
         this.highWater = value;
     }
 

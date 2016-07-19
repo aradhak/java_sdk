@@ -4903,7 +4903,7 @@ public class RestUtilities {
                 parameters.add("pricing_rule["+i+"]", getValue("String", row.getPricingRule()));
             }
             if (row.getHighWater() != null){
-                parameters.add("high_water["+i+"]", getValue("String", row.getHighWater()));
+                parameters.add("high_water["+i+"]", getValue("Long", row.getHighWater()));
             }
             if (row.getTaxInclusiveInd() != null){
                 parameters.add("tax_inclusive_ind["+i+"]", getValue("Long", row.getTaxInclusiveInd()));
@@ -4966,7 +4966,7 @@ public class RestUtilities {
                 parameters.add(paramPrefix + "["+i+"]" + "[pricing_rule]", getValue("String", row.getPricingRule()));
             }
                                     if (row.getHighWater() != null){
-                parameters.add(paramPrefix + "["+i+"]" + "[high_water]", getValue("String", row.getHighWater()));
+                parameters.add(paramPrefix + "["+i+"]" + "[high_water]", getValue("Long", row.getHighWater()));
             }
                                     if (row.getTaxInclusiveInd() != null){
                 parameters.add(paramPrefix + "["+i+"]" + "[tax_inclusive_ind]", getValue("Long", row.getTaxInclusiveInd()));
@@ -6067,6 +6067,7 @@ public class RestUtilities {
             if (row.getNoticeBalanceType() != null){
                 parameters.add("notice_balance_type["+i+"]", getValue("String", row.getNoticeBalanceType()));
             }
+                        addParameterValuesFromArray(parameters, row.getNotifications(), "notifications["+i+"]");
             i++;
         }
     }
@@ -6079,6 +6080,34 @@ public class RestUtilities {
             }
                                     if (row.getNoticeBalanceType() != null){
                 parameters.add(paramPrefix + "["+i+"]" + "[notice_balance_type]", getValue("String", row.getNoticeBalanceType()));
+            }
+                        addParameterValuesFromArray(parameters, row.getNotifications(), paramPrefix + "["+i+"]" + "[notifications]");
+            i++;
+        }
+    }
+
+        public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.NotificationsArray arrayList) {
+        if (arrayList == null) return;
+        int i = 0;
+        for (com.aria.common.shared.admin.NotificationsRow row : arrayList.getNotificationsRow()){
+            if (row.getUnits() != null){
+                parameters.add("units["+i+"]", getValue("Long", row.getUnits()));
+            }
+            if (row.getValues() != null){
+                parameters.add("values["+i+"]", getValue("", row.getValues()));
+            }
+            i++;
+        }
+    }
+    public static void addParameterValuesFromArray(MultivaluedMap<String, String> parameters, com.aria.common.shared.admin.NotificationsArray arrayList, String paramPrefix) {
+        if (arrayList == null) return;
+        int i = 0;
+        for (com.aria.common.shared.admin.NotificationsRow row : arrayList.getNotificationsRow()){
+                        if (row.getUnits() != null){
+                parameters.add(paramPrefix + "["+i+"]" + "[units]", getValue("Long", row.getUnits()));
+            }
+                                    if (row.getValues() != null){
+                parameters.add(paramPrefix + "["+i+"]" + "[values]", getValue("", row.getValues()));
             }
                         i++;
         }

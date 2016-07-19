@@ -2675,11 +2675,11 @@ public interface CompletePort {
         @WebParam(name = "transaction_id", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
         Long transactionId
 ,
-        @WebParam(name = "reason_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
-        Long reasonCode
-,
         @WebParam(name = "comments", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
         String comments
+,
+        @WebParam(name = "reason_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        Long reasonCode
 ,
         @WebParam(name = "client_receipt_id", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
         String clientReceiptId
@@ -4662,6 +4662,8 @@ public interface CompletePort {
         javax.xml.ws.Holder<String> billingZip,
         @WebParam(mode = WebParam.Mode.OUT, name = "billing_country", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
         javax.xml.ws.Holder<String> billingCountry,
+        @WebParam(mode = WebParam.Mode.OUT, name = "cc_type", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        javax.xml.ws.Holder<String> ccType,
         @WebParam(mode = WebParam.Mode.OUT, name = "cc_suffix", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
         javax.xml.ws.Holder<String> ccSuffix,
         @WebParam(mode = WebParam.Mode.OUT, name = "cc_expire_mm", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
@@ -4760,6 +4762,8 @@ public interface CompletePort {
         javax.xml.ws.Holder<String> bkupBillingZip,
         @WebParam(mode = WebParam.Mode.OUT, name = "bkup_billing_country", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
         javax.xml.ws.Holder<String> bkupBillingCountry,
+        @WebParam(mode = WebParam.Mode.OUT, name = "bkup_cc_type", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        javax.xml.ws.Holder<String> bkupCcType,
         @WebParam(mode = WebParam.Mode.OUT, name = "bkup_cc_suffix", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
         javax.xml.ws.Holder<String> bkupCcSuffix,
         @WebParam(mode = WebParam.Mode.OUT, name = "bkup_cc_expire_mm", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")

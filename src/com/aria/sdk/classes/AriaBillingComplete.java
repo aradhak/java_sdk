@@ -1390,8 +1390,8 @@ public interface AriaBillingComplete  {
     * @param auth_key - Type: String
     * @param account_no - Type: Long
     * @param transaction_id - Type: Long
-    * @param reason_code - Type: Long
     * @param comments - Type: String
+    * @param reason_code - Type: Long
     * @param client_receipt_id - Type: String
     * @param discard_invoice_usage - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
@@ -1399,7 +1399,7 @@ public interface AriaBillingComplete  {
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
     */
-    abstract Map<String,Object> voidTransaction(Long client_no, String auth_key, Long account_no, Long transaction_id, Long reason_code, String comments, String client_receipt_id, String discard_invoice_usage);
+    abstract Map<String,Object> voidTransaction(Long client_no, String auth_key, Long account_no, Long transaction_id, String comments, Long reason_code, String client_receipt_id, String discard_invoice_usage);
 
     abstract Map<String,Object> voidTransaction(Map<String,Object> map);
 
@@ -2390,6 +2390,7 @@ public interface AriaBillingComplete  {
     *   billing_locality - Type: javax.xml.ws.Holder<br>
     *   billing_zip - Type: javax.xml.ws.Holder<br>
     *   billing_country - Type: javax.xml.ws.Holder<br>
+    *   cc_type - Type: javax.xml.ws.Holder<br>
     *   cc_suffix - Type: javax.xml.ws.Holder<br>
     *   cc_expire_mm - Type: javax.xml.ws.Holder<br>
     *   cc_expire_yyyy - Type: javax.xml.ws.Holder<br>
@@ -2439,6 +2440,7 @@ public interface AriaBillingComplete  {
     *   bkup_billing_locality - Type: javax.xml.ws.Holder<br>
     *   bkup_billing_zip - Type: javax.xml.ws.Holder<br>
     *   bkup_billing_country - Type: javax.xml.ws.Holder<br>
+    *   bkup_cc_type - Type: javax.xml.ws.Holder<br>
     *   bkup_cc_suffix - Type: javax.xml.ws.Holder<br>
     *   bkup_cc_expire_mm - Type: javax.xml.ws.Holder<br>
     *   bkup_cc_expire_yyyy - Type: javax.xml.ws.Holder<br>
