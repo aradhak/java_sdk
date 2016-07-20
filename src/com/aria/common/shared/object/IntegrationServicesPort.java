@@ -12,383 +12,383 @@ import javax.xml.ws.ResponseWrapper;
  * Generated source version: 2.7.6
  *
  */
-@WebService(targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", name = "integration_servicesPort")
+@WebService(targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", name = "integration_servicesPort")
 public interface IntegrationServicesPort {
 
-    @RequestWrapper(localName = "get_account_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetAccountDetails")
+    @RequestWrapper(localName = "get_account_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetAccountDetails")
     @WebMethod(operationName = "get_account_details", action = "get_account_details")
-    @ResponseWrapper(localName = "get_account_detailsResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetAccountDetailsResponseElement")
+    @ResponseWrapper(localName = "get_account_detailsResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetAccountDetailsResponseElement")
     public void getAccountDetails(
-        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         Long clientNo,
-        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         String authKey,
-        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         String queryString
 ,
-        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long limit
 ,
-        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long offset
 ,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> errorCode,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<String> errorMsg,
-        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> startingRecord,
-        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> totalRecords,
-        @WebParam(mode = WebParam.Mode.OUT, name = "account_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "account_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         javax.xml.ws.Holder<java.util.List<com.aria.common.shared.object.AccountDetailsReturnElement>> accountDetails
     );
 
-    @RequestWrapper(localName = "get_account_status_history", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetAccountStatusHistory")
+    @RequestWrapper(localName = "get_account_status_history", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetAccountStatusHistory")
     @WebMethod(operationName = "get_account_status_history", action = "get_account_status_history")
-    @ResponseWrapper(localName = "get_account_status_historyResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetAccountStatusHistoryResponseElement")
+    @ResponseWrapper(localName = "get_account_status_historyResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetAccountStatusHistoryResponseElement")
     public void getAccountStatusHistory(
-        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         Long clientNo,
-        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         String authKey,
-        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         String queryString
 ,
-        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long limit
 ,
-        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long offset
 ,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> errorCode,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<String> errorMsg,
-        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> startingRecord,
-        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> totalRecords,
-        @WebParam(mode = WebParam.Mode.OUT, name = "account_status_history", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "account_status_history", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         javax.xml.ws.Holder<java.util.List<com.aria.common.shared.object.AccountStatusHistoryReturnElement>> accountStatusHistory
     );
 
-    @RequestWrapper(localName = "get_account_plan_history", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetAccountPlanHistory")
+    @RequestWrapper(localName = "get_account_plan_history", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetAccountPlanHistory")
     @WebMethod(operationName = "get_account_plan_history", action = "get_account_plan_history")
-    @ResponseWrapper(localName = "get_account_plan_historyResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetAccountPlanHistoryResponseElement")
+    @ResponseWrapper(localName = "get_account_plan_historyResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetAccountPlanHistoryResponseElement")
     public void getAccountPlanHistory(
-        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         Long clientNo,
-        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         String authKey,
-        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         String queryString
 ,
-        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long limit
 ,
-        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long offset
 ,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> errorCode,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<String> errorMsg,
-        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> startingRecord,
-        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> totalRecords,
-        @WebParam(mode = WebParam.Mode.OUT, name = "account_plan_history", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "account_plan_history", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         javax.xml.ws.Holder<java.util.List<com.aria.common.shared.object.AccountPlanHistoryReturnElement>> accountPlanHistory
     );
 
-    @RequestWrapper(localName = "get_payment_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetPaymentDetails")
+    @RequestWrapper(localName = "get_payment_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetPaymentDetails")
     @WebMethod(operationName = "get_payment_details", action = "get_payment_details")
-    @ResponseWrapper(localName = "get_payment_detailsResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetPaymentDetailsResponseElement")
+    @ResponseWrapper(localName = "get_payment_detailsResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetPaymentDetailsResponseElement")
     public void getPaymentDetails(
-        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         Long clientNo,
-        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         String authKey,
-        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         String queryString
 ,
-        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long limit
 ,
-        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long offset
 ,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> errorCode,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<String> errorMsg,
-        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> startingRecord,
-        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> totalRecords,
-        @WebParam(mode = WebParam.Mode.OUT, name = "payment_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "payment_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         javax.xml.ws.Holder<java.util.List<com.aria.common.shared.object.PaymentDetailsReturnElement>> paymentDetails
     );
 
-    @RequestWrapper(localName = "get_order_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetOrderDetails")
+    @RequestWrapper(localName = "get_order_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetOrderDetails")
     @WebMethod(operationName = "get_order_details", action = "get_order_details")
-    @ResponseWrapper(localName = "get_order_detailsResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetOrderDetailsResponseElement")
+    @ResponseWrapper(localName = "get_order_detailsResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetOrderDetailsResponseElement")
     public void getOrderDetails(
-        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         Long clientNo,
-        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         String authKey,
-        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         String queryString
 ,
-        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long limit
 ,
-        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long offset
 ,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> errorCode,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<String> errorMsg,
-        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> startingRecord,
-        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> totalRecords,
-        @WebParam(mode = WebParam.Mode.OUT, name = "order_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "order_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         javax.xml.ws.Holder<java.util.List<com.aria.common.shared.object.OrderDetailsReturnElement>> orderDetails
     );
 
-    @RequestWrapper(localName = "get_invoice_information", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetInvoiceInformation")
+    @RequestWrapper(localName = "get_invoice_information", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetInvoiceInformation")
     @WebMethod(operationName = "get_invoice_information", action = "get_invoice_information")
-    @ResponseWrapper(localName = "get_invoice_informationResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetInvoiceInformationResponseElement")
+    @ResponseWrapper(localName = "get_invoice_informationResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetInvoiceInformationResponseElement")
     public void getInvoiceInformation(
-        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         Long clientNo,
-        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         String authKey,
-        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         String queryString
 ,
-        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long limit
 ,
-        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long offset
 ,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> errorCode,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<String> errorMsg,
-        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> startingRecord,
-        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> totalRecords,
-        @WebParam(mode = WebParam.Mode.OUT, name = "invoice_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "invoice_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         javax.xml.ws.Holder<java.util.List<com.aria.common.shared.object.InvoiceDetailsReturnElement>> invoiceDetails
     );
 
-    @RequestWrapper(localName = "get_transaction_information", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetTransactionInformation")
+    @RequestWrapper(localName = "get_transaction_information", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetTransactionInformation")
     @WebMethod(operationName = "get_transaction_information", action = "get_transaction_information")
-    @ResponseWrapper(localName = "get_transaction_informationResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetTransactionInformationResponseElement")
+    @ResponseWrapper(localName = "get_transaction_informationResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetTransactionInformationResponseElement")
     public void getTransactionInformation(
-        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         Long clientNo,
-        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         String authKey,
-        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         String queryString
 ,
-        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long limit
 ,
-        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long offset
 ,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> errorCode,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<String> errorMsg,
-        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> startingRecord,
-        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> totalRecords,
-        @WebParam(mode = WebParam.Mode.OUT, name = "transaction_information", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "transaction_information", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         javax.xml.ws.Holder<java.util.List<com.aria.common.shared.object.TransactionInformationReturnElement>> transactionInformation
     );
 
-    @RequestWrapper(localName = "get_refund_information", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetRefundInformation")
+    @RequestWrapper(localName = "get_refund_information", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetRefundInformation")
     @WebMethod(operationName = "get_refund_information", action = "get_refund_information")
-    @ResponseWrapper(localName = "get_refund_informationResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetRefundInformationResponseElement")
+    @ResponseWrapper(localName = "get_refund_informationResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetRefundInformationResponseElement")
     public void getRefundInformation(
-        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         Long clientNo,
-        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         String authKey,
-        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         String queryString
 ,
-        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long limit
 ,
-        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long offset
 ,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> errorCode,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<String> errorMsg,
-        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> startingRecord,
-        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> totalRecords,
-        @WebParam(mode = WebParam.Mode.OUT, name = "refund_information", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "refund_information", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         javax.xml.ws.Holder<java.util.List<com.aria.common.shared.object.RefundInformationReturnElement>> refundInformation
     );
 
-    @RequestWrapper(localName = "get_coupon_history", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetCouponHistory")
+    @RequestWrapper(localName = "get_coupon_history", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetCouponHistory")
     @WebMethod(operationName = "get_coupon_history", action = "get_coupon_history")
-    @ResponseWrapper(localName = "get_coupon_historyResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetCouponHistoryResponseElement")
+    @ResponseWrapper(localName = "get_coupon_historyResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetCouponHistoryResponseElement")
     public void getCouponHistory(
-        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         Long clientNo,
-        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         String authKey,
-        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         String queryString
 ,
-        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long limit
 ,
-        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long offset
 ,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> errorCode,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<String> errorMsg,
-        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> startingRecord,
-        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> totalRecords,
-        @WebParam(mode = WebParam.Mode.OUT, name = "coupon_history", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "coupon_history", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         javax.xml.ws.Holder<java.util.List<com.aria.common.shared.object.CouponHistoryReturnElement>> couponHistory
     );
 
-    @RequestWrapper(localName = "list_transaction_types", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.ListTransactionTypes")
+    @RequestWrapper(localName = "list_transaction_types", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.ListTransactionTypes")
     @WebMethod(operationName = "list_transaction_types", action = "list_transaction_types")
-    @ResponseWrapper(localName = "list_transaction_typesResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.ListTransactionTypesResponseElement")
+    @ResponseWrapper(localName = "list_transaction_typesResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.ListTransactionTypesResponseElement")
     public void listTransactionTypes(
-        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         Long clientNo,
-        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         String authKey,
-        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long limit
 ,
-        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long offset
 ,
-        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         String queryString
 ,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> errorCode,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<String> errorMsg,
-        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> startingRecord,
-        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> totalRecords,
-        @WebParam(mode = WebParam.Mode.OUT, name = "map_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "map_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         javax.xml.ws.Holder<java.util.List<com.aria.common.shared.object.MapRecordReturnElement>> mapRecord
     );
 
-    @RequestWrapper(localName = "list_payment_methods", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.ListPaymentMethods")
+    @RequestWrapper(localName = "list_payment_methods", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.ListPaymentMethods")
     @WebMethod(operationName = "list_payment_methods", action = "list_payment_methods")
-    @ResponseWrapper(localName = "list_payment_methodsResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.ListPaymentMethodsResponseElement")
+    @ResponseWrapper(localName = "list_payment_methodsResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.ListPaymentMethodsResponseElement")
     public void listPaymentMethods(
-        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         Long clientNo,
-        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         String authKey,
-        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long limit
 ,
-        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long offset
 ,
-        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         String queryString
 ,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> errorCode,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<String> errorMsg,
-        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> startingRecord,
-        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> totalRecords,
-        @WebParam(mode = WebParam.Mode.OUT, name = "map_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "map_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         javax.xml.ws.Holder<java.util.List<com.aria.common.shared.object.MapRecordReturnElement>> mapRecord
     );
 
-    @RequestWrapper(localName = "list_payment_processors", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.ListPaymentProcessors")
+    @RequestWrapper(localName = "list_payment_processors", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.ListPaymentProcessors")
     @WebMethod(operationName = "list_payment_processors", action = "list_payment_processors")
-    @ResponseWrapper(localName = "list_payment_processorsResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.ListPaymentProcessorsResponseElement")
+    @ResponseWrapper(localName = "list_payment_processorsResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.ListPaymentProcessorsResponseElement")
     public void listPaymentProcessors(
-        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         Long clientNo,
-        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         String authKey,
-        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long limit
 ,
-        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long offset
 ,
-        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         String queryString
 ,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> errorCode,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<String> errorMsg,
-        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> startingRecord,
-        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> totalRecords,
-        @WebParam(mode = WebParam.Mode.OUT, name = "map_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "map_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         javax.xml.ws.Holder<java.util.List<com.aria.common.shared.object.MapRecordReturnElement>> mapRecord
     );
 
-    @RequestWrapper(localName = "get_all_invoice_information", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetAllInvoiceInformation")
+    @RequestWrapper(localName = "get_all_invoice_information", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetAllInvoiceInformation")
     @WebMethod(operationName = "get_all_invoice_information", action = "get_all_invoice_information")
-    @ResponseWrapper(localName = "get_all_invoice_informationResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api", className = "com.aria.common.shared.object.GetAllInvoiceInformationResponseElement")
+    @ResponseWrapper(localName = "get_all_invoice_informationResponseElement", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api", className = "com.aria.common.shared.object.GetAllInvoiceInformationResponseElement")
     public void getAllInvoiceInformation(
-        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "client_no", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         Long clientNo,
-        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(name = "auth_key", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         String authKey,
-        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "query_string", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         String queryString
 ,
-        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "limit", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long limit
 ,
-        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(name = "offset", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         Long offset
 ,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_code", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> errorCode,
-        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "error_msg", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<String> errorMsg,
-        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "starting_record", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> startingRecord,
-        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "total_records", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
         javax.xml.ws.Holder<Long> totalRecords,
-        @WebParam(mode = WebParam.Mode.OUT, name = "all_invoice_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_integration_services_api")
+        @WebParam(mode = WebParam.Mode.OUT, name = "all_invoice_details", targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_integration_services_api")
         javax.xml.ws.Holder<java.util.List<com.aria.common.shared.object.AllInvoiceDetailsReturnElement>> allInvoiceDetails
     );
 

@@ -31,7 +31,7 @@ public interface AriaBillingAdministration  {
     * @param client_plan_type_id - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
@@ -42,7 +42,7 @@ public interface AriaBillingAdministration  {
     *   plan - Type: ArrayList&#60;PlanReturnElement&#62;<br>
     *   promo_plan_set_translation_info - Type: ArrayList&#60;PromoPlanSetTranslationInfoReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getPromoPlanSetDetails(Long client_no, String auth_key, Long promo_plan_set_no, String client_plan_type_id, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getPromoPlanSetDetails(Long client_no, String auth_key, Long promo_plan_set_no, String client_plan_type_id, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getPromoPlanSetDetails(Map<String,Object> map);
 
@@ -346,13 +346,13 @@ public interface AriaBillingAdministration  {
     * @param auth_key - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
     *   services - Type: ArrayList&#60;ServicesReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getServices(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getServices(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getServices(Map<String,Object> map);
 
@@ -364,7 +364,7 @@ public interface AriaBillingAdministration  {
     * @param client_service_id - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
@@ -386,7 +386,7 @@ public interface AriaBillingAdministration  {
     *   client_tax_group_id - Type: javax.xml.ws.Holder<br>
     *   service_translation_info - Type: ArrayList&#60;ServiceTranslationInfoReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getServiceDetails(Long client_no, String auth_key, Long service_no, String client_service_id, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getServiceDetails(Long client_no, String auth_key, Long service_no, String client_service_id, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getServiceDetails(Map<String,Object> map);
 
@@ -400,7 +400,7 @@ public interface AriaBillingAdministration  {
     * @param client_plan_id - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
@@ -427,7 +427,7 @@ public interface AriaBillingAdministration  {
     *   apply_usage_rates_daily - Type: javax.xml.ws.Holder<br>
     *   service_translation_details - Type: ArrayList&#60;ServiceTranslationDetailsReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getPlanServiceDetails(Long client_no, String auth_key, Long service_no, Long plan_no, String client_service_id, String client_plan_id, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getPlanServiceDetails(Long client_no, String auth_key, Long service_no, Long plan_no, String client_service_id, String client_plan_id, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getPlanServiceDetails(Map<String,Object> map);
 
@@ -492,13 +492,13 @@ public interface AriaBillingAdministration  {
     * @param auth_key - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
     *   supp_fields - Type: ArrayList&#60;SuppFieldsReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getSuppFields(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getSuppFields(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getSuppFields(Map<String,Object> map);
 
@@ -509,7 +509,7 @@ public interface AriaBillingAdministration  {
     * @param field_name - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
@@ -526,7 +526,7 @@ public interface AriaBillingAdministration  {
     *   extra_validation_methods - Type: javax.xml.ws.Holder<br>
     *   sel_options - Type: ArrayList&#60;SelOptionsReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getSuppFieldDetails(Long client_no, String auth_key, String field_name, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getSuppFieldDetails(Long client_no, String auth_key, String field_name, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getSuppFieldDetails(Map<String,Object> map);
 
@@ -588,13 +588,13 @@ public interface AriaBillingAdministration  {
     * @param auth_key - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
     *   coupons - Type: ArrayList&#60;CouponsReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getCoupons(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getCoupons(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getCoupons(Map<String,Object> map);
 
@@ -605,7 +605,7 @@ public interface AriaBillingAdministration  {
     * @param coupon_cd - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
@@ -644,7 +644,7 @@ public interface AriaBillingAdministration  {
     *   coupon_scope - Type: javax.xml.ws.Holder<br>
     *   coupon_translation_details - Type: ArrayList&#60;CouponTranslationDetailsReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getCouponDetails(Long client_no, String auth_key, String coupon_cd, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getCouponDetails(Long client_no, String auth_key, String coupon_cd, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getCouponDetails(Map<String,Object> map);
 
@@ -912,13 +912,13 @@ public interface AriaBillingAdministration  {
     * @param auth_key - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
     *   discount_bundles - Type: ArrayList&#60;DiscountBundlesReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getDiscountBundles(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getDiscountBundles(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getDiscountBundles(Map<String,Object> map);
 
@@ -943,14 +943,14 @@ public interface AriaBillingAdministration  {
     * @param auth_key - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
     *   discount_rules - Type: ArrayList&#60;DiscountRulesReturnElement&#62;<br>
     *   currency - Type: javax.xml.ws.Holder<br>
     */
-    abstract Map<String,Object> getDiscountRules(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getDiscountRules(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getDiscountRules(Map<String,Object> map);
 
@@ -962,13 +962,13 @@ public interface AriaBillingAdministration  {
     * @param client_rule_id - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
     *   discount_rules - Type: ArrayList&#60;DiscountRulesReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getDiscountRuleDetails(Long client_no, String auth_key, Long rule_no, String client_rule_id, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getDiscountRuleDetails(Long client_no, String auth_key, Long rule_no, String client_rule_id, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getDiscountRuleDetails(Map<String,Object> map);
 
@@ -1209,13 +1209,13 @@ public interface AriaBillingAdministration  {
     * @param auth_key - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
     *   promotions - Type: ArrayList&#60;PromotionsReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getPromotions(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getPromotions(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getPromotions(Map<String,Object> map);
 
@@ -1226,7 +1226,7 @@ public interface AriaBillingAdministration  {
     * @param promo_cd - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
@@ -1240,7 +1240,7 @@ public interface AriaBillingAdministration  {
     *   plan_type_desc - Type: javax.xml.ws.Holder<br>
     *   promotion_translations - Type: ArrayList&#60;PromotionTranslationsReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getPromotionDetails(Long client_no, String auth_key, String promo_cd, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getPromotionDetails(Long client_no, String auth_key, String promo_cd, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getPromotionDetails(Map<String,Object> map);
 
@@ -1290,13 +1290,13 @@ public interface AriaBillingAdministration  {
     * @param auth_key - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
     *   usage_types - Type: ArrayList&#60;UsageTypesReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getUsageTypes(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getUsageTypes(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getUsageTypes(Map<String,Object> map);
 
@@ -1308,7 +1308,7 @@ public interface AriaBillingAdministration  {
     * @param usage_type_code - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
@@ -1322,7 +1322,7 @@ public interface AriaBillingAdministration  {
     *   supplemental_obj_fields - Type: ArrayList&#60;SupplementalObjFieldsReturnElement&#62;<br>
     *   usage_type_translation_details - Type: ArrayList&#60;UsageTypeTranslationDetailsReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getUsageTypeDetails(Long client_no, String auth_key, Long usage_type_no, String usage_type_code, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getUsageTypeDetails(Long client_no, String auth_key, Long usage_type_no, String usage_type_code, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getUsageTypeDetails(Map<String,Object> map);
 
@@ -1332,13 +1332,13 @@ public interface AriaBillingAdministration  {
     * @param auth_key - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
     *   usage_unit_types - Type: ArrayList&#60;UsageUnitTypesReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getUsageUnitTypes(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getUsageUnitTypes(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getUsageUnitTypes(Map<String,Object> map);
 
@@ -1443,7 +1443,7 @@ public interface AriaBillingAdministration  {
     * @param field_no - Type: Long
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
@@ -1460,7 +1460,7 @@ public interface AriaBillingAdministration  {
     *   allow_instance_override - Type: javax.xml.ws.Holder<br>
     *   supp_obj_field_translations - Type: ArrayList&#60;SuppObjFieldTranslationsReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getSuppObjFields(Long client_no, String auth_key, Long field_no, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getSuppObjFields(Long client_no, String auth_key, Long field_no, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getSuppObjFields(Map<String,Object> map);
 
@@ -1472,13 +1472,13 @@ public interface AriaBillingAdministration  {
     * @param field_categories - Type: com.aria.common.shared.admin.FieldCategoriesArray
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
     *   field_details - Type: ArrayList&#60;FieldDetailsReturnElement&#62;<br>
     */
-    abstract Map<String,Object> listSuppObjFields(Long client_no, String auth_key, com.aria.common.shared.admin.FieldSelectionArray field_selection, com.aria.common.shared.admin.FieldCategoriesArray field_categories, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> listSuppObjFields(Long client_no, String auth_key, com.aria.common.shared.admin.FieldSelectionArray field_selection, com.aria.common.shared.admin.FieldCategoriesArray field_categories, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> listSuppObjFields(Map<String,Object> map);
 
@@ -1503,7 +1503,7 @@ public interface AriaBillingAdministration  {
     * @param client_plan_change_group_id - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
@@ -1515,7 +1515,7 @@ public interface AriaBillingAdministration  {
     *   plans - Type: ArrayList&#60;PlansReturnElement&#62;<br>
     *   plan_group_translation_info - Type: ArrayList&#60;PlanGroupTranslationInfoReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getPlanGroupDetails(Long client_no, String auth_key, Long group_no, String client_plan_change_group_id, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getPlanGroupDetails(Long client_no, String auth_key, Long group_no, String client_plan_change_group_id, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getPlanGroupDetails(Map<String,Object> map);
 
@@ -1636,13 +1636,13 @@ public interface AriaBillingAdministration  {
     * @param auth_key - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
     *   surcharges - Type: ArrayList&#60;SurchargesReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getSurcharges(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getSurcharges(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getSurcharges(Map<String,Object> map);
 
@@ -1654,7 +1654,7 @@ public interface AriaBillingAdministration  {
     * @param client_surcharge_id - Type: String
     * @param locale_no - Type: Long
     * @param locale_name - Type: String
-    * @param include_translations - Type: Long
+    * @param include_translations - Type: String
     * @return A <code>Map&#60;String,Object&#62;</code>, containing the following Objects:
     *   error_code - Type: javax.xml.ws.Holder<br>
     *   error_msg - Type: javax.xml.ws.Holder<br>
@@ -1684,7 +1684,7 @@ public interface AriaBillingAdministration  {
     *   pay_method - Type: ArrayList&#60;PayMethodReturnElement&#62;<br>
     *   surcharge_translation_details - Type: ArrayList&#60;SurchargeTranslationDetailsReturnElement&#62;<br>
     */
-    abstract Map<String,Object> getSurchargeDetails(Long client_no, String auth_key, Long surcharge_no, String client_surcharge_id, Long locale_no, String locale_name, Long include_translations);
+    abstract Map<String,Object> getSurchargeDetails(Long client_no, String auth_key, Long surcharge_no, String client_surcharge_id, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getSurchargeDetails(Map<String,Object> map);
 

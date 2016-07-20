@@ -17,13 +17,13 @@ import javax.xml.ws.Service;
  */
 @WebServiceClient(name = "aria_complete_api",
                   wsdlLocation = "D:/file.xml",
-                  targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api")
+                  targetNamespace = "urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api")
 public class AriaCompleteApi extends Service {
 
     public final static URL WSDL_LOCATION;
 
-    public final static QName SERVICE = new QName("urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api", "aria_complete_api");
-    public final static QName CompletePort = new QName("urn:client:api:wsdl:document/literal_wrapped:vers:6.48:aria_complete_api", "completePort");
+    public final static QName SERVICE = new QName("urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api", "aria_complete_api");
+    public final static QName CompletePort = new QName("urn:client:api:wsdl:document/literal_wrapped:vers:6.49:aria_complete_api", "completePort");
     static {
         URL url = AriaCompleteApi.class.getResource("D:/file.xml");
         if (url == null) {

@@ -13,12 +13,12 @@ import javax.xml.bind.annotation.XmlType;
 public class CouponNosRow {
 
     @XmlElement(name = "coupon_no")
-    protected Long couponNo;
-    public Long getCouponNo() {
+    protected String couponNo;
+    public String getCouponNo() {
         return couponNo;
     }
 
-    public void setCouponNo(Long value) {
+    public void setCouponNo(String value) {
         this.couponNo = value;
     }
 

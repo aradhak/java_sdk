@@ -93,7 +93,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return getPromoPlanSets(client_no, auth_key);
     }
 
-    public Map<String,Object> getPromoPlanSetDetails(Long client_no, String auth_key, Long promo_plan_set_no, String client_plan_type_id, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getPromoPlanSetDetails(Long client_no, String auth_key, Long promo_plan_set_no, String client_plan_type_id, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
@@ -101,7 +101,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         addParameters(parameters,"client_plan_type_id", getValue("String", client_plan_type_id));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_promo_plan_set_details"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -126,7 +126,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String client_plan_type_id = (String) map.get("client_plan_type_id");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getPromoPlanSetDetails(client_no, auth_key, promo_plan_set_no, client_plan_type_id, locale_no, locale_name, include_translations);
     }
@@ -661,13 +661,13 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return getServiceTypes(client_no, auth_key);
     }
 
-    public Map<String,Object> getServices(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getServices(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_services"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -685,12 +685,12 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getServices(client_no, auth_key, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getServiceDetails(Long client_no, String auth_key, Long service_no, String client_service_id, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getServiceDetails(Long client_no, String auth_key, Long service_no, String client_service_id, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
@@ -698,7 +698,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         addParameters(parameters,"client_service_id", getValue("String", client_service_id));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_service_details"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -734,12 +734,12 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String client_service_id = (String) map.get("client_service_id");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getServiceDetails(client_no, auth_key, service_no, client_service_id, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getPlanServiceDetails(Long client_no, String auth_key, Long service_no, Long plan_no, String client_service_id, String client_plan_id, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getPlanServiceDetails(Long client_no, String auth_key, Long service_no, Long plan_no, String client_service_id, String client_plan_id, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
@@ -749,7 +749,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         addParameters(parameters,"client_plan_id", getValue("String", client_plan_id));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_plan_service_details"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -792,7 +792,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String client_plan_id = (String) map.get("client_plan_id");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getPlanServiceDetails(client_no, auth_key, service_no, plan_no, client_service_id, client_plan_id, locale_no, locale_name, include_translations);
     }
@@ -901,13 +901,13 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return updateService(client_no, auth_key, service_no, service_name, service_type, gl_cd, ar_gl_cd, def_gl_cd, rev_rec_ind, deferred_ind, taxable_ind, tax_group, usage_type, client_service_id, supplemental_obj_field, commodity_cd, client_tax_group_id);
     }
 
-    public Map<String,Object> getSuppFields(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getSuppFields(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_supp_fields"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -925,19 +925,19 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getSuppFields(client_no, auth_key, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getSuppFieldDetails(Long client_no, String auth_key, String field_name, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getSuppFieldDetails(Long client_no, String auth_key, String field_name, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"field_name", getValue("String", field_name));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_supp_field_details"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -967,7 +967,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String field_name = (String) map.get("field_name");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getSuppFieldDetails(client_no, auth_key, field_name, locale_no, locale_name, include_translations);
     }
@@ -1070,13 +1070,13 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return updateSuppField(client_no, auth_key, field_name, field_desc, field_order, required_ind, hidden_ind, sel_ind, presentation_mode, min_no_sel, max_no_sel, display_text, option_value, option_value_order, locale_no, locale_name);
     }
 
-    public Map<String,Object> getCoupons(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getCoupons(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_coupons"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -1094,19 +1094,19 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getCoupons(client_no, auth_key, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getCouponDetails(Long client_no, String auth_key, String coupon_cd, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getCouponDetails(Long client_no, String auth_key, String coupon_cd, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"coupon_cd", getValue("String", coupon_cd));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_coupon_details"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -1158,7 +1158,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String coupon_cd = (String) map.get("coupon_cd");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getCouponDetails(client_no, auth_key, coupon_cd, locale_no, locale_name, include_translations);
     }
@@ -1632,13 +1632,13 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return createDiscountBundle(client_no, auth_key, bundle_name, bundle_id, bundle_description, allow_overlap_ind, rules, rule_ids);
     }
 
-    public Map<String,Object> getDiscountBundles(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getDiscountBundles(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_discount_bundles"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -1656,7 +1656,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getDiscountBundles(client_no, auth_key, locale_no, locale_name, include_translations);
     }
@@ -1688,13 +1688,13 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return getDiscountBundleDetails(client_no, auth_key, bundle_no, bundle_id);
     }
 
-    public Map<String,Object> getDiscountRules(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getDiscountRules(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_discount_rules"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -1713,12 +1713,12 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getDiscountRules(client_no, auth_key, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getDiscountRuleDetails(Long client_no, String auth_key, Long rule_no, String client_rule_id, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getDiscountRuleDetails(Long client_no, String auth_key, Long rule_no, String client_rule_id, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
@@ -1726,7 +1726,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         addParameters(parameters,"client_rule_id", getValue("String", client_rule_id));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_discount_rule_details"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -1746,7 +1746,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String client_rule_id = (String) map.get("client_rule_id");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getDiscountRuleDetails(client_no, auth_key, rule_no, client_rule_id, locale_no, locale_name, include_translations);
     }
@@ -2155,13 +2155,13 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return copyPlan(client_no, auth_key, plan_no, client_plan_id, plan_name, new_client_plan_id);
     }
 
-    public Map<String,Object> getPromotions(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getPromotions(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_promotions"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -2179,19 +2179,19 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getPromotions(client_no, auth_key, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getPromotionDetails(Long client_no, String auth_key, String promo_cd, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getPromotionDetails(Long client_no, String auth_key, String promo_cd, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"promo_cd", getValue("String", promo_cd));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_promotion_details"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -2218,7 +2218,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String promo_cd = (String) map.get("promo_cd");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getPromotionDetails(client_no, auth_key, promo_cd, locale_no, locale_name, include_translations);
     }
@@ -2297,13 +2297,13 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return updatePromotion(client_no, auth_key, promo_cd, promo_desc, promo_plan_set_no, no_of_uses, start_date, exp_date, locale_no, locale_name);
     }
 
-    public Map<String,Object> getUsageTypes(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getUsageTypes(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_usage_types"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -2321,12 +2321,12 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getUsageTypes(client_no, auth_key, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getUsageTypeDetails(Long client_no, String auth_key, Long usage_type_no, String usage_type_code, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getUsageTypeDetails(Long client_no, String auth_key, Long usage_type_no, String usage_type_code, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
@@ -2334,7 +2334,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         addParameters(parameters,"usage_type_code", getValue("String", usage_type_code));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_usage_type_details"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -2362,18 +2362,18 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String usage_type_code = (String) map.get("usage_type_code");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getUsageTypeDetails(client_no, auth_key, usage_type_no, usage_type_code, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getUsageUnitTypes(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getUsageUnitTypes(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_usage_unit_types"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -2391,7 +2391,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getUsageUnitTypes(client_no, auth_key, locale_no, locale_name, include_translations);
     }
@@ -2572,14 +2572,14 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return updateSuppObjField(client_no, auth_key, field_no, field_name, assign_field_categories, description, min_no_sel, max_no_sel, datatype, form_input_type, use_allowed_vals_ind, option_value, option_value_order, allow_instance_override, object_type, locale_no, locale_name);
     }
 
-    public Map<String,Object> getSuppObjFields(Long client_no, String auth_key, Long field_no, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getSuppObjFields(Long client_no, String auth_key, Long field_no, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"field_no", getValue("Long", field_no));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_supp_obj_fields"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -2609,12 +2609,12 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         Long field_no = (Long) map.get("field_no");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getSuppObjFields(client_no, auth_key, field_no, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> listSuppObjFields(Long client_no, String auth_key, com.aria.common.shared.admin.FieldSelectionArray field_selection, com.aria.common.shared.admin.FieldCategoriesArray field_categories, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> listSuppObjFields(Long client_no, String auth_key, com.aria.common.shared.admin.FieldSelectionArray field_selection, com.aria.common.shared.admin.FieldCategoriesArray field_categories, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
@@ -2622,7 +2622,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         RestUtilities.addParameterValuesFromArray(parameters, field_categories, "field_categories");
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("list_supp_obj_fields"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -2642,7 +2642,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         com.aria.common.shared.admin.FieldCategoriesArray field_categories = (com.aria.common.shared.admin.FieldCategoriesArray) map.get("field_categories");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return listSuppObjFields(client_no, auth_key, field_selection, field_categories, locale_no, locale_name, include_translations);
     }
@@ -2670,7 +2670,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return getPlanGroups(client_no, auth_key);
     }
 
-    public Map<String,Object> getPlanGroupDetails(Long client_no, String auth_key, Long group_no, String client_plan_change_group_id, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getPlanGroupDetails(Long client_no, String auth_key, Long group_no, String client_plan_change_group_id, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
@@ -2678,7 +2678,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         addParameters(parameters,"client_plan_change_group_id", getValue("String", client_plan_change_group_id));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_plan_group_details"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -2704,7 +2704,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String client_plan_change_group_id = (String) map.get("client_plan_change_group_id");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getPlanGroupDetails(client_no, auth_key, group_no, client_plan_change_group_id, locale_no, locale_name, include_translations);
     }
@@ -2910,13 +2910,13 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         return editCoa(client_no, auth_key, coa_id, coa_code, coa_description);
     }
 
-    public Map<String,Object> getSurcharges(Long client_no, String auth_key, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getSurcharges(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_surcharges"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -2934,12 +2934,12 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String auth_key = (String) map.get("auth_key");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getSurcharges(client_no, auth_key, locale_no, locale_name, include_translations);
     }
 
-    public Map<String,Object> getSurchargeDetails(Long client_no, String auth_key, Long surcharge_no, String client_surcharge_id, Long locale_no, String locale_name, Long include_translations){
+    public Map<String,Object> getSurchargeDetails(Long client_no, String auth_key, Long surcharge_no, String client_surcharge_id, Long locale_no, String locale_name, String include_translations){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
         addParameters(parameters,"auth_key",getValue("String",auth_key));
@@ -2947,7 +2947,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         addParameters(parameters,"client_surcharge_id", getValue("String", client_surcharge_id));
         addParameters(parameters,"locale_no", getValue("Long", locale_no));
         addParameters(parameters,"locale_name", getValue("String", locale_name));
-        addParameters(parameters,"include_translations", getValue("Long", include_translations));
+        addParameters(parameters,"include_translations", getValue("String", include_translations));
         
         WebResource webResource = client.resource(buildUrl("get_surcharge_details"));
         String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
@@ -2991,7 +2991,7 @@ public class AriaBillingAdministrationRest extends BaseAriaBilling implements Ar
         String client_surcharge_id = (String) map.get("client_surcharge_id");
         Long locale_no = (Long) map.get("locale_no");
         String locale_name = (String) map.get("locale_name");
-        Long include_translations = (Long) map.get("include_translations");
+        String include_translations = (String) map.get("include_translations");
         
         return getSurchargeDetails(client_no, auth_key, surcharge_no, client_surcharge_id, locale_no, locale_name, include_translations);
     }
