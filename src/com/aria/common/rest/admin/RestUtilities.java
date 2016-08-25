@@ -1663,7 +1663,7 @@ public class RestUtilities {
             for (CouponTranslationsReturnElement element : arrayListCouponTranslationsReturnElement){
                 entity.getCouponTranslations().add(element);
             }
-            entity.setCouponNo(getLongValue(jsonObject,"coupon_no"));
+            entity.setCouponNo(getStringValue(jsonObject,"coupon_no"));
             entity.setCouponMsg(getStringValue(jsonObject,"coupon_msg"));
             entity.setStatusInd(getLongValue(jsonObject,"status_ind"));
             entity.setNoOfUses(getLongValue(jsonObject,"no_of_uses"));
@@ -1702,17 +1702,13 @@ public class RestUtilities {
             } catch (NumberFormatException e) {
                 entity.setCouponScope(null);
             }
-            try {
-                if (jsonArray.get(i) instanceof JSONArray){
+            if (jsonArray.get(i) instanceof JSONArray){
                     if(((JSONArray)jsonArray.get(i)).size() > 0){
-                        entity.setCouponNo(Long.parseLong(((JSONArray)jsonArray.get(i)).get(0).toString()));
+                        entity.setCouponNo(((JSONArray)jsonArray.get(i)).get(0).toString());
                     }
                 } else {
-                    entity.setCouponNo(Long.parseLong(jsonArray.get(i).toString()));
+                    entity.setCouponNo(jsonArray.get(i).toString());
                 }
-            } catch (NumberFormatException e) {
-                entity.setCouponNo(null);
-            }
             if (jsonArray.get(i) instanceof JSONArray){
                     if(((JSONArray)jsonArray.get(i)).size() > 0){
                         entity.setCouponMsg(((JSONArray)jsonArray.get(i)).get(0).toString());

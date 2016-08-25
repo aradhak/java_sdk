@@ -78,17 +78,7 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         addParameters(parameters,"limit", getValue("Long", limit));
         addParameters(parameters,"offset", getValue("Long", offset));
         
-        WebResource webResource = client.resource(buildUrl("get_account_details"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[5];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "starting_record";
-        returnValues[3] = "total_records";
-        returnValues[4] = "account_details";
-        
-        return buildHashMapReturnValues(ret,returnValues);
+        return this.buildGetAccountDetailsHashMap(parameters);
     }
 
     public Map<String,Object> getAccountDetails(Map<String,Object> map){
@@ -100,7 +90,20 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         
         return getAccountDetails(client_no, auth_key, query_string, limit, offset);
     }
-
+        private Map<String,Object> buildGetAccountDetailsHashMap(MultivaluedMap<String, String> parameters) {
+        
+        String response = this.doPost(client, "get_account_details", parameters);
+        String[] returnValues = new String[5];
+        
+        returnValues[0] = "error_code";
+        returnValues[1] = "error_msg";
+        returnValues[2] = "starting_record";
+        returnValues[3] = "total_records";
+        returnValues[4] = "account_details";
+                
+        return buildHashMapReturnValues(response,returnValues);
+    }
+    
     public Map<String,Object> getAccountStatusHistory(Long client_no, String auth_key, String query_string, Long limit, Long offset){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
@@ -109,17 +112,7 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         addParameters(parameters,"limit", getValue("Long", limit));
         addParameters(parameters,"offset", getValue("Long", offset));
         
-        WebResource webResource = client.resource(buildUrl("get_account_status_history"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[5];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "starting_record";
-        returnValues[3] = "total_records";
-        returnValues[4] = "account_status_history";
-        
-        return buildHashMapReturnValues(ret,returnValues);
+        return this.buildGetAccountStatusHistoryHashMap(parameters);
     }
 
     public Map<String,Object> getAccountStatusHistory(Map<String,Object> map){
@@ -131,7 +124,20 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         
         return getAccountStatusHistory(client_no, auth_key, query_string, limit, offset);
     }
-
+        private Map<String,Object> buildGetAccountStatusHistoryHashMap(MultivaluedMap<String, String> parameters) {
+        
+        String response = this.doPost(client, "get_account_status_history", parameters);
+        String[] returnValues = new String[5];
+        
+        returnValues[0] = "error_code";
+        returnValues[1] = "error_msg";
+        returnValues[2] = "starting_record";
+        returnValues[3] = "total_records";
+        returnValues[4] = "account_status_history";
+                
+        return buildHashMapReturnValues(response,returnValues);
+    }
+    
     public Map<String,Object> getAccountPlanHistory(Long client_no, String auth_key, String query_string, Long limit, Long offset){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
@@ -140,17 +146,7 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         addParameters(parameters,"limit", getValue("Long", limit));
         addParameters(parameters,"offset", getValue("Long", offset));
         
-        WebResource webResource = client.resource(buildUrl("get_account_plan_history"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[5];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "starting_record";
-        returnValues[3] = "total_records";
-        returnValues[4] = "account_plan_history";
-        
-        return buildHashMapReturnValues(ret,returnValues);
+        return this.buildGetAccountPlanHistoryHashMap(parameters);
     }
 
     public Map<String,Object> getAccountPlanHistory(Map<String,Object> map){
@@ -162,7 +158,20 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         
         return getAccountPlanHistory(client_no, auth_key, query_string, limit, offset);
     }
-
+        private Map<String,Object> buildGetAccountPlanHistoryHashMap(MultivaluedMap<String, String> parameters) {
+        
+        String response = this.doPost(client, "get_account_plan_history", parameters);
+        String[] returnValues = new String[5];
+        
+        returnValues[0] = "error_code";
+        returnValues[1] = "error_msg";
+        returnValues[2] = "starting_record";
+        returnValues[3] = "total_records";
+        returnValues[4] = "account_plan_history";
+                
+        return buildHashMapReturnValues(response,returnValues);
+    }
+    
     public Map<String,Object> getPaymentDetails(Long client_no, String auth_key, String query_string, Long limit, Long offset){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
@@ -171,17 +180,7 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         addParameters(parameters,"limit", getValue("Long", limit));
         addParameters(parameters,"offset", getValue("Long", offset));
         
-        WebResource webResource = client.resource(buildUrl("get_payment_details"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[5];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "starting_record";
-        returnValues[3] = "total_records";
-        returnValues[4] = "payment_details";
-        
-        return buildHashMapReturnValues(ret,returnValues);
+        return this.buildGetPaymentDetailsHashMap(parameters);
     }
 
     public Map<String,Object> getPaymentDetails(Map<String,Object> map){
@@ -193,7 +192,20 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         
         return getPaymentDetails(client_no, auth_key, query_string, limit, offset);
     }
-
+        private Map<String,Object> buildGetPaymentDetailsHashMap(MultivaluedMap<String, String> parameters) {
+        
+        String response = this.doPost(client, "get_payment_details", parameters);
+        String[] returnValues = new String[5];
+        
+        returnValues[0] = "error_code";
+        returnValues[1] = "error_msg";
+        returnValues[2] = "starting_record";
+        returnValues[3] = "total_records";
+        returnValues[4] = "payment_details";
+                
+        return buildHashMapReturnValues(response,returnValues);
+    }
+    
     public Map<String,Object> getOrderDetails(Long client_no, String auth_key, String query_string, Long limit, Long offset){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
@@ -202,17 +214,7 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         addParameters(parameters,"limit", getValue("Long", limit));
         addParameters(parameters,"offset", getValue("Long", offset));
         
-        WebResource webResource = client.resource(buildUrl("get_order_details"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[5];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "starting_record";
-        returnValues[3] = "total_records";
-        returnValues[4] = "order_details";
-        
-        return buildHashMapReturnValues(ret,returnValues);
+        return this.buildGetOrderDetailsHashMap(parameters);
     }
 
     public Map<String,Object> getOrderDetails(Map<String,Object> map){
@@ -224,7 +226,20 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         
         return getOrderDetails(client_no, auth_key, query_string, limit, offset);
     }
-
+        private Map<String,Object> buildGetOrderDetailsHashMap(MultivaluedMap<String, String> parameters) {
+        
+        String response = this.doPost(client, "get_order_details", parameters);
+        String[] returnValues = new String[5];
+        
+        returnValues[0] = "error_code";
+        returnValues[1] = "error_msg";
+        returnValues[2] = "starting_record";
+        returnValues[3] = "total_records";
+        returnValues[4] = "order_details";
+                
+        return buildHashMapReturnValues(response,returnValues);
+    }
+    
     public Map<String,Object> getInvoiceInformation(Long client_no, String auth_key, String query_string, Long limit, Long offset){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
@@ -233,17 +248,7 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         addParameters(parameters,"limit", getValue("Long", limit));
         addParameters(parameters,"offset", getValue("Long", offset));
         
-        WebResource webResource = client.resource(buildUrl("get_invoice_information"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[5];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "starting_record";
-        returnValues[3] = "total_records";
-        returnValues[4] = "invoice_details";
-        
-        return buildHashMapReturnValues(ret,returnValues);
+        return this.buildGetInvoiceInformationHashMap(parameters);
     }
 
     public Map<String,Object> getInvoiceInformation(Map<String,Object> map){
@@ -255,7 +260,20 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         
         return getInvoiceInformation(client_no, auth_key, query_string, limit, offset);
     }
-
+        private Map<String,Object> buildGetInvoiceInformationHashMap(MultivaluedMap<String, String> parameters) {
+        
+        String response = this.doPost(client, "get_invoice_information", parameters);
+        String[] returnValues = new String[5];
+        
+        returnValues[0] = "error_code";
+        returnValues[1] = "error_msg";
+        returnValues[2] = "starting_record";
+        returnValues[3] = "total_records";
+        returnValues[4] = "invoice_details";
+                
+        return buildHashMapReturnValues(response,returnValues);
+    }
+    
     public Map<String,Object> getTransactionInformation(Long client_no, String auth_key, String query_string, Long limit, Long offset){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
@@ -264,17 +282,7 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         addParameters(parameters,"limit", getValue("Long", limit));
         addParameters(parameters,"offset", getValue("Long", offset));
         
-        WebResource webResource = client.resource(buildUrl("get_transaction_information"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[5];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "starting_record";
-        returnValues[3] = "total_records";
-        returnValues[4] = "transaction_information";
-        
-        return buildHashMapReturnValues(ret,returnValues);
+        return this.buildGetTransactionInformationHashMap(parameters);
     }
 
     public Map<String,Object> getTransactionInformation(Map<String,Object> map){
@@ -286,7 +294,20 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         
         return getTransactionInformation(client_no, auth_key, query_string, limit, offset);
     }
-
+        private Map<String,Object> buildGetTransactionInformationHashMap(MultivaluedMap<String, String> parameters) {
+        
+        String response = this.doPost(client, "get_transaction_information", parameters);
+        String[] returnValues = new String[5];
+        
+        returnValues[0] = "error_code";
+        returnValues[1] = "error_msg";
+        returnValues[2] = "starting_record";
+        returnValues[3] = "total_records";
+        returnValues[4] = "transaction_information";
+                
+        return buildHashMapReturnValues(response,returnValues);
+    }
+    
     public Map<String,Object> getRefundInformation(Long client_no, String auth_key, String query_string, Long limit, Long offset){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
@@ -295,17 +316,7 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         addParameters(parameters,"limit", getValue("Long", limit));
         addParameters(parameters,"offset", getValue("Long", offset));
         
-        WebResource webResource = client.resource(buildUrl("get_refund_information"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[5];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "starting_record";
-        returnValues[3] = "total_records";
-        returnValues[4] = "refund_information";
-        
-        return buildHashMapReturnValues(ret,returnValues);
+        return this.buildGetRefundInformationHashMap(parameters);
     }
 
     public Map<String,Object> getRefundInformation(Map<String,Object> map){
@@ -317,7 +328,20 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         
         return getRefundInformation(client_no, auth_key, query_string, limit, offset);
     }
-
+        private Map<String,Object> buildGetRefundInformationHashMap(MultivaluedMap<String, String> parameters) {
+        
+        String response = this.doPost(client, "get_refund_information", parameters);
+        String[] returnValues = new String[5];
+        
+        returnValues[0] = "error_code";
+        returnValues[1] = "error_msg";
+        returnValues[2] = "starting_record";
+        returnValues[3] = "total_records";
+        returnValues[4] = "refund_information";
+                
+        return buildHashMapReturnValues(response,returnValues);
+    }
+    
     public Map<String,Object> getCouponHistory(Long client_no, String auth_key, String query_string, Long limit, Long offset){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
@@ -326,17 +350,7 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         addParameters(parameters,"limit", getValue("Long", limit));
         addParameters(parameters,"offset", getValue("Long", offset));
         
-        WebResource webResource = client.resource(buildUrl("get_coupon_history"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[5];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "starting_record";
-        returnValues[3] = "total_records";
-        returnValues[4] = "coupon_history";
-        
-        return buildHashMapReturnValues(ret,returnValues);
+        return this.buildGetCouponHistoryHashMap(parameters);
     }
 
     public Map<String,Object> getCouponHistory(Map<String,Object> map){
@@ -348,7 +362,20 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         
         return getCouponHistory(client_no, auth_key, query_string, limit, offset);
     }
-
+        private Map<String,Object> buildGetCouponHistoryHashMap(MultivaluedMap<String, String> parameters) {
+        
+        String response = this.doPost(client, "get_coupon_history", parameters);
+        String[] returnValues = new String[5];
+        
+        returnValues[0] = "error_code";
+        returnValues[1] = "error_msg";
+        returnValues[2] = "starting_record";
+        returnValues[3] = "total_records";
+        returnValues[4] = "coupon_history";
+                
+        return buildHashMapReturnValues(response,returnValues);
+    }
+    
     public Map<String,Object> listTransactionTypes(Long client_no, String auth_key, Long limit, Long offset, String query_string){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
@@ -357,17 +384,7 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         addParameters(parameters,"offset", getValue("Long", offset));
         addParameters(parameters,"query_string", getValue("String", query_string));
         
-        WebResource webResource = client.resource(buildUrl("list_transaction_types"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[5];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "starting_record";
-        returnValues[3] = "total_records";
-        returnValues[4] = "map_record";
-        
-        return buildHashMapReturnValues(ret,returnValues);
+        return this.buildListTransactionTypesHashMap(parameters);
     }
 
     public Map<String,Object> listTransactionTypes(Map<String,Object> map){
@@ -379,7 +396,20 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         
         return listTransactionTypes(client_no, auth_key, limit, offset, query_string);
     }
-
+        private Map<String,Object> buildListTransactionTypesHashMap(MultivaluedMap<String, String> parameters) {
+        
+        String response = this.doPost(client, "list_transaction_types", parameters);
+        String[] returnValues = new String[5];
+        
+        returnValues[0] = "error_code";
+        returnValues[1] = "error_msg";
+        returnValues[2] = "starting_record";
+        returnValues[3] = "total_records";
+        returnValues[4] = "map_record";
+                
+        return buildHashMapReturnValues(response,returnValues);
+    }
+    
     public Map<String,Object> listPaymentMethods(Long client_no, String auth_key, Long limit, Long offset, String query_string){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
@@ -388,17 +418,7 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         addParameters(parameters,"offset", getValue("Long", offset));
         addParameters(parameters,"query_string", getValue("String", query_string));
         
-        WebResource webResource = client.resource(buildUrl("list_payment_methods"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[5];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "starting_record";
-        returnValues[3] = "total_records";
-        returnValues[4] = "map_record";
-        
-        return buildHashMapReturnValues(ret,returnValues);
+        return this.buildListPaymentMethodsHashMap(parameters);
     }
 
     public Map<String,Object> listPaymentMethods(Map<String,Object> map){
@@ -410,7 +430,20 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         
         return listPaymentMethods(client_no, auth_key, limit, offset, query_string);
     }
-
+        private Map<String,Object> buildListPaymentMethodsHashMap(MultivaluedMap<String, String> parameters) {
+        
+        String response = this.doPost(client, "list_payment_methods", parameters);
+        String[] returnValues = new String[5];
+        
+        returnValues[0] = "error_code";
+        returnValues[1] = "error_msg";
+        returnValues[2] = "starting_record";
+        returnValues[3] = "total_records";
+        returnValues[4] = "map_record";
+                
+        return buildHashMapReturnValues(response,returnValues);
+    }
+    
     public Map<String,Object> listPaymentProcessors(Long client_no, String auth_key, Long limit, Long offset, String query_string){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
@@ -419,17 +452,7 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         addParameters(parameters,"offset", getValue("Long", offset));
         addParameters(parameters,"query_string", getValue("String", query_string));
         
-        WebResource webResource = client.resource(buildUrl("list_payment_processors"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[5];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "starting_record";
-        returnValues[3] = "total_records";
-        returnValues[4] = "map_record";
-        
-        return buildHashMapReturnValues(ret,returnValues);
+        return this.buildListPaymentProcessorsHashMap(parameters);
     }
 
     public Map<String,Object> listPaymentProcessors(Map<String,Object> map){
@@ -441,7 +464,20 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         
         return listPaymentProcessors(client_no, auth_key, limit, offset, query_string);
     }
-
+        private Map<String,Object> buildListPaymentProcessorsHashMap(MultivaluedMap<String, String> parameters) {
+        
+        String response = this.doPost(client, "list_payment_processors", parameters);
+        String[] returnValues = new String[5];
+        
+        returnValues[0] = "error_code";
+        returnValues[1] = "error_msg";
+        returnValues[2] = "starting_record";
+        returnValues[3] = "total_records";
+        returnValues[4] = "map_record";
+                
+        return buildHashMapReturnValues(response,returnValues);
+    }
+    
     public Map<String,Object> getAllInvoiceInformation(Long client_no, String auth_key, String query_string, Long limit, Long offset){
         MultivaluedMap<String, String> parameters = new MultivaluedMapImpl();
         addParameters(parameters,"client_no",getValue("Long",client_no));
@@ -450,17 +486,7 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         addParameters(parameters,"limit", getValue("Long", limit));
         addParameters(parameters,"offset", getValue("Long", offset));
         
-        WebResource webResource = client.resource(buildUrl("get_all_invoice_information"));
-        String ret = webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
-        String[] returnValues = new String[5];
-
-        returnValues[0] = "error_code";
-        returnValues[1] = "error_msg";
-        returnValues[2] = "starting_record";
-        returnValues[3] = "total_records";
-        returnValues[4] = "all_invoice_details";
-        
-        return buildHashMapReturnValues(ret,returnValues);
+        return this.buildGetAllInvoiceInformationHashMap(parameters);
     }
 
     public Map<String,Object> getAllInvoiceInformation(Map<String,Object> map){
@@ -472,6 +498,19 @@ public class AriaBillingIntegrationRest extends BaseAriaBilling implements AriaB
         
         return getAllInvoiceInformation(client_no, auth_key, query_string, limit, offset);
     }
-
+        private Map<String,Object> buildGetAllInvoiceInformationHashMap(MultivaluedMap<String, String> parameters) {
+        
+        String response = this.doPost(client, "get_all_invoice_information", parameters);
+        String[] returnValues = new String[5];
+        
+        returnValues[0] = "error_code";
+        returnValues[1] = "error_msg";
+        returnValues[2] = "starting_record";
+        returnValues[3] = "total_records";
+        returnValues[4] = "all_invoice_details";
+                
+        return buildHashMapReturnValues(response,returnValues);
+    }
+    
     /********************************** END - METHODS IMPLEMENTATION ***********************************************/
 }

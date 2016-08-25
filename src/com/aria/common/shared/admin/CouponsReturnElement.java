@@ -24,7 +24,7 @@ public class CouponsReturnElement {
     @XmlElement(name = "coupon_translations")
     protected List<CouponTranslationsReturnElement> couponTranslations;
     @XmlElement(name = "coupon_no")
-    protected Long couponNo;
+    protected String couponNo;
     @XmlElement(name = "coupon_msg")
     protected String couponMsg;
     @XmlElement(name = "status_ind")
@@ -73,11 +73,11 @@ public class CouponsReturnElement {
             this.couponTranslations = new ArrayList<CouponTranslationsReturnElement>();
         }
         return this.couponTranslations;
-    }public Long getCouponNo() {
+    }public String getCouponNo() {
         return couponNo;
     }
 
-    public void setCouponNo(Long value) {
+    public void setCouponNo(String value) {
         this.couponNo = value;
     }
 

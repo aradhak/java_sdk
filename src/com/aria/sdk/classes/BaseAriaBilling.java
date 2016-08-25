@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.logging.Level;
 
 import javax.ws.rs.core.MultivaluedMap;
-
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.WebResource;
 import com.aria.common.rest.RestUtilities;
 
 /**
@@ -69,6 +70,14 @@ public abstract class BaseAriaBilling {
         "Administration".equals(type) ? LibraryType.ADMINTOOLS 
         : "Integration".equals(type) ? LibraryType.OBJECT_QUERY
         : LibraryType.CORE;
+    }
+    
+    protected abstract String buildUrl(String restCallMethod);
+    
+    protected String doPost(Client client, String url, MultivaluedMap<String, String> parameters) {
+        WebResource webResource = client.resource(this.buildUrl(url));
+        
+        return webResource.type("application/x-www-form-urlencoded").accept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8").header("accept-encoding", "deflate").header("accept-encoding", "gzip").post(String.class, parameters);
     }
 
 }

@@ -27,7 +27,7 @@ public interface AriaBillingIntegration  {
     abstract Map<String,Object> getAccountDetails(Long client_no, String auth_key, String query_string, Long limit, Long offset);
 
     abstract Map<String,Object> getAccountDetails(Map<String,Object> map);
-
+        
     /**
     * getAccountStatusHistory
     * @param client_no - Type: Long
@@ -45,7 +45,7 @@ public interface AriaBillingIntegration  {
     abstract Map<String,Object> getAccountStatusHistory(Long client_no, String auth_key, String query_string, Long limit, Long offset);
 
     abstract Map<String,Object> getAccountStatusHistory(Map<String,Object> map);
-
+        
     /**
     * getAccountPlanHistory
     * @param client_no - Type: Long
@@ -63,7 +63,7 @@ public interface AriaBillingIntegration  {
     abstract Map<String,Object> getAccountPlanHistory(Long client_no, String auth_key, String query_string, Long limit, Long offset);
 
     abstract Map<String,Object> getAccountPlanHistory(Map<String,Object> map);
-
+        
     /**
     * getPaymentDetails
     * @param client_no - Type: Long
@@ -81,7 +81,7 @@ public interface AriaBillingIntegration  {
     abstract Map<String,Object> getPaymentDetails(Long client_no, String auth_key, String query_string, Long limit, Long offset);
 
     abstract Map<String,Object> getPaymentDetails(Map<String,Object> map);
-
+        
     /**
     * getOrderDetails
     * @param client_no - Type: Long
@@ -99,7 +99,7 @@ public interface AriaBillingIntegration  {
     abstract Map<String,Object> getOrderDetails(Long client_no, String auth_key, String query_string, Long limit, Long offset);
 
     abstract Map<String,Object> getOrderDetails(Map<String,Object> map);
-
+        
     /**
     * getInvoiceInformation
     * @param client_no - Type: Long
@@ -117,7 +117,7 @@ public interface AriaBillingIntegration  {
     abstract Map<String,Object> getInvoiceInformation(Long client_no, String auth_key, String query_string, Long limit, Long offset);
 
     abstract Map<String,Object> getInvoiceInformation(Map<String,Object> map);
-
+        
     /**
     * getTransactionInformation
     * @param client_no - Type: Long
@@ -135,7 +135,7 @@ public interface AriaBillingIntegration  {
     abstract Map<String,Object> getTransactionInformation(Long client_no, String auth_key, String query_string, Long limit, Long offset);
 
     abstract Map<String,Object> getTransactionInformation(Map<String,Object> map);
-
+        
     /**
     * getRefundInformation
     * @param client_no - Type: Long
@@ -153,7 +153,7 @@ public interface AriaBillingIntegration  {
     abstract Map<String,Object> getRefundInformation(Long client_no, String auth_key, String query_string, Long limit, Long offset);
 
     abstract Map<String,Object> getRefundInformation(Map<String,Object> map);
-
+        
     /**
     * getCouponHistory
     * @param client_no - Type: Long
@@ -171,7 +171,7 @@ public interface AriaBillingIntegration  {
     abstract Map<String,Object> getCouponHistory(Long client_no, String auth_key, String query_string, Long limit, Long offset);
 
     abstract Map<String,Object> getCouponHistory(Map<String,Object> map);
-
+        
     /**
     * listTransactionTypes
     * @param client_no - Type: Long
@@ -189,7 +189,7 @@ public interface AriaBillingIntegration  {
     abstract Map<String,Object> listTransactionTypes(Long client_no, String auth_key, Long limit, Long offset, String query_string);
 
     abstract Map<String,Object> listTransactionTypes(Map<String,Object> map);
-
+        
     /**
     * listPaymentMethods
     * @param client_no - Type: Long
@@ -207,7 +207,7 @@ public interface AriaBillingIntegration  {
     abstract Map<String,Object> listPaymentMethods(Long client_no, String auth_key, Long limit, Long offset, String query_string);
 
     abstract Map<String,Object> listPaymentMethods(Map<String,Object> map);
-
+        
     /**
     * listPaymentProcessors
     * @param client_no - Type: Long
@@ -225,7 +225,7 @@ public interface AriaBillingIntegration  {
     abstract Map<String,Object> listPaymentProcessors(Long client_no, String auth_key, Long limit, Long offset, String query_string);
 
     abstract Map<String,Object> listPaymentProcessors(Map<String,Object> map);
-
+        
     /**
     * getAllInvoiceInformation
     * @param client_no - Type: Long
@@ -243,6 +243,6 @@ public interface AriaBillingIntegration  {
     abstract Map<String,Object> getAllInvoiceInformation(Long client_no, String auth_key, String query_string, Long limit, Long offset);
 
     abstract Map<String,Object> getAllInvoiceInformation(Map<String,Object> map);
-
+        
     /********************************** END - METHODS ***********************************************/
 }

@@ -22,7 +22,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getPromoPlanSets(Long client_no, String auth_key);
 
     abstract Map<String,Object> getPromoPlanSets(Map<String,Object> map);
-
+        
     /**
     * getPromoPlanSetDetails
     * @param client_no - Type: Long
@@ -45,7 +45,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getPromoPlanSetDetails(Long client_no, String auth_key, Long promo_plan_set_no, String client_plan_type_id, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getPromoPlanSetDetails(Map<String,Object> map);
-
+        
     /**
     * createPromoPlanSet
     * @param client_no - Type: Long
@@ -63,7 +63,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createPromoPlanSet(Long client_no, String auth_key, String promo_plan_set_name, String promo_plan_set_desc, String client_plan_type_id, Long plan_no, String client_plan_id);
 
     abstract Map<String,Object> createPromoPlanSet(Map<String,Object> map);
-
+        
     /**
     * updatePromoPlanSet
     * @param client_no - Type: Long
@@ -82,7 +82,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> updatePromoPlanSet(Long client_no, String auth_key, Long promo_plan_set_no, String promo_plan_set_name, String promo_plan_set_desc, String client_plan_type_id, Long plan_no, String client_plan_id);
 
     abstract Map<String,Object> updatePromoPlanSet(Map<String,Object> map);
-
+        
     /**
     * listPromoSets
     * @param client_no - Type: Long
@@ -95,7 +95,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> listPromoSets(Long client_no, String auth_key);
 
     abstract Map<String,Object> listPromoSets(Map<String,Object> map);
-
+        
     /**
     * getCompanyProfile
     * @param client_no - Type: Long
@@ -108,7 +108,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getCompanyProfile(Long client_no, String auth_key);
 
     abstract Map<String,Object> getCompanyProfile(Map<String,Object> map);
-
+        
     /**
     * setCompanyProfile
     * @param client_no - Type: Long
@@ -154,7 +154,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> setCompanyProfile(Long client_no, String auth_key, String domain, String address1, String address2, String city, String locality, String state_prov, String country, String postal_code, String phone, String contact, String contact_address1, String contact_address2, String contact_city, String contact_state, String contact_zip, String contact_phone, String contact_email, String billing_contact, String billing_address1, String billing_address2, String billing_city, String billing_state, String billing_zip, String billing_phone, String billing_email, String contact_country, String contact_locality, String billing_country, String billing_locality, String batch_job_alert_contact, String batch_job_alert_email, Long locale_no, String locale_name);
 
     abstract Map<String,Object> setCompanyProfile(Map<String,Object> map);
-
+        
     /**
     * getInventoryItems
     * @param client_no - Type: Long
@@ -167,7 +167,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getInventoryItems(Long client_no, String auth_key);
 
     abstract Map<String,Object> getInventoryItems(Map<String,Object> map);
-
+        
     /**
     * getInventoryItemDetails
     * @param client_no - Type: Long
@@ -205,7 +205,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getInventoryItemDetails(Long client_no, String auth_key, Long item_no, String client_item_id, String currency_cd);
 
     abstract Map<String,Object> getInventoryItemDetails(Map<String,Object> map);
-
+        
     /**
     * createInventoryItem
     * @param client_no - Type: Long
@@ -246,7 +246,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createInventoryItem(Long client_no, String auth_key, Long item_type, String item_name, String item_desc, Long service_no, com.aria.common.shared.admin.ServiceArray service, String client_sku, String currency_cd, String item_price, String client_item_id, Long active_ind, String client_service_id, com.aria.common.shared.admin.ScheduleArray schedule, String tax_inclusive_ind, String modify_price_ind, Long subunit_qty, String subunit_label, Long pricing_rule, Long queued_active_ind, String queued_active_date, String do_auto_create_service_credit, Long days_to_expiry, String resource_type_no, String resource_units, Long stock_level_track, Double stock_level_adjust, com.aria.common.shared.admin.ImageArray image, com.aria.common.shared.admin.ParentClassArray parent_class, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field);
 
     abstract Map<String,Object> createInventoryItem(Map<String,Object> map);
-
+        
     /**
     * updateInventoryItem
     * @param client_no - Type: Long
@@ -289,7 +289,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> updateInventoryItem(Long client_no, String auth_key, Long item_no, Long item_type, String item_name, String item_desc, String client_item_id, Long service_no, String client_service_id, com.aria.common.shared.admin.ServiceArray service, String client_sku, String currency_cd, String item_price, Long active_ind, com.aria.common.shared.admin.ScheduleArray schedule, String tax_inclusive_ind, String modify_price_ind, Long subunit_qty, String subunit_label, Long pricing_rule, Long queued_active_ind, String queued_active_date, Long do_auto_create_service_credit, Long days_to_expiry, String resource_type_no, String resource_units, Long stock_level_track, Double stock_level_adjust, com.aria.common.shared.admin.ImageArray image, com.aria.common.shared.admin.ParentClassArray parent_class, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field, Long edit_directive);
 
     abstract Map<String,Object> updateInventoryItem(Map<String,Object> map);
-
+        
     /**
     * createItemClass
     * @param client_no - Type: Long
@@ -307,7 +307,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createItemClass(Long client_no, String auth_key, String class_name, String class_desc, Long active_ind, String client_inventory_class_id, com.aria.common.shared.admin.ParentClassArray parent_class);
 
     abstract Map<String,Object> createItemClass(Map<String,Object> map);
-
+        
     /**
     * editItemClass
     * @param client_no - Type: Long
@@ -326,7 +326,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> editItemClass(Long client_no, String auth_key, String class_no, String class_name, String client_inventory_class_id, String class_desc, Long active_ind, com.aria.common.shared.admin.ParentClassArray parent_class);
 
     abstract Map<String,Object> editItemClass(Map<String,Object> map);
-
+        
     /**
     * getServiceTypes
     * @param client_no - Type: Long
@@ -339,7 +339,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getServiceTypes(Long client_no, String auth_key);
 
     abstract Map<String,Object> getServiceTypes(Map<String,Object> map);
-
+        
     /**
     * getServices
     * @param client_no - Type: Long
@@ -355,7 +355,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getServices(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getServices(Map<String,Object> map);
-
+        
     /**
     * getServiceDetails
     * @param client_no - Type: Long
@@ -389,7 +389,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getServiceDetails(Long client_no, String auth_key, Long service_no, String client_service_id, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getServiceDetails(Map<String,Object> map);
-
+        
     /**
     * getPlanServiceDetails
     * @param client_no - Type: Long
@@ -430,7 +430,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getPlanServiceDetails(Long client_no, String auth_key, Long service_no, Long plan_no, String client_service_id, String client_plan_id, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getPlanServiceDetails(Map<String,Object> map);
-
+        
     /**
     * createService
     * @param client_no - Type: Long
@@ -457,7 +457,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createService(Long client_no, String auth_key, String service_name, String service_type, String gl_cd, String ar_gl_cd, String def_gl_cd, Long rev_rec_ind, Long deferred_ind, Long taxable_ind, Long tax_group, Long usage_type, String client_service_id, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field, String commodity_cd, String client_tax_group_id);
 
     abstract Map<String,Object> createService(Map<String,Object> map);
-
+        
     /**
     * updateService
     * @param client_no - Type: Long
@@ -485,7 +485,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> updateService(Long client_no, String auth_key, Long service_no, String service_name, String service_type, String gl_cd, String ar_gl_cd, String def_gl_cd, Long rev_rec_ind, Long deferred_ind, Long taxable_ind, Long tax_group, Long usage_type, String client_service_id, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field, String commodity_cd, String client_tax_group_id);
 
     abstract Map<String,Object> updateService(Map<String,Object> map);
-
+        
     /**
     * getSuppFields
     * @param client_no - Type: Long
@@ -501,7 +501,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getSuppFields(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getSuppFields(Map<String,Object> map);
-
+        
     /**
     * getSuppFieldDetails
     * @param client_no - Type: Long
@@ -529,7 +529,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getSuppFieldDetails(Long client_no, String auth_key, String field_name, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getSuppFieldDetails(Map<String,Object> map);
-
+        
     /**
     * createSuppField
     * @param client_no - Type: Long
@@ -554,7 +554,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createSuppField(Long client_no, String auth_key, String field_name, Long field_order, String presentation_mode, String field_desc, Long required_ind, Long hidden_ind, Long sel_ind, Long min_no_sel, Long max_no_sel, String display_text, String option_value, Long option_value_order);
 
     abstract Map<String,Object> createSuppField(Map<String,Object> map);
-
+        
     /**
     * updateSuppField
     * @param client_no - Type: Long
@@ -581,7 +581,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> updateSuppField(Long client_no, String auth_key, String field_name, String field_desc, Long field_order, Long required_ind, Long hidden_ind, Long sel_ind, String presentation_mode, Long min_no_sel, Long max_no_sel, String display_text, String option_value, Long option_value_order, Long locale_no, String locale_name);
 
     abstract Map<String,Object> updateSuppField(Map<String,Object> map);
-
+        
     /**
     * getCoupons
     * @param client_no - Type: Long
@@ -597,7 +597,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getCoupons(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getCoupons(Map<String,Object> map);
-
+        
     /**
     * getCouponDetails
     * @param client_no - Type: Long
@@ -647,7 +647,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getCouponDetails(Long client_no, String auth_key, String coupon_cd, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getCouponDetails(Map<String,Object> map);
-
+        
     /**
     * createCoupon
     * @param client_no - Type: Long
@@ -677,7 +677,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createCoupon(Long client_no, String auth_key, String coupon_cd, String coupon_desc, String coupon_msg, Long status_ind, Long no_of_uses, String start_date, String end_date, com.aria.common.shared.admin.TemplateArray template, com.aria.common.shared.admin.ExistingTemplateArray existing_template, com.aria.common.shared.admin.ExistingTemplateIdArray existing_template_id, com.aria.common.shared.admin.DiscountRuleArray discount_rule, com.aria.common.shared.admin.ExistingDiscountRuleArray existing_discount_rule, com.aria.common.shared.admin.ExistingDiscountRuleIdArray existing_discount_rule_id, com.aria.common.shared.admin.DiscountBundleArray discount_bundle, com.aria.common.shared.admin.ExistingDiscountBundleArray existing_discount_bundle, com.aria.common.shared.admin.ExistingDiscountBundleIdArray existing_discount_bundle_id, Long coupon_scope);
 
     abstract Map<String,Object> createCoupon(Map<String,Object> map);
-
+        
     /**
     * updateCoupon
     * @param client_no - Type: Long
@@ -709,7 +709,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> updateCoupon(Long client_no, String auth_key, String coupon_cd, String coupon_desc, String coupon_msg, Long status_ind, Long no_of_uses, String start_date, String end_date, com.aria.common.shared.admin.TemplateArray template, com.aria.common.shared.admin.ExistingTemplateArray existing_template, com.aria.common.shared.admin.ExistingTemplateIdArray existing_template_id, com.aria.common.shared.admin.DiscountRuleArray discount_rule, com.aria.common.shared.admin.ExistingDiscountRuleArray existing_discount_rule, com.aria.common.shared.admin.ExistingDiscountRuleIdArray existing_discount_rule_id, com.aria.common.shared.admin.DiscountBundleArray discount_bundle, com.aria.common.shared.admin.ExistingDiscountBundleArray existing_discount_bundle, com.aria.common.shared.admin.ExistingDiscountBundleIdArray existing_discount_bundle_id, Long coupon_scope, Long locale_no, String locale_name);
 
     abstract Map<String,Object> updateCoupon(Map<String,Object> map);
-
+        
     /**
     * deleteCoupons
     * @param client_no - Type: Long
@@ -723,7 +723,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> deleteCoupons(Long client_no, String auth_key, com.aria.common.shared.admin.CouponNosArray coupon_nos);
 
     abstract Map<String,Object> deleteCoupons(Map<String,Object> map);
-
+        
     /**
     * getRecurringCreditTemplates
     * @param client_no - Type: Long
@@ -736,7 +736,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getRecurringCreditTemplates(Long client_no, String auth_key);
 
     abstract Map<String,Object> getRecurringCreditTemplates(Map<String,Object> map);
-
+        
     /**
     * getRecurringCreditTemplateDetails
     * @param client_no - Type: Long
@@ -769,7 +769,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getRecurringCreditTemplateDetails(Long client_no, String auth_key, Long credit_template_no, String client_credit_template_id);
 
     abstract Map<String,Object> getRecurringCreditTemplateDetails(Map<String,Object> map);
-
+        
     /**
     * createCreditTemplate
     * @param client_no - Type: Long
@@ -802,7 +802,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createCreditTemplate(Long client_no, String auth_key, String credit_template_name, Long discount_type, Double discount_amt, Long eligible_plan_no, String eligible_client_plan_id, Long eligible_service_no, String eligible_client_service_id, com.aria.common.shared.admin.EligibleServiceTypesArray eligible_service_types, Long no_of_credits, Long credit_interval_months, Long percentage_plan_no, String percentage_client_plan_id, Long percentage_service_no, String percentage_client_service_id, Long alt_service_no, String alt_client_service_id, String client_credit_template_id, String currency_cd, com.aria.common.shared.admin.CouponArray coupon, com.aria.common.shared.admin.ExistingCouponArray existing_coupon);
 
     abstract Map<String,Object> createCreditTemplate(Map<String,Object> map);
-
+        
     /**
     * updateCreditTemplate
     * @param client_no - Type: Long
@@ -836,7 +836,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> updateCreditTemplate(Long client_no, String auth_key, String credit_template_no, String credit_template_name, Double discount_amt, String client_credit_template_id, Long eligible_plan_no, String eligible_client_plan_id, Long eligible_service_no, String eligible_client_service_id, com.aria.common.shared.admin.EligibleServiceTypesArray eligible_service_types, Long discount_type, Long no_of_credits, Long credit_interval_months, Long percentage_plan_no, String percentage_client_plan_id, Long percentage_service_no, String percentage_client_service_id, Long alt_service_no, String alt_client_service_id, String currency_cd, com.aria.common.shared.admin.CouponArray coupon, com.aria.common.shared.admin.ExistingCouponArray existing_coupon);
 
     abstract Map<String,Object> updateCreditTemplate(Map<String,Object> map);
-
+        
     /**
     * deleteTemplates
     * @param client_no - Type: Long
@@ -849,7 +849,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> deleteTemplates(Long client_no, String auth_key, com.aria.common.shared.admin.TemplateNosArray template_nos);
 
     abstract Map<String,Object> deleteTemplates(Map<String,Object> map);
-
+        
     /**
     * createDiscountRule
     * @param client_no - Type: Long
@@ -886,7 +886,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createDiscountRule(Long client_no, String auth_key, String label, String rule_id, String description, String ext_description, String flat_percent_ind, Double amount, String currency, String duration_type_ind, String inline_offset_ind, String discount_behavior_type_ind, Long service_code_to_use, Long scope_no, Long max_applicable_months, Long max_applications_per_acct, Long alt_service_no_2_apply, String alt_service_id_2_apply, String applicable_trans_scope, com.aria.common.shared.admin.PlanNoArray plan_no, com.aria.common.shared.admin.ClientPlanIdArray client_plan_id, com.aria.common.shared.admin.ServiceNoArray service_no, com.aria.common.shared.admin.ClientServiceIdArray client_service_id, com.aria.common.shared.admin.ItemNoArray item_no, com.aria.common.shared.admin.ClientItemIdArray client_item_id, String use_all_or_nth_subs_rule);
 
     abstract Map<String,Object> createDiscountRule(Map<String,Object> map);
-
+        
     /**
     * createDiscountBundle
     * @param client_no - Type: Long
@@ -905,7 +905,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createDiscountBundle(Long client_no, String auth_key, String bundle_name, String bundle_id, String bundle_description, String allow_overlap_ind, com.aria.common.shared.admin.RulesArray rules, com.aria.common.shared.admin.RuleIdsArray rule_ids);
 
     abstract Map<String,Object> createDiscountBundle(Map<String,Object> map);
-
+        
     /**
     * getDiscountBundles
     * @param client_no - Type: Long
@@ -921,7 +921,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getDiscountBundles(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getDiscountBundles(Map<String,Object> map);
-
+        
     /**
     * getDiscountBundleDetails
     * @param client_no - Type: Long
@@ -936,7 +936,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getDiscountBundleDetails(Long client_no, String auth_key, Long bundle_no, String bundle_id);
 
     abstract Map<String,Object> getDiscountBundleDetails(Map<String,Object> map);
-
+        
     /**
     * getDiscountRules
     * @param client_no - Type: Long
@@ -953,7 +953,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getDiscountRules(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getDiscountRules(Map<String,Object> map);
-
+        
     /**
     * getDiscountRuleDetails
     * @param client_no - Type: Long
@@ -971,7 +971,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getDiscountRuleDetails(Long client_no, String auth_key, Long rule_no, String client_rule_id, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getDiscountRuleDetails(Map<String,Object> map);
-
+        
     /**
     * deleteRules
     * @param client_no - Type: Long
@@ -984,7 +984,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> deleteRules(Long client_no, String auth_key, com.aria.common.shared.admin.RuleNosArray rule_nos);
 
     abstract Map<String,Object> deleteRules(Map<String,Object> map);
-
+        
     /**
     * deleteBundles
     * @param client_no - Type: Long
@@ -997,7 +997,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> deleteBundles(Long client_no, String auth_key, com.aria.common.shared.admin.BundleNosArray bundle_nos);
 
     abstract Map<String,Object> deleteBundles(Map<String,Object> map);
-
+        
     /**
     * getPlans
     * @param client_no - Type: Long
@@ -1010,7 +1010,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getPlans(Long client_no, String auth_key);
 
     abstract Map<String,Object> getPlans(Map<String,Object> map);
-
+        
     /**
     * getPlanDetails
     * @param client_no - Type: Long
@@ -1061,7 +1061,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getPlanDetails(Long client_no, String auth_key, Long plan_no, String client_plan_id);
 
     abstract Map<String,Object> getPlanDetails(Map<String,Object> map);
-
+        
     /**
     * createNewPlan
     * @param client_no - Type: Long
@@ -1116,7 +1116,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createNewPlan(Long client_no, String auth_key, String plan_name, String plan_type, String currency, String billing_interval, Long active, com.aria.common.shared.admin.ScheduleArray schedule, com.aria.common.shared.admin.ServiceArray service, String plan_description, String client_plan_id, com.aria.common.shared.admin.PlanGroupArray plan_group, com.aria.common.shared.admin.PlanGroupIdArray plan_group_id, String usage_billing_interval, String rollover_months, Long rollover_plan_no, String rollover_client_plan_id, Long initial_free_months, String free_trial_type, String free_trial_duration, Long acct_status_cd, Long rollover_acct_status_days, Long rollover_acct_status_cd, Long dunning_plan_no, String dunning_client_plan_id, Long template_no, String client_email_template_id, String apply_cancellation, Long plan_cancel_min_month, String apply_minimum_fee, String how_to_apply_min_fee, com.aria.common.shared.admin.ResourceArray resource, Long arc_service_no, com.aria.common.shared.admin.ParentPlansArray parent_plans, com.aria.common.shared.admin.ParentClientPlanIdsArray parent_client_plan_ids, com.aria.common.shared.admin.ExclusionPlansArray exclusion_plans, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field, Long template_ind, com.aria.common.shared.admin.ChildPlansArray child_plans, String notification_template_group_no, String credit_note_template_no, com.aria.common.shared.admin.SurchargeNoArray surcharge_no, com.aria.common.shared.admin.ClientSurchargeIdArray client_surcharge_id, String proration_invoice_timing_cd);
 
     abstract Map<String,Object> createNewPlan(Map<String,Object> map);
-
+        
     /**
     * editPlan
     * @param client_no - Type: Long
@@ -1171,7 +1171,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> editPlan(Long client_no, String auth_key, String plan_no, String client_plan_id, String plan_name, String plan_description, com.aria.common.shared.admin.PlanGroupArray plan_group, com.aria.common.shared.admin.PlanGroupIdArray plan_group_id, Long plan_type, Long active, String billing_interval, String usage_billing_interval, String currency, Long template_no, String client_email_template_id, String rollover_months, Long rollover_plan_no, String rollover_client_plan_id, Long dunning_plan_no, String dunning_client_plan_id, Long initial_free_months, Long acct_status_cd, Long rollover_acct_status_days, Long rollover_acct_status_cd, Long allow_child_accts, String apply_cancellation, Long plan_cancel_min_month, String apply_minimum_fee, Long how_to_apply_min_fee, com.aria.common.shared.admin.ScheduleArray schedule, com.aria.common.shared.admin.ServiceArray service, com.aria.common.shared.admin.ResourceArray resource, Long arc_service_no, com.aria.common.shared.admin.ParentPlansArray parent_plans, com.aria.common.shared.admin.ParentClientPlanIdsArray parent_client_plan_ids, com.aria.common.shared.admin.ExclusionPlansArray exclusion_plans, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field, com.aria.common.shared.admin.ChildPlansArray child_plans, String notification_template_group_no, String credit_note_template_no, com.aria.common.shared.admin.SurchargeNoArray surcharge_no, com.aria.common.shared.admin.ClientSurchargeIdArray client_surcharge_id, String proration_invoice_timing_cd, Long edit_directives);
 
     abstract Map<String,Object> editPlan(Map<String,Object> map);
-
+        
     /**
     * deletePlans
     * @param client_no - Type: Long
@@ -1185,7 +1185,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> deletePlans(Long client_no, String auth_key, com.aria.common.shared.admin.PlanNosArray plan_nos);
 
     abstract Map<String,Object> deletePlans(Map<String,Object> map);
-
+        
     /**
     * copyPlan
     * @param client_no - Type: Long
@@ -1202,7 +1202,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> copyPlan(Long client_no, String auth_key, Long plan_no, String client_plan_id, String plan_name, String new_client_plan_id);
 
     abstract Map<String,Object> copyPlan(Map<String,Object> map);
-
+        
     /**
     * getPromotions
     * @param client_no - Type: Long
@@ -1218,7 +1218,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getPromotions(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getPromotions(Map<String,Object> map);
-
+        
     /**
     * getPromotionDetails
     * @param client_no - Type: Long
@@ -1243,7 +1243,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getPromotionDetails(Long client_no, String auth_key, String promo_cd, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getPromotionDetails(Map<String,Object> map);
-
+        
     /**
     * createPromotion
     * @param client_no - Type: Long
@@ -1262,7 +1262,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createPromotion(Long client_no, String auth_key, String promo_cd, String promo_desc, Long promo_plan_set_no, String no_of_uses, String start_date, String exp_date);
 
     abstract Map<String,Object> createPromotion(Map<String,Object> map);
-
+        
     /**
     * updatePromotion
     * @param client_no - Type: Long
@@ -1283,7 +1283,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> updatePromotion(Long client_no, String auth_key, String promo_cd, String promo_desc, Long promo_plan_set_no, String no_of_uses, String start_date, String exp_date, Long locale_no, String locale_name);
 
     abstract Map<String,Object> updatePromotion(Map<String,Object> map);
-
+        
     /**
     * getUsageTypes
     * @param client_no - Type: Long
@@ -1299,7 +1299,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getUsageTypes(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getUsageTypes(Map<String,Object> map);
-
+        
     /**
     * getUsageTypeDetails
     * @param client_no - Type: Long
@@ -1325,7 +1325,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getUsageTypeDetails(Long client_no, String auth_key, Long usage_type_no, String usage_type_code, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getUsageTypeDetails(Map<String,Object> map);
-
+        
     /**
     * getUsageUnitTypes
     * @param client_no - Type: Long
@@ -1341,7 +1341,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getUsageUnitTypes(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getUsageUnitTypes(Map<String,Object> map);
-
+        
     /**
     * createUsageType
     * @param client_no - Type: Long
@@ -1360,7 +1360,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createUsageType(Long client_no, String auth_key, String usage_type_name, String usage_type_desc, Long usage_unit_type_no, String usage_type_code, String usage_type_display_string, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field);
 
     abstract Map<String,Object> createUsageType(Map<String,Object> map);
-
+        
     /**
     * updateUsageType
     * @param client_no - Type: Long
@@ -1382,7 +1382,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> updateUsageType(Long client_no, String auth_key, Long usage_type_no, String usage_type_name, String usage_type_desc, Long usage_unit_type_no, String usage_type_code, String usage_type_display_string, com.aria.common.shared.admin.SupplementalObjFieldArray supplemental_obj_field, Long locale_no, String locale_name);
 
     abstract Map<String,Object> updateUsageType(Map<String,Object> map);
-
+        
     /**
     * createSuppObjField
     * @param client_no - Type: Long
@@ -1407,7 +1407,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createSuppObjField(Long client_no, String auth_key, String field_name, com.aria.common.shared.admin.AssignFieldCategoriesArray assign_field_categories, String description, String min_no_sel, Long max_no_sel, String datatype, String form_input_type, String use_allowed_vals_ind, String option_value, String option_value_order, Long allow_instance_override, com.aria.common.shared.admin.ObjectTypeArray object_type);
 
     abstract Map<String,Object> createSuppObjField(Map<String,Object> map);
-
+        
     /**
     * updateSuppObjField
     * @param client_no - Type: Long
@@ -1435,7 +1435,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> updateSuppObjField(Long client_no, String auth_key, Long field_no, String field_name, com.aria.common.shared.admin.AssignFieldCategoriesArray assign_field_categories, String description, String min_no_sel, Long max_no_sel, String datatype, String form_input_type, String use_allowed_vals_ind, String option_value, String option_value_order, Long allow_instance_override, com.aria.common.shared.admin.ObjectTypeArray object_type, Long locale_no, String locale_name);
 
     abstract Map<String,Object> updateSuppObjField(Map<String,Object> map);
-
+        
     /**
     * getSuppObjFields
     * @param client_no - Type: Long
@@ -1463,7 +1463,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getSuppObjFields(Long client_no, String auth_key, Long field_no, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getSuppObjFields(Map<String,Object> map);
-
+        
     /**
     * listSuppObjFields
     * @param client_no - Type: Long
@@ -1481,7 +1481,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> listSuppObjFields(Long client_no, String auth_key, com.aria.common.shared.admin.FieldSelectionArray field_selection, com.aria.common.shared.admin.FieldCategoriesArray field_categories, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> listSuppObjFields(Map<String,Object> map);
-
+        
     /**
     * getPlanGroups
     * @param client_no - Type: Long
@@ -1494,7 +1494,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getPlanGroups(Long client_no, String auth_key);
 
     abstract Map<String,Object> getPlanGroups(Map<String,Object> map);
-
+        
     /**
     * getPlanGroupDetails
     * @param client_no - Type: Long
@@ -1518,7 +1518,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getPlanGroupDetails(Long client_no, String auth_key, Long group_no, String client_plan_change_group_id, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getPlanGroupDetails(Map<String,Object> map);
-
+        
     /**
     * createPlanGroup
     * @param client_no - Type: Long
@@ -1537,7 +1537,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createPlanGroup(Long client_no, String auth_key, String group_name, String group_desc, String group_usage, String client_plan_change_group_id, String group_plans, String group_plan_ids);
 
     abstract Map<String,Object> createPlanGroup(Map<String,Object> map);
-
+        
     /**
     * updatePlanGroup
     * @param client_no - Type: Long
@@ -1557,7 +1557,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> updatePlanGroup(Long client_no, String auth_key, Long group_no, String group_name, String group_desc, String group_usage, String client_plan_change_group_id, String group_plans, String group_plan_ids);
 
     abstract Map<String,Object> updatePlanGroup(Map<String,Object> map);
-
+        
     /**
     * deletePlanGroup
     * @param client_no - Type: Long
@@ -1571,7 +1571,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> deletePlanGroup(Long client_no, String auth_key, String group_list);
 
     abstract Map<String,Object> deletePlanGroup(Map<String,Object> map);
-
+        
     /**
     * listCoa
     * @param client_no - Type: Long
@@ -1584,7 +1584,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> listCoa(Long client_no, String auth_key);
 
     abstract Map<String,Object> listCoa(Map<String,Object> map);
-
+        
     /**
     * addCoa
     * @param client_no - Type: Long
@@ -1599,7 +1599,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> addCoa(Long client_no, String auth_key, String coa_code, String coa_description);
 
     abstract Map<String,Object> addCoa(Map<String,Object> map);
-
+        
     /**
     * getCoa
     * @param client_no - Type: Long
@@ -1613,7 +1613,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getCoa(Long client_no, String auth_key, Long coa_id);
 
     abstract Map<String,Object> getCoa(Map<String,Object> map);
-
+        
     /**
     * editCoa
     * @param client_no - Type: Long
@@ -1629,7 +1629,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> editCoa(Long client_no, String auth_key, Long coa_id, String coa_code, String coa_description);
 
     abstract Map<String,Object> editCoa(Map<String,Object> map);
-
+        
     /**
     * getSurcharges
     * @param client_no - Type: Long
@@ -1645,7 +1645,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getSurcharges(Long client_no, String auth_key, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getSurcharges(Map<String,Object> map);
-
+        
     /**
     * getSurchargeDetails
     * @param client_no - Type: Long
@@ -1687,7 +1687,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getSurchargeDetails(Long client_no, String auth_key, Long surcharge_no, String client_surcharge_id, Long locale_no, String locale_name, String include_translations);
 
     abstract Map<String,Object> getSurchargeDetails(Map<String,Object> map);
-
+        
     /**
     * createSurcharge
     * @param client_no - Type: Long
@@ -1722,7 +1722,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createSurcharge(Long client_no, String auth_key, String surcharge_name, String description, String ext_description, String currency_cd, String surcharge_type_cd, String inline_offset_ind, String apply_b4_or_after_discount_cd, Long scope_no, com.aria.common.shared.admin.SurchargeTierArray surcharge_tier, String client_surcharge_id, Long apply_to_zero_invoice_ind, Long tax_group, String gl_cd, String ar_gl_cd, com.aria.common.shared.admin.PlanNoArray plan_no, com.aria.common.shared.admin.ClientPlanIdArray client_plan_id, com.aria.common.shared.admin.ServiceNoArray service_no, com.aria.common.shared.admin.ClientServiceIdArray client_service_id, com.aria.common.shared.admin.ItemNoArray item_no, com.aria.common.shared.admin.ClientItemIdArray client_item_id, com.aria.common.shared.admin.ScheduleArray schedule, Long surcharge_scope);
 
     abstract Map<String,Object> createSurcharge(Map<String,Object> map);
-
+        
     /**
     * editSurcharge
     * @param client_no - Type: Long
@@ -1754,7 +1754,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> editSurcharge(Long client_no, String auth_key, String surcharge_no, String surcharge_name, String client_surcharge_id, String description, String ext_description, String currency_cd, Long scope_no, com.aria.common.shared.admin.SurchargeTierArray surcharge_tier, Long apply_to_zero_invoice_ind, com.aria.common.shared.admin.PlanNoArray plan_no, com.aria.common.shared.admin.ClientPlanIdArray client_plan_id, com.aria.common.shared.admin.ServiceNoArray service_no, com.aria.common.shared.admin.ClientServiceIdArray client_service_id, com.aria.common.shared.admin.ItemNoArray item_no, com.aria.common.shared.admin.ClientItemIdArray client_item_id, com.aria.common.shared.admin.ScheduleArray schedule, Long surcharge_scope, Long locale_no, String locale_name);
 
     abstract Map<String,Object> editSurcharge(Map<String,Object> map);
-
+        
     /**
     * deleteSurcharge
     * @param client_no - Type: Long
@@ -1768,7 +1768,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> deleteSurcharge(Long client_no, String auth_key, com.aria.common.shared.admin.SurchargeNoArray surcharge_no, com.aria.common.shared.admin.ClientSurchargeIdArray client_surcharge_id);
 
     abstract Map<String,Object> deleteSurcharge(Map<String,Object> map);
-
+        
     /**
     * validateAdminSession
     * @param client_no - Type: Long
@@ -1781,7 +1781,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> validateAdminSession(Long client_no, String auth_key, String session_id);
 
     abstract Map<String,Object> validateAdminSession(Map<String,Object> map);
-
+        
     /**
     * createChannel
     * @param client_no - Type: Long
@@ -1806,7 +1806,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createChannel(Long client_no, String auth_key, Long source_client_no, String target_client_name, String destination_email, Long acct_template_no, String user_id, String first_name, String last_name, String users_email, String users_password_first, String users_secret_question, String users_secret_question_answer);
 
     abstract Map<String,Object> createChannel(Map<String,Object> map);
-
+        
     /**
     * copyClient
     * @param client_no - Type: Long
@@ -1829,7 +1829,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> copyClient(Long client_no, String auth_key, Long source_client_no, String target_client_name, String destination_email, String user_id, String first_name, String last_name, String users_email, String users_password_first, String users_secret_question, String users_secret_question_answer);
 
     abstract Map<String,Object> copyClient(Map<String,Object> map);
-
+        
     /**
     * getRevrecProfiles
     * @param client_no - Type: Long
@@ -1842,7 +1842,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getRevrecProfiles(Long client_no, String auth_key);
 
     abstract Map<String,Object> getRevrecProfiles(Map<String,Object> map);
-
+        
     /**
     * getRevrecProfileDetails
     * @param client_no - Type: Long
@@ -1863,7 +1863,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getRevrecProfileDetails(Long client_no, String auth_key, Long profile_id, String client_profile_id);
 
     abstract Map<String,Object> getRevrecProfileDetails(Map<String,Object> map);
-
+        
     /**
     * createRevrecProfile
     * @param client_no - Type: Long
@@ -1882,7 +1882,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createRevrecProfile(Long client_no, String auth_key, String profile_name, String client_profile_id, String profile_desc, Long on_plan_payment_date, Long on_order_payment_date, Long on_order_fulfill_date);
 
     abstract Map<String,Object> createRevrecProfile(Map<String,Object> map);
-
+        
     /**
     * updateRevrecProfile
     * @param client_no - Type: Long
@@ -1902,7 +1902,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> updateRevrecProfile(Long client_no, String auth_key, Long profile_id, String profile_name, String client_profile_id, String profile_desc, Long on_plan_payment_date, Long on_order_payment_date, Long on_order_fulfill_date);
 
     abstract Map<String,Object> updateRevrecProfile(Map<String,Object> map);
-
+        
     /**
     * deleteRevrecProfile
     * @param client_no - Type: Long
@@ -1916,7 +1916,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> deleteRevrecProfile(Long client_no, String auth_key, Long profile_id, String client_profile_id);
 
     abstract Map<String,Object> deleteRevrecProfile(Map<String,Object> map);
-
+        
     /**
     * createProductFieldCategory
     * @param client_no - Type: Long
@@ -1932,7 +1932,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createProductFieldCategory(Long client_no, String auth_key, String field_category_name, com.aria.common.shared.admin.AssignCategoryPlansArray assign_category_plans, com.aria.common.shared.admin.AssignCategoryFieldsArray assign_category_fields);
 
     abstract Map<String,Object> createProductFieldCategory(Map<String,Object> map);
-
+        
     /**
     * editProductFieldCategory
     * @param client_no - Type: Long
@@ -1950,7 +1950,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> editProductFieldCategory(Long client_no, String auth_key, Long field_category_no, String field_category_name, String new_category_name, com.aria.common.shared.admin.AssignCategoryPlansArray assign_category_plans, com.aria.common.shared.admin.AssignCategoryFieldsArray assign_category_fields);
 
     abstract Map<String,Object> editProductFieldCategory(Map<String,Object> map);
-
+        
     /**
     * deleteProductFieldCategory
     * @param client_no - Type: Long
@@ -1964,7 +1964,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> deleteProductFieldCategory(Long client_no, String auth_key, Long field_category_no, String field_category_name);
 
     abstract Map<String,Object> deleteProductFieldCategory(Map<String,Object> map);
-
+        
     /**
     * getProductFieldCategories
     * @param client_no - Type: Long
@@ -1977,7 +1977,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getProductFieldCategories(Long client_no, String auth_key);
 
     abstract Map<String,Object> getProductFieldCategories(Map<String,Object> map);
-
+        
     /**
     * getProductFieldCategoryDetails
     * @param client_no - Type: Long
@@ -1995,7 +1995,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getProductFieldCategoryDetails(Long client_no, String auth_key, Long field_category_no, String field_category_name);
 
     abstract Map<String,Object> getProductFieldCategoryDetails(Map<String,Object> map);
-
+        
     /**
     * createCouponGroup
     * @param client_no - Type: Long
@@ -2013,7 +2013,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> createCouponGroup(Long client_no, String auth_key, String group_name, String client_defined_id, String description, String precedence, com.aria.common.shared.admin.CouponsArray coupons);
 
     abstract Map<String,Object> createCouponGroup(Map<String,Object> map);
-
+        
     /**
     * updateCouponGroup
     * @param client_no - Type: Long
@@ -2033,7 +2033,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> updateCouponGroup(Long client_no, String auth_key, Long group_no, String group_name, String client_defined_id, String description, String precedence, Long edit_directive, com.aria.common.shared.admin.CouponsArray coupons);
 
     abstract Map<String,Object> updateCouponGroup(Map<String,Object> map);
-
+        
     /**
     * getCouponGroups
     * @param client_no - Type: Long
@@ -2046,7 +2046,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getCouponGroups(Long client_no, String auth_key);
 
     abstract Map<String,Object> getCouponGroups(Map<String,Object> map);
-
+        
     /**
     * getCouponGroupDetails
     * @param client_no - Type: Long
@@ -2061,7 +2061,7 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getCouponGroupDetails(Long client_no, String auth_key, String group_no, String client_defined_id);
 
     abstract Map<String,Object> getCouponGroupDetails(Map<String,Object> map);
-
+        
     /**
     * getClientPaymentMethod
     * @param client_no - Type: Long
@@ -2074,6 +2074,6 @@ public interface AriaBillingAdministration  {
     abstract Map<String,Object> getClientPaymentMethod(Long client_no, String auth_key);
 
     abstract Map<String,Object> getClientPaymentMethod(Map<String,Object> map);
-
+        
     /********************************** END - METHODS ***********************************************/
 }
